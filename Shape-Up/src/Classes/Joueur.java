@@ -1,6 +1,7 @@
 package Classes;
 
-import java.util.HashMap;
+
+
 
 public class Joueur {
 	// attribut de la classe joueur 
@@ -63,30 +64,36 @@ public class Joueur {
     	
     	boolean bienPlacé;
     	
-    	if(tapis.getPlateau().containsKey(position)) {
-    		bienPlacé = false;
+    	if(tapis.getPlateau().isEmpty()){
+    		position.setX(0);
+    		position.setY(0);
+    		tapis.getPlateau().put(position, carte);
     	}else {
-    		PositionCarte position2 = new PositionCarte(position.getX()-1, position.getY());
-    		PositionCarte position3 = new PositionCarte(position.getX(), position.getY()+1);
-    		PositionCarte position4 = new PositionCarte(position.getX()+1, position.getY());
-    		PositionCarte position5 = new PositionCarte(position.getX(), position.getY()-1);
-    		
-    		if (tapis.getPlateau().containsKey(position2) | tapis.getPlateau().containsKey(position3) | tapis.getPlateau().containsKey(position4) | tapis.getPlateau().containsKey(position5)) {
-    			boolean horizontal = false;
-    			boolean vertical = false;
-    			
-    			
-    		}else {
+    	
+    		if(tapis.getPlateau().containsKey(position)) {
     			bienPlacé = false;
-    		}
+    		}else {
+    			PositionCarte position2 = new PositionCarte(position.getX()-1, position.getY());
+    			PositionCarte position3 = new PositionCarte(position.getX(), position.getY()+1);
+    			PositionCarte position4 = new PositionCarte(position.getX()+1, position.getY());
+    			PositionCarte position5 = new PositionCarte(position.getX(), position.getY()-1);
+    		
+    			if (tapis.getPlateau().containsKey(position2) | tapis.getPlateau().containsKey(position3) | tapis.getPlateau().containsKey(position4) | tapis.getPlateau().containsKey(position5)) {
+    				
+    				// voir les hashset pour faire l'iterateur
+    				
+    			}else {
+    				bienPlacé = false;
+    			}
     			
-    	}
+    		}
     }
 
    
-    
+    }
 
 
 	
 
+    
 }
