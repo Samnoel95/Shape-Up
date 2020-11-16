@@ -1,11 +1,11 @@
 package Classes;
 
-public class PositionCarteJoué {
+public class PositionCarte{
 
 	private int x;
 	private int y;
 	
-	public PositionCarteJoué(int x, int y) {
+	public PositionCarte(int x, int y) {
 		this.setX(x);
 		this.setY(y);
 	}
