@@ -1,6 +1,6 @@
 package Classes;
 
-public class JoueurVirtuel {
+public class JoueurVirtuel extends Joueur {
 
 
 
