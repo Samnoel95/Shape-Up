@@ -1,6 +1,6 @@
 package Classes;
 
-
+// test 
 
 public class Joueur {
 	// attribut de la classe joueur 
