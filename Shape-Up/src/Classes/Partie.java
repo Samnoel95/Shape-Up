@@ -50,6 +50,6 @@ public class Partie {
 		this.règle = règle;
 	}
 	
-	
+
 	
 }

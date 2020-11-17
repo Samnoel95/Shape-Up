@@ -1,8 +1,6 @@
 package Classes;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+
 
 public class Joueur {
 	// attribut de la classe joueur 
@@ -51,12 +49,17 @@ public class Joueur {
 		this.carteVictoire = carteVictoire;
 	}
 	// fin des getters et des setters 
+	
+	
+	
+	
    
     public Carte piocherCarte() {
     	
-    	Carte carteAjouer = new Carte();
-    		
-    	return carteAjouer;
+    	// choisir un nbr aléatoire
+    	// sélectionne la carte dans le tableau de carte prédéfini 
+    	// tri du tableau qui passe de 18 à 17 case 
+    	
     }
     
    
@@ -100,11 +103,11 @@ public class Joueur {
     		if(tapis.getPlateau().containsKey(position2)) {
     			carteDéplacé = false;
     		}else {
-    			PositionCarte position2 = new PositionCarte(position2.getX()-1, position2.getY());
-    			PositionCarte position3 = new PositionCarte(position2.getX(), position2.getY()+1);
-    			PositionCarte position4 = new PositionCarte(position2.getX()+1, position2.getY());
-    			PositionCarte position5 = new PositionCarte(position2.getX(), position2.getY()-1);
-    			if (tapis.getPlateau().containsKey(position2) | tapis.getPlateau().containsKey(position3) | tapis.getPlateau().containsKey(position4) | tapis.getPlateau().containsKey(position5)) {
+    			PositionCarte position3 = new PositionCarte(position2.getX()-1, position2.getY());
+    			PositionCarte position4 = new PositionCarte(position2.getX(), position2.getY()+1);
+    			PositionCarte position5 = new PositionCarte(position2.getX()+1, position2.getY());
+    			PositionCarte position6 = new PositionCarte(position2.getX(), position2.getY()-1);
+    			if (tapis.getPlateau().containsKey(position3) | tapis.getPlateau().containsKey(position4) | tapis.getPlateau().containsKey(position5) | tapis.getPlateau().containsKey(position6)) {
     				// règle du layout a rédiger
     			}else {
     				carteDéplacé = false;
