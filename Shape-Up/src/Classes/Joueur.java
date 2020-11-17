@@ -1,7 +1,8 @@
 package Classes;
 
-
-
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class Joueur {
 	// attribut de la classe joueur 
@@ -68,6 +69,7 @@ public class Joueur {
     		position.setX(0);
     		position.setY(0);
     		tapis.getPlateau().put(position, carte);
+    		System.out.println("La carte est placé en x = 0, y = 0");
     	}else {
     	
     		if(tapis.getPlateau().containsKey(position)) {
@@ -80,20 +82,36 @@ public class Joueur {
     		
     			if (tapis.getPlateau().containsKey(position2) | tapis.getPlateau().containsKey(position3) | tapis.getPlateau().containsKey(position4) | tapis.getPlateau().containsKey(position5)) {
     				
-    				// voir les hashset pour faire l'iterateur
-    				
+    				// il faut ajouter la contrainte de layout mais je ne sais pas comment. 
+
     			}else {
     				bienPlacé = false;
-    			}
-    			
+    			}		
     		}
-    }
-
-   
-    }
-
-
-	
-
+    	}
+    }  
     
+    public boolean déplacerCarte(PositionCarte position1, PositionCarte position2, Tapis tapis) {
+    	// position1 : carte a déplacer
+    	// position2 : emplacement de déplacement 
+    	boolean carteDéplacé;
+    	
+    	if(tapis.getPlateau().containsKey(position1)) {
+    		if(tapis.getPlateau().containsKey(position2)) {
+    			carteDéplacé = false;
+    		}else {
+    			PositionCarte position2 = new PositionCarte(position2.getX()-1, position2.getY());
+    			PositionCarte position3 = new PositionCarte(position2.getX(), position2.getY()+1);
+    			PositionCarte position4 = new PositionCarte(position2.getX()+1, position2.getY());
+    			PositionCarte position5 = new PositionCarte(position2.getX(), position2.getY()-1);
+    			if (tapis.getPlateau().containsKey(position2) | tapis.getPlateau().containsKey(position3) | tapis.getPlateau().containsKey(position4) | tapis.getPlateau().containsKey(position5)) {
+    				// règle du layout a rédiger
+    			}else {
+    				carteDéplacé = false;
+    			}
+    		}
+    	}else {
+    		carteDéplacé = false;
+    	}
+    }
 }
