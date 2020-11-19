@@ -18,7 +18,7 @@ public class Joueur {
 		this.commence = commence;
 		this.carteVictoire = carteVictoire;
 	} 
-    // début des getters et des setters
+    // dï¿½but des getters et des setters
 	public String getNomJoueur() {
 		return nomJoueur;
 	}
@@ -57,30 +57,34 @@ public class Joueur {
 	
    
     public Carte piocherCarte() {
-    	
-    	// choisir un nbr aléatoire
-    	// sélectionne la carte dans le tableau de carte prédéfini 
-    	// tri du tableau qui passe de 18 à 17 case 
-    	
+    	Carte cartePiochee;
+    	// choisir un nbr alï¿½atoire
+    	// rÃ©cupÃ©rer le nombre de cartes disponibles dans la pioche grace Ã  une mÃ©thode pioche
+    	// int x = (int) (Math.random()*(0 - 18));
+    	// sï¿½lectionne la carte dans le tableau de carte prï¿½dï¿½fini 
+    	// trouver comment relier la pioche Ã  cette mÃ©thode -> crÃ©er des mÃ©thodes d'accÃ¨s Ã  pioche dans pioche
+    	// cartePiochee = pioche[x];
+    	// tri du tableau qui passe de 18 ï¿½ 17 case 
+    	return cartePiochee;
     }
     
    
     
     public boolean poserCarte(PositionCarte position, Carte carte, Tapis tapis) {
     	
-    	boolean bienPlacé = false;
-    	// test pour savoir si c'est la première carte joué 
+    	boolean bienPlace = false;
+    	// test pour savoir si c'est la premiï¿½re carte jouï¿½ 
     	if(tapis.getPlateau().isEmpty()){
     		position.setX(0);
     		position.setY(0);
     		tapis.getPlateau().put(position, carte);
-    		System.out.println("La carte est placé en x = 0, y = 0");
+    		System.out.println("La carte est placee en x = 0, y = 0");
     	}else {
     		// test pour savoir si la position est libre
     		if(tapis.getPlateau().containsKey(position)) {
-    			bienPlacé = false;
+    			bienPlace = false;
     		}else {
-    			// test règle des cartes adjacentes
+    			// test rï¿½gle des cartes adjacentes
     			PositionCarte position2 = new PositionCarte(position.getX()-1, position.getY());
     			PositionCarte position3 = new PositionCarte(position.getX(), position.getY()+1);
     			PositionCarte position4 = new PositionCarte(position.getX()+1, position.getY());
@@ -88,7 +92,7 @@ public class Joueur {
     		
     			if (tapis.getPlateau().containsKey(position2) || tapis.getPlateau().containsKey(position3) || tapis.getPlateau().containsKey(position4) || tapis.getPlateau().containsKey(position5)) {
     				
-    				// test règle layout
+    				// test rï¿½gle layout
     				int Xmax = position.getX();
     				int Xmin = position.getX();
     				int Ymax = position.getY();
@@ -115,40 +119,40 @@ public class Joueur {
     				hauteur = Math.abs(Ymax) - Math.abs(Ymin);
     				
     				if ( longueur < 6 && 1 < longueur  && 1 < hauteur && hauteur < 4) {
-    					bienPlacé = true;
+    					bienPlace = true;
     				}else {
-    					bienPlacé=false;
+    					bienPlace=false;
     				}
     				
     				if ( longueur < 4 && 1 < longueur  && 1 < hauteur && hauteur < 6) {
-    					bienPlacé = true;
+    					bienPlace = true;
     				}else {
-    					bienPlacé=false;
+    					bienPlace=false;
     				}
     				
-    				if(!bienPlacé) {
+    				if(!bienPlace) {
     					tapis.getPlateau().remove(position);
     				}
     				
     			}else {
-    				bienPlacé = false;
+    				bienPlace = false;
     			}		
     		}
     	}
-    return bienPlacé;
+    return bienPlace;
     }   
     
-    public boolean déplacerCarte(PositionCarte position1, PositionCarte position2, Tapis tapis) {
-    	// position1 : carte a déplacer
-    	// position2 : emplacement de déplacement 
-    	boolean carteDéplacé;
-    	// test si la carte à déplacer existe
+    public boolean deplacerCarte(PositionCarte position1, PositionCarte position2, Tapis tapis) {
+    	// position1 : carte a dï¿½placer
+    	// position2 : emplacement de dï¿½placement 
+    	boolean carteDeplace;
+    	// test si la carte ï¿½ dï¿½placer existe
     	
     	if(tapis.getPlateau().containsKey(position1)) {
-    		// test pour savoir si la position est libre pour déplacer la carte
+    		// test pour savoir si la position est libre pour dï¿½placer la carte
     		
     		if(tapis.getPlateau().containsKey(position2)) {
-    			carteDéplacé = false;
+    			carteDeplace = false;
     		}else {
     			PositionCarte position3 = new PositionCarte(position2.getX()-1, position2.getY());
     			PositionCarte position4 = new PositionCarte(position2.getX(), position2.getY()+1);
@@ -184,28 +188,29 @@ public class Joueur {
     				hauteur = Math.abs(Ymax) - Math.abs(Ymin);
     				
     				if ( longueur < 6 && 1 < longueur  && 1 < hauteur && hauteur < 4) {
-    					carteDéplacé = true;
+    					carteDeplace = true;
     				}else {
-    					carteDéplacé=false;
+    					carteDeplace=false;
     				}
     				
     				if ( longueur < 4 && 1 < longueur  && 1 < hauteur && hauteur < 6) {
-    					carteDéplacé = true;
+    					carteDeplace = true;
     				}else {
-    					carteDéplacé=false;
+    					carteDeplace=false;
     				}
     				
-    				if(!carteDéplacé) {
+    				if(!carteDeplace) {
     					tapis.getPlateau().put(position1, tapis.getPlateau().get(position2));
         				tapis.getPlateau().remove(position2);
         				
     				}
     			}else {
-    				carteDéplacé = false;
+    				carteDeplace = false;
     			}
     		}
     	}else {
-    		carteDéplacé = false;
+    		carteDeplace = false;
     	}
+    	return carteDeplace;
     }
 }

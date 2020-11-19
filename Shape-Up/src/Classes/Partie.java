@@ -5,14 +5,14 @@ public class Partie {
 	private int nombreDeJoueur;
 	private int round;
 	private int tour;
-	private String règle;
-	// est ce que Round et tour sont obligatoire ? tour peut etre créé a l'intérieur du main ? a quoi correspond réellement un round ? 
+	private String regle;
+	// est ce que Round et tour sont obligatoire ? tour peut etre crï¿½ï¿½ a l'intï¿½rieur du main ? a quoi correspond rï¿½ellement un round ? 
 	
-	public Partie(int nombreDeJoueur, int round, int tour, String règle) {
+	public Partie(int nombreDeJoueur, int round, int tour, String regle) {
 		this.setNombreDeJoueur(nombreDeJoueur);
 		this.setRound(round);
 		this.setTour(tour);
-		this.setRègle(règle);
+		this.setRegle(regle);
 		
 	}
 	
@@ -42,12 +42,12 @@ public class Partie {
 		this.tour = tour;
 	}
 
-	public String getRègle() {
-		return règle;
+	public String getRegle() {
+		return regle;
 	}
 
-	public void setRègle(String règle) {
-		this.règle = règle;
+	public void setRegle(String regle) {
+		this.regle = regle;
 	}
 	
 
