@@ -274,9 +274,19 @@ public class Joueur {
         System.out.println(sam.carteVictoire.toString());
         */
 		
+		Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
 		Joueur lolo = new Joueur("Lorene", 1, false);
 		lolo.setCarteVictoire(pioche.distribuerUneCarte());
 		System.out.println(lolo.toString());
+		
+		Carte carteAJouer = new Carte();
+		carteAJouer = lolo.piocherCarte(pioche);
+		
+		PositionCarte position = new PositionCarte(1,1);
+		
+		System.out.println("Test 1");
+		
+		lolo.poserCarte(position, carteAJouer, tapis);
 		
 	}
 }

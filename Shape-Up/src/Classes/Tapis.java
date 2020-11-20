@@ -4,6 +4,21 @@ import java.util.HashMap;
 
 public class Tapis {
 	
+	/*
+	  	Map<String,Integer> map = new TreeMap<String, Integer>();
+        map.put("1", new Integer(10));
+        map.put("2", new Integer(20));
+        map.put("3", new Integer(30));
+        map.put("4", new Integer(10));       
+       
+        System.out.println(map.get("1"));
+        System.out.println(map.size());
+        map.remove("1");
+        System.out.println(map.get("1"));
+        System.out.println(map.size());       
+       
+	 */
+	
 	private HashMap<PositionCarte, Carte>plateau;
 	private formePlateau forme;
 	private boolean estPlein;
@@ -13,6 +28,11 @@ public class Tapis {
 		this.setForme(forme);
 		this.setEstPlein(estPlein);
 		
+	}
+	
+	public Tapis(formePlateau forme) {
+		this.setForme(forme);
+		System.out.println("Un tapis de forme "+this.forme+ " a été créé !");
 	}
 	
 	

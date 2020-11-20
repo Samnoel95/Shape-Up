@@ -4,6 +4,7 @@ public class Carte {
 	private Couleur couleur;
 	private Forme forme;
 	private boolean estPlein;
+	PositionCarte poisition;
 	
 	public Carte() {
 	}
@@ -12,6 +13,11 @@ public class Carte {
 		this.setCouleur(couleur);
 		this.setForme(forme);
 		this.setEstPlein(estPlein);
+	}
+	
+	public void setPosition(int x, int y) {
+		this.poisition.setX(x);
+		this.poisition.setY(y);
 	}
 	
 	public Couleur getCouleur() {
