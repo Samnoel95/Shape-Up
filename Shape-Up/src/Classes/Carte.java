@@ -1,14 +1,68 @@
 package Classes;
 
 public class Carte {
-	Couleur couleur;
-	Forme forme;
-	boolean estPlein;
+	private Couleur couleur;
+	private Forme forme;
+	private boolean estPlein;
+	
+	public Carte() {
+	}
 	
 	public Carte(Couleur couleur, Forme forme, boolean estPlein){
+		this.setCouleur(couleur);
+		this.setForme(forme);
+		this.setEstPlein(estPlein);
+	}
+	
+	public Couleur getCouleur() {
+		return couleur;
+	}
+	
+	public void setCouleur(Couleur couleur) {
 		this.couleur = couleur;
+	}
+	
+	public Forme getForme() {
+		return forme;
+	}
+	
+	public void setForme(Forme forme) {
 		this.forme = forme;
-		this.estPlein = false;
+	}
+	
+	public boolean getEstPlein() {
+		return estPlein;
+	}
+	
+	public void setEstPlein(boolean estPlein) {
+		this.estPlein = estPlein;
+	}
+	
+	
+	public String toString() {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append(this.forme);
+	    sb.append(", ");
+	    sb.append(this.couleur);
+	    sb.append(", ");
+	    if(this.estPlein == true)
+	    	sb.append("PLEIN");
+	    else
+	    	sb.append("VIDE");
+	    return sb.toString();
+	    }  
+	
+	// main pour tests
+	public static void main(String[]args){
+		Carte c1 = new Carte(Couleur.BLEU, Forme.CARRE, true);
+		Carte c2 = new Carte(Couleur.ROUGE, Forme.CERCLE, false);
+		Carte c3 = new Carte(Couleur.VERT, Forme.TRIANGLE, true);
+		
+		System.out.println(c1.toString());
+		System.out.println(c2.toString());
+		System.out.println(c3.toString());
+		
+		
 	}
 
 }

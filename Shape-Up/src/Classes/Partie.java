@@ -1,8 +1,10 @@
 package Classes;
 
-public class Partie {
+import java.util.*;
 
+public class Partie {
 	private int nombreDeJoueur;
+	private static ArrayList<Joueur> listeJ; //listeJ est l'ensemble des joueurs de la partie
 	private int round;
 	private int tour;
 	private String regle;
@@ -14,6 +16,11 @@ public class Partie {
 		this.setTour(tour);
 		this.setRegle(regle);
 		
+	}
+	
+	public Partie() {
+		listeJ = new ArrayList<Joueur>();
+		Pioche pioche = new Pioche();
 	}
 	
 	// setters et getters
@@ -50,6 +57,71 @@ public class Partie {
 		this.regle = regle;
 	}
 	
-
+	public void ajouterUnJoueur(Joueur joueur) {
+		listeJ.add(joueur);
+	}
 	
+	public static void main(String[] args) {
+		boolean veutCommencer;
+		int numPremierJoueur=-1;
+		Partie ShapeUp = new Partie();
+		Pioche pioche = new Pioche();
+		Scanner in = new Scanner(System.in);
+		pioche.melangerJeu();
+		
+        System.out.println("Nous prenons ici une partie à 2 joueurs.");
+        	Scanner in2 = new Scanner(System.in);
+        	System.out.println("Quel est le nom du joueur numéro 1?");
+            String nom = in2.nextLine();
+
+            	do {
+            	Scanner in3 = new Scanner(System.in);
+                System.out.println("Ce joueur veut il commencer? (true=OUI, false=NON)");
+                veutCommencer = in3.nextBoolean();
+            	}
+            	while(veutCommencer != true && veutCommencer != false);
+            
+            
+            Joueur j1 = new Joueur(nom, 1, veutCommencer);
+            
+            
+            j1.setCarteVictoire(pioche.distribuerUneCarte());
+            ShapeUp.ajouterUnJoueur(j1);   
+            
+            Scanner in4 = new Scanner(System.in);
+        	System.out.println("Quel est le nom du joueur numéro 2?");
+            String nom2 = in4.nextLine();
+
+			
+			Joueur j2 = new Joueur(nom2, 2);	
+            if(j1.getCommence()==true)
+            	j2.setCommence(false);
+            else
+            	j2.setCommence(true);
+            j2.setCarteVictoire(pioche.distribuerUneCarte());
+            ShapeUp.ajouterUnJoueur(j2); 
+            
+            System.out.println("**************************");
+            System.out.println("Voici les joueurs qui participent à la partie :");
+            System.out.println("");
+            System.out.println(j1.toString());
+            System.out.println("");
+            System.out.println(j2.toString());
+            System.out.println("");
+            System.out.println("**************************");
+            j1.piocherCarte(pioche);
+            System.out.println("**************************");
+            j2.piocherCarte(pioche);
+            
+            
+		}
 }
+
+        
+        
+        
+			
+		
+	
+
+

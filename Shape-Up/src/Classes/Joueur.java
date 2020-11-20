@@ -1,5 +1,6 @@
 package Classes;
 
+import java.util.Scanner;
 import java.util.Map.Entry;
 
 // test 
@@ -18,7 +19,23 @@ public class Joueur {
 		this.commence = commence;
 		this.carteVictoire = carteVictoire;
 	} 
-    // d�but des getters et des setters
+    
+    public Joueur(String nomJoueur, int numJoueur) {
+		this.nomJoueur = nomJoueur;
+		this.numJoueur = numJoueur;
+	}
+    
+    public Joueur(String nomJoueur, int numJoueur, boolean commence) {
+		this.nomJoueur = nomJoueur;
+		this.numJoueur = numJoueur;
+		this.commence = commence;
+	}
+    
+    public Joueur(String nomJoueur) {
+		this.nomJoueur = nomJoueur;
+	}
+    
+    // debut des getters et des setters
 	public String getNomJoueur() {
 		return nomJoueur;
 	}
@@ -35,7 +52,7 @@ public class Joueur {
 		this.numJoueur = numJoueur;
 	}
 
-	public boolean isCommence() {
+	public boolean getCommence() {
 		return commence;
 	}
 
@@ -52,20 +69,30 @@ public class Joueur {
 	}
 	// fin des getters et des setters 
 	
-	
+	public String toString() {
+	    StringBuffer sb = new StringBuffer();
+	    sb.append(this.nomJoueur);
+	    sb.append(", joueur numero ");
+	    sb.append(this.numJoueur);
+	    sb.append(", ");
+	    if(this.commence == true)
+	    	sb.append("commence,");
+	    else
+	    	sb.append("ne commence pas,");
+	    sb.append(" carte victoire : ");
+	    sb.append(this.carteVictoire.toString());
+	    return sb.toString();
+	    }  
 	
 	
    
-    public Carte piocherCarte() {
-    	Carte cartePiochee;
-    	// choisir un nbr al�atoire
-    	// récupérer le nombre de cartes disponibles dans la pioche grace à une méthode pioche
-    	// int x = (int) (Math.random()*(0 - 18));
-    	// s�lectionne la carte dans le tableau de carte pr�d�fini 
-    	// trouver comment relier la pioche à cette méthode -> créer des méthodes d'accès à pioche dans pioche
-    	// cartePiochee = pioche[x];
-    	// tri du tableau qui passe de 18 � 17 case 
-    	return cartePiochee;
+    public Carte piocherCarte(Pioche pioche) {
+    	Carte cartepiochee = new Carte();
+    	System.out.println(this.nomJoueur + " pioche une carte.");
+    	cartepiochee = pioche.distribuerUneCarte();
+    	System.out.println("**************************");
+    	System.out.println("Vous avez pioché la carte "+ cartepiochee.toString()+".");
+    	return cartepiochee;
     }
     
    
@@ -213,4 +240,45 @@ public class Joueur {
     	}
     	return carteDeplace;
     }
+
+//main de tests
+	public static void main(String[]args){
+		
+		Pioche pioche = new Pioche();
+		pioche.melangerJeu();
+		/*
+		Joueur lolo = new Joueur("Lorène");
+		lolo.setNumJoueur(1);
+		
+		Scanner in = new Scanner(System.in);
+        System.out.println("Est ce que Lolo souhaite commencer? (1=OUI; 0=NON)");
+        int reponse = in.nextInt();
+        if(reponse==1)
+        	lolo.setCommence(true);
+        else 
+        	lolo.setCommence(false);
+        System.out.println("Lolo commence : "+ lolo.commence);
+        lolo.setNumJoueur(1);
+        lolo.setCarteVictoire(pioche.distribuerUneCarte());
+        System.out.println("La carte victoire de Lolo est :");
+        System.out.println(lolo.carteVictoire.toString());
+        
+        Joueur sam = new Joueur("Sam");
+        if(lolo.commence==true)
+        	sam.setCommence(false);
+        else
+        	sam.setCommence(true);
+        sam.setNumJoueur(2);
+        sam.setCarteVictoire(pioche.distribuerUneCarte());
+        System.out.println("La carte victoire de Sam est :");
+        System.out.println(sam.carteVictoire.toString());
+        */
+		
+		Joueur lolo = new Joueur("Lorene", 1, false);
+		lolo.setCarteVictoire(pioche.distribuerUneCarte());
+		System.out.println(lolo.toString());
+		
+	}
 }
+	
+	

@@ -2,7 +2,8 @@ package Classes;
 
 
 public class CompteurNormal {
-	
+
+	//à refaire par rapport au plateau
 	
 	// ajouter le fait qu'il faille comparer à une forme particulière
 	public static int compterForme(Carte[] ligne, Forme forme)
