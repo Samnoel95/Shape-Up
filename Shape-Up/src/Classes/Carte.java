@@ -4,7 +4,7 @@ public class Carte {
 	private Couleur couleur;
 	private Forme forme;
 	private boolean estPlein;
-	PositionCarte poisition;
+	PositionCarte position;
 	
 	public Carte() {
 	}
@@ -16,8 +16,8 @@ public class Carte {
 	}
 	
 	public void setPosition(int x, int y) {
-		this.poisition.setX(x);
-		this.poisition.setY(y);
+		this.position.setX(x);
+		this.position.setY(y);
 	}
 	
 	public Couleur getCouleur() {
@@ -68,6 +68,9 @@ public class Carte {
 		System.out.println(c2.toString());
 		System.out.println(c3.toString());
 		
+		PositionCarte position = new PositionCarte(1,2);
+		c1.position = position;
+		System.out.println(c1.position.toString());
 		
 	}
 

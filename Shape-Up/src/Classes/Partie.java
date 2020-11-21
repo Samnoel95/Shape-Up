@@ -61,6 +61,18 @@ public class Partie {
 		listeJ.add(joueur);
 	}
 	
+	public void affichageJoueur(Joueur j1, Joueur j2) 
+	{
+		System.out.println("**************************");
+        System.out.println("Voici les joueurs qui participent à la partie :");
+        System.out.println("");
+        System.out.println(j1.toString());
+        System.out.println("");
+        System.out.println(j2.toString());
+        System.out.println("");
+        System.out.println("**************************");
+	}
+	
 	public static void main(String[] args) {
 		boolean veutCommencer;
 		int numPremierJoueur=-1;
@@ -101,18 +113,17 @@ public class Partie {
             j2.setCarteVictoire(pioche.distribuerUneCarte());
             ShapeUp.ajouterUnJoueur(j2); 
             
-            System.out.println("**************************");
-            System.out.println("Voici les joueurs qui participent à la partie :");
-            System.out.println("");
-            System.out.println(j1.toString());
-            System.out.println("");
-            System.out.println(j2.toString());
-            System.out.println("");
-            System.out.println("**************************");
-            j1.piocherCarte(pioche);
-            System.out.println("**************************");
-            j2.piocherCarte(pioche);
+            ShapeUp.affichageJoueur(j1, j2);
             
+            Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
+            
+            while(tapis.isEstPlein() == false) {
+            	j1.Jouer(j1, tapis, pioche);
+            	System.out.println(tapis.toString());
+            	j2.Jouer(j2, tapis, pioche);
+            	System.out.println(tapis.toString());
+            }
+          
             
 		}
 }

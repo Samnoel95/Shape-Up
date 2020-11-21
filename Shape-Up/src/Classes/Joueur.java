@@ -95,6 +95,31 @@ public class Joueur {
     	return cartepiochee;
     }
     
+    public void Jouer(Joueur joueur, Tapis tapis, Pioche pioche) {
+    	Carte carteAJouer = new Carte();
+        carteAJouer = joueur.piocherCarte(pioche);
+        
+        
+        Scanner in = new Scanner(System.in);
+    	System.out.println("Quelle est la valeur de x du plateau sur laquelle vous souhaitez poser votre carte?");
+        int x = in.nextInt();
+        
+        Scanner in2 = new Scanner(System.in);
+    	System.out.println("Quelle est la valeur de y du plateau sur laquelle vous souhaitez poser votre carte?");
+        int y = in2.nextInt();
+        
+        PositionCarte position = new PositionCarte(x,y);
+        carteAJouer.position = position;
+        tapis.getPlateau().put(position, carteAJouer);
+        boolean joue = joueur.poserCarte(position, carteAJouer, tapis);
+        System.out.println("La carte est placée en x="+carteAJouer.position.getX()+" et y="+carteAJouer.position.getY());;
+        if(joue == true)
+        	System.out.println("Bien joué ! Joueur 2, c'est ton tour !");
+        else
+        	System.out.println("Attention, ta carte est mal placée!");
+   
+        
+    }
    
     
     public boolean poserCarte(PositionCarte position, Carte carte, Tapis tapis) {
@@ -279,14 +304,7 @@ public class Joueur {
 		lolo.setCarteVictoire(pioche.distribuerUneCarte());
 		System.out.println(lolo.toString());
 		
-		Carte carteAJouer = new Carte();
-		carteAJouer = lolo.piocherCarte(pioche);
-		
-		PositionCarte position = new PositionCarte(1,1);
-		
-		System.out.println("Test 1");
-		
-		lolo.poserCarte(position, carteAJouer, tapis);
+		lolo.Jouer(lolo, tapis, pioche);
 		
 	}
 }

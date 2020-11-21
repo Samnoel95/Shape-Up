@@ -1,8 +1,9 @@
 package Classes;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class Tapis {
+public class  Tapis {
 	
 	/*
 	  	Map<String,Integer> map = new TreeMap<String, Integer>();
@@ -22,18 +23,18 @@ public class Tapis {
 	private HashMap<PositionCarte, Carte>plateau;
 	private formePlateau forme;
 	private boolean estPlein;
+	Map<PositionCarte, Carte> tapis = new HashMap<PositionCarte, Carte>();
 	
-	public Tapis(HashMap<PositionCarte, Carte> plateau,formePlateau forme, boolean estPlein) {
-		this.setPlateau(plateau);
+	public Tapis(formePlateau forme) {
+		HashMap<PositionCarte, Carte> tapis = new HashMap<PositionCarte, Carte>();
+		this.setPlateau(tapis);
 		this.setForme(forme);
-		this.setEstPlein(estPlein);
+		this.setEstPlein(false);
+		System.out.println("Un tapis de forme "+this.forme+ " a été créé !");
 		
 	}
 	
-	public Tapis(formePlateau forme) {
-		this.setForme(forme);
-		System.out.println("Un tapis de forme "+this.forme+ " a été créé !");
-	}
+	
 	
 	
    // setters And Getters
@@ -47,7 +48,7 @@ public class Tapis {
 	}
 
 
-	public boolean isEstPlein() {
+	public boolean getEstPlein() {
 		return estPlein;
 	}
 
@@ -62,8 +63,21 @@ public class Tapis {
 	}
 
 
-	public void setPlateau(HashMap<PositionCarte, Carte> plateau) {
-		this.plateau = plateau;
+	public void setPlateau(HashMap<PositionCarte, Carte> tapis) {
+		this.plateau = tapis;
 	}
-	 
+	
+	public static void main(String[] args) {
+	 Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
+	} 
+	
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append("Il y a ");
+	    sb.append(this.plateau.size());
+	    sb.append(" cartes posées sur le plateau.");
+	    sb.append(this.plateau.entrySet());
+	    return sb.toString();
+	}
 }
