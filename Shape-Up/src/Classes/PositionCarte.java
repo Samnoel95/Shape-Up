@@ -33,6 +33,17 @@ public class PositionCarte{
 			return this.posY;
 		}
 
+		@Override 
+		public int hashCode() {
+			return posX*posY;
+		}
+		@Override 
+		public boolean equals(Object o) {
+		if(((PositionCarte) o).posX == this.posX && ((PositionCarte) o).posY == this.posY)
+			return true;
+		return false;
+			
+		}
 		
 		
 		public static boolean verifierPlacement(int x, int y)
