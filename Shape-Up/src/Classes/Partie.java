@@ -117,7 +117,7 @@ public class Partie {
             
             Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
             
-            while(tapis.isEstPlein() == false) {
+            while(tapis.getEstPlein() == false) {
             	j1.Jouer(j1, tapis, pioche);
             	System.out.println(tapis.toString());
             	j2.Jouer(j2, tapis, pioche);
