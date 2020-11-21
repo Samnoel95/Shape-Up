@@ -172,19 +172,26 @@ public class Joueur {
     				longueur = Math.abs(Xmax) - Math.abs(Xmin) + 1;
     				hauteur = Math.abs(Ymax) - Math.abs(Ymin) + 1;
     				
-    				
+    				boolean horizontal;
     				if ( longueur < 6 && 1 <= longueur  && 1 <= hauteur && hauteur < 4) {
-    					bienPlace = true;
+    					horizontal = true;
     				}else {
-    					bienPlace=false;
+    					horizontal=false;
     					
     				}
     				
+    				boolean vertical;
     				if ( longueur < 4 && 1 <= longueur  && 1 <= hauteur && hauteur < 6) {
-    					bienPlace = true;
+    					vertical = true;
     				}else {
-    					bienPlace=false;
-    					
+    					vertical=false;
+ 
+    				}
+    				
+    				if(vertical || horizontal) {
+    					bienPlace=true;
+    				}else {
+    					bienPlace = false;
     				}
     				
     				tapis.getPlateau().remove(position);
