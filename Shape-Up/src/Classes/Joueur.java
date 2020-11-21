@@ -217,16 +217,18 @@ public class Joueur {
     		if(tapis.getPlateau().containsKey(position2)) {
     			carteDeplace = false;
     		}else {
+    			tapis.getPlateau().put(position2, tapis.getPlateau().get(position1));
+				tapis.getPlateau().remove(position1);
+				
     			PositionCarte position3 = new PositionCarte(position2.getX()-1, position2.getY());
     			PositionCarte position4 = new PositionCarte(position2.getX(), position2.getY()+1);
     			PositionCarte position5 = new PositionCarte(position2.getX()+1, position2.getY());
     			PositionCarte position6 = new PositionCarte(position2.getX(), position2.getY()-1);
     			if (tapis.getPlateau().containsKey(position3) || tapis.getPlateau().containsKey(position4) || tapis.getPlateau().containsKey(position5) || tapis.getPlateau().containsKey(position6)) {
     				
-    				tapis.getPlateau().put(position2, tapis.getPlateau().get(position1));
-    				tapis.getPlateau().remove(position1);
     				
     				
+   
     				int Xmax = position2.getX();
     				int Xmin = position2.getX();
     				int Ymax = position2.getY();
@@ -250,16 +252,26 @@ public class Joueur {
     				longueur = Math.abs(Xmax) - Math.abs(Xmin);
     				hauteur = Math.abs(Ymax) - Math.abs(Ymin);
     				
-    				if ( longueur < 6 && 1 < longueur  && 1 < hauteur && hauteur < 4) {
-    					carteDeplace = true;
+    				boolean horizontal;
+    				if ( longueur < 6 && 1 <= longueur  && 1 <= hauteur && hauteur < 4) {
+    					horizontal = true;
     				}else {
-    					carteDeplace=false;
+    					horizontal=false;
+    					
     				}
     				
-    				if ( longueur < 4 && 1 < longueur  && 1 < hauteur && hauteur < 6) {
-    					carteDeplace = true;
+    				boolean vertical;
+    				if ( longueur < 4 && 1 <= longueur  && 1 <= hauteur && hauteur < 6) {
+    					vertical = true;
     				}else {
-    					carteDeplace=false;
+    					vertical=false;
+ 
+    				}
+    				
+    				if(vertical || horizontal) {
+    					carteDeplace=true;
+    				}else {
+    					carteDeplace = false;
     				}
     				
     				if(!carteDeplace) {
