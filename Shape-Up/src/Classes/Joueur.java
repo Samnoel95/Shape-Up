@@ -109,12 +109,14 @@ public class Joueur {
         int y = in2.nextInt();
         
         PositionCarte position = new PositionCarte(x,y);
-        carteAJouer.position = position;
-        tapis.getPlateau().put(position, carteAJouer);
+        
         boolean joue = joueur.poserCarte(position, carteAJouer, tapis);
         System.out.println("La carte est placée en x="+carteAJouer.position.getX()+" et y="+carteAJouer.position.getY());;
-        if(joue == true)
-        	System.out.println("Bien joué ! Joueur 2, c'est ton tour !");
+        if(joue == true) {
+        	carteAJouer.position = position;
+            tapis.getPlateau().put(position, carteAJouer);
+            System.out.println("Bien joué ! Joueur 2, c'est ton tour !");
+        }
         else
         	System.out.println("Attention, ta carte est mal placée!");
    
@@ -129,8 +131,8 @@ public class Joueur {
     	if(tapis.getPlateau().isEmpty()){
     		position.setX(0);
     		position.setY(0);
-    		tapis.getPlateau().put(position, carte);
-    		System.out.println("La carte est placee en x = 0, y = 0");
+    		carte.position = position;
+    		bienPlace=true;
     	}else {
     		// test pour savoir si la position est libre
     		if(tapis.getPlateau().containsKey(position)) {
@@ -151,7 +153,6 @@ public class Joueur {
     				int Ymin = position.getY();
     				int longueur;
     				int hauteur;
-    				
     				tapis.getPlateau().put(position, carte);
     				for(Entry<PositionCarte, Carte> entry : tapis.getPlateau().entrySet()) {
     					if(entry.getKey().getX() > Xmax) {
