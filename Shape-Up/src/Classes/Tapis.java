@@ -34,7 +34,7 @@ public class  Tapis {
 		
 	}
 	
-	
+
 	
 	
    // setters And Getters

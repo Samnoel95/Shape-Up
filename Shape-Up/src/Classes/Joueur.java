@@ -111,7 +111,7 @@ public class Joueur {
         PositionCarte position = new PositionCarte(x,y);
         
         boolean joue = joueur.poserCarte(position, carteAJouer, tapis);
-        System.out.println("La carte est placée en x="+carteAJouer.position.getX()+" et y="+carteAJouer.position.getY());;
+        System.out.println("La carte est placée en x="+position.getX()+" et y="+position.getY());;
         if(joue == true) {
         	carteAJouer.position = position;
             tapis.getPlateau().put(position, carteAJouer);
@@ -138,6 +138,7 @@ public class Joueur {
     		if(tapis.getPlateau().containsKey(position)) {
     			bienPlace = false;
     		}else {
+    			
     			// test r�gle des cartes adjacentes
     			PositionCarte position2 = new PositionCarte(position.getX()-1, position.getY());
     			PositionCarte position3 = new PositionCarte(position.getX(), position.getY()+1);
@@ -168,24 +169,26 @@ public class Joueur {
     					}
     				}
     				
-    				longueur = Math.abs(Xmax) - Math.abs(Xmin);
-    				hauteur = Math.abs(Ymax) - Math.abs(Ymin);
+    				longueur = Math.abs(Xmax) - Math.abs(Xmin) + 1;
+    				hauteur = Math.abs(Ymax) - Math.abs(Ymin) + 1;
     				
-    				if ( longueur < 6 && 1 < longueur  && 1 < hauteur && hauteur < 4) {
+    				
+    				if ( longueur < 6 && 1 <= longueur  && 1 <= hauteur && hauteur < 4) {
     					bienPlace = true;
     				}else {
     					bienPlace=false;
+    					
     				}
     				
-    				if ( longueur < 4 && 1 < longueur  && 1 < hauteur && hauteur < 6) {
+    				if ( longueur < 4 && 1 <= longueur  && 1 <= hauteur && hauteur < 6) {
     					bienPlace = true;
     				}else {
     					bienPlace=false;
+    					
     				}
     				
-    				if(!bienPlace) {
-    					tapis.getPlateau().remove(position);
-    				}
+    				tapis.getPlateau().remove(position);
+    				
     				
     			}else {
     				bienPlace = false;
