@@ -1,14 +1,17 @@
 package fr.utt.lo02.shapeUp.CompteurScore;
 
-import fr.utt.lo02.shapeUp.Carte.Carte;
-import fr.utt.lo02.shapeUp.Carte.Couleur;
-import fr.utt.lo02.shapeUp.Carte.Forme;
-import fr.utt.lo02.shapeUp.Tapis.Tapis;
-
 import java.util.*;
 
+import Classes.Carte;
+import Classes.Couleur;
+import Classes.Forme;
+import Classes.Pioche;
+import Classes.PositionCarte;
+import Classes.Tapis;
+import Classes.Visiteur;
+import Classes.formePlateau;
 
-public class Compteur implements Visiteur{
+public class CompteurInverse implements Visiteur{
 	
 	@Override
 	public int compterLigneForme(Tapis tapis, Forme forme, int ligne)
@@ -17,6 +20,7 @@ public class Compteur implements Visiteur{
 		int colonne = 0;
 		int x=0;
 		int y=0;
+		int nombreAligne=0;
 		PositionCarte position = new PositionCarte(ligne,colonne);
 		PositionCarte positionDroite = new PositionCarte(ligne,colonne+1);
 		
@@ -36,9 +40,25 @@ public class Compteur implements Visiteur{
 			positionDroite = new PositionCarte(ligne,colonne+1);
 		}
 		if(x>y) {
-			return x;
+			// la compraison a été vérifiée x fois, donc il y a x+1 éléments semblables cote à cote
+			nombreAligne=x+1;
 		}
-		return y;
+		else
+			nombreAligne=y+1;
+		
+		switch(nombreAligne) {
+		case 1 :
+			return 4;
+		case 2 :
+			return 3;
+		case 3 :
+			return 2;
+		case 4 :
+			return 1;
+		default :
+			return 0;
+		
+		}
 		
 	}
 	
@@ -48,6 +68,7 @@ public class Compteur implements Visiteur{
 		int ligne = 0;
 		int x=0;
 		int y=0;
+		int nombreAligne=0;
 		PositionCarte position = new PositionCarte(ligne,colonne);
 		PositionCarte positionBas = new PositionCarte(ligne+1,colonne);
 		
@@ -67,15 +88,30 @@ public class Compteur implements Visiteur{
 			positionBas = new PositionCarte(ligne+1,colonne);
 		}
 		if(x>y) {
-			return x;
+			nombreAligne=x+1;
 		}
-		return y;
+		else
+			nombreAligne=y+1;
 		
+		switch(nombreAligne) {
+		case 1 :
+			return 4;
+		case 2 :
+			return 3;
+		case 3 :
+			return 2;
+		case 4 :
+			return 1;
+		default :
+			return 0;
+		
+	}
 	}
 	
 	@Override
 	public int compterLigneCouleur(Tapis tapis, Couleur couleur, int ligne)
 	{
+		int nombreAligne = 0;
 		int colonne = 0;
 		int x=1;
 		int y=0;
@@ -99,20 +135,28 @@ public class Compteur implements Visiteur{
 		}
 		if(y>x)
 		{
-			x=y;
+			nombreAligne=y+1;
 		}
+		else
+			nombreAligne=x+1;
 		
-		if(x<3)
-		{
+		switch(nombreAligne) {
+		case 1 :
+			return 6;
+		case 2 :
+			return 5;
+		case 3 :
+			return 4;
+		default :
 			return 0;
-		}
-		return x+1;
 		
+	}
 	}
 	
 	@Override
 	public int compterColonneCouleur(Tapis tapis, Couleur couleur, int colonne)
 	{
+		int nombreAligne=0;
 		int ligne = 0;
 		int x=1;
 		int y=0;
@@ -136,20 +180,29 @@ public class Compteur implements Visiteur{
 		}
 		if(y>x)
 		{
-			x=y;
+			nombreAligne=y+1;
 		}
-		
-		if(x<3)
-		{
+		else
+			nombreAligne=x+1;
+		switch(nombreAligne) {
+		case 1 :
+			return 6;
+		case 2 :
+			return 5;
+		case 3 :
+			return 4;
+		default :
 			return 0;
-		}
-		return x+1;
+		
+	}
+		
 		
 	}
 	
 	@Override
 	public int compterLigneEstPlein(Tapis tapis, boolean estPlein, int ligne)
 	{
+		int nombreAligne=0;
 		int colonne = 0;
 		int x=1;
 		int y=0;
@@ -172,20 +225,28 @@ public class Compteur implements Visiteur{
 			positionDroite = new PositionCarte(ligne,colonne+1);
 		}
 		if(y>x)
-		{
-			x=y;
-		}
-		if(x<2)
-		{
+			nombreAligne=y+1;
+		else
+			nombreAligne=x+1;
+		
+		switch(nombreAligne) {
+		case 1 :
+			return 5;
+		case 2 :
+			return 4;
+		case 3 :
+			return 3;
+		default :
 			return 0;
-		}
-		return x;
+		
+	}
 		
 	}
 	
 	@Override
 	public int compterColonneEstPlein(Tapis tapis, boolean estPlein, int colonne)
 	{
+		int nombreAligne =0;
 		int ligne = 0;
 		int x=1;
 		int y=0;
@@ -208,14 +269,21 @@ public class Compteur implements Visiteur{
 			positionBas = new PositionCarte(ligne+1,colonne);
 		}
 		if(y>x)
-		{
-			x=y;
-		}
-		if(x<2)
-		{
+			nombreAligne=y+1;
+		else
+			nombreAligne=x+1;
+		
+		switch(nombreAligne) {
+		case 1 :
+			return 5;
+		case 2 :
+			return 4;
+		case 3 :
+			return 3;
+		default :
 			return 0;
-		}
-		return x;
+		
+	}
 		
 	}
 	
