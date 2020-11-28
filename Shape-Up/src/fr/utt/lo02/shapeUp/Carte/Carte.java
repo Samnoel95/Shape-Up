@@ -1,4 +1,4 @@
-package Classes;
+package fr.utt.lo02.shapeUp.Carte;
 
 public class Carte {
 	private Couleur couleur;

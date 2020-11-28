@@ -1,16 +1,24 @@
-package Classes;
+package fr.utt.lo02.shapeUp.Joueur;
 
 import java.util.Scanner;
 import java.util.Map.Entry;
 
+import javax.crypto.AEADBadTagException;
+
+import fr.utt.lo02.shapeUp.Carte.Carte;
+import fr.utt.lo02.shapeUp.Carte.Pioche;
+import fr.utt.lo02.shapeUp.Carte.PositionCarte;
+import fr.utt.lo02.shapeUp.Tapis.Tapis;
+
 // test 
 
-public class Joueur {
+public abstract class Joueur {
 	// attribut de la classe joueur 
 	private String nomJoueur;
 	private int numJoueur;
     private boolean commence;
     private Carte carteVictoire;
+    
 
     // constructeur d'une instance de Joueur 
     public Joueur(String nomJoueur, int numJoueur, boolean commence, Carte carteVictoire) {
@@ -20,21 +28,7 @@ public class Joueur {
 		this.carteVictoire = carteVictoire;
 	} 
     
-    public Joueur(String nomJoueur, int numJoueur) {
-		this.nomJoueur = nomJoueur;
-		this.numJoueur = numJoueur;
-	}
-    
-    public Joueur(String nomJoueur, int numJoueur, boolean commence) {
-		this.nomJoueur = nomJoueur;
-		this.numJoueur = numJoueur;
-		this.commence = commence;
-	}
-    
-    public Joueur(String nomJoueur) {
-		this.nomJoueur = nomJoueur;
-	}
-    
+
     // debut des getters et des setters
 	public String getNomJoueur() {
 		return nomJoueur;
@@ -67,7 +61,13 @@ public class Joueur {
 	public void setCarteVictoire(Carte carteVictoire) {
 		this.carteVictoire = carteVictoire;
 	}
+	
+
 	// fin des getters et des setters 
+	
+
+	
+	public abstract void Jouer(Joueur joueur,Tapis tapis, Pioche pioche);
 	
 	public String toString() {
 	    StringBuffer sb = new StringBuffer();
@@ -95,21 +95,6 @@ public class Joueur {
     	return cartepiochee;
     }
     
-	public int askX() {
-		Scanner in = new Scanner(System.in);
-     	System.out.println("x = ?");
-         int x = in.nextInt();
-         
-         return x;
-	}
-	
-	public  int askY() {
-		Scanner in = new Scanner(System.in);
-     	System.out.println("y = ?");
-         int y = in.nextInt();
-         
-         return y;
-	}
 	
 	public boolean isExist(PositionCarte position, Tapis tapis) {
 		boolean isExist = false;
@@ -137,6 +122,7 @@ public class Joueur {
 	}
   
 	public int longueurPlateau(Tapis tapis) {
+		// peut utiliser les méthodes de tapis pour trouver les x et les y min/max 
 		int longueur;
 		int Xmax = 0;
 		int Xmin = 0;
@@ -245,153 +231,21 @@ public class Joueur {
 		tapis.getPlateau().remove(position1);
 		adjacent = isAdjacent(position2, tapis);
 		layoutOk = layoutOk(position2,tapis.getPlateau().get(position1), tapis);
-		tapis.getPlateau().put(position1, tapis.getPlateau().get(position2));
-		tapis.getPlateau().remove(position2);
+			if(adjacent && layoutOk) {
+				carteDeplace = true;
+				System.out.println("La carte est deplacee !en x= "+position2.getX()+"et y= "+position2.getY());
+			}else {
+				tapis.getPlateau().put(position1, tapis.getPlateau().get(position2));
+				tapis.getPlateau().remove(position2);
+				carteDeplace = false;
+			}	
 		}
-		if(isExist && !isExist2 && adjacent && layoutOk){
-			tapis.getPlateau().put(position2, tapis.getPlateau().get(position1));
-			tapis.getPlateau().remove(position1);
-			carteDeplace = true;
-			System.out.println("La carte est deplacee !en x= "+position2.getX()+"et y= "+position2.getY());
-		}
-		
 		return carteDeplace;
 	}
-	
-	public void Jouer(Joueur joueur, Tapis tapis, Pioche pioche) {
-    	Carte carteAJouer = new Carte();
-        carteAJouer = joueur.piocherCarte(pioche);
-        int longueur;
-        int hauteur;
-        int x;
-        int y;
-        boolean veutDeplacer = false;
-        boolean aDeplace = false;
-        System.out.println(joueur+" c'est ton tour !");
-        
-        
-        longueur = longueurPlateau(tapis);
-        hauteur = hauteurPlateau(tapis);
-        System.out.println("La longueur du plateau est  "+longueur);
-        System.out.println("La hauteur du plateau est"+hauteur);
-    	if (!tapis.getPlateau().isEmpty() && (hauteur !=1 || longueur != 1)) {
-    		Scanner in = new Scanner(System.in);
-    		System.out.println(joueur+" veux tu deplacer une carte ? (true=OUI, false=NON)");
-            veutDeplacer = in.nextBoolean();
-            
-    	}
-        
-        if(veutDeplacer && aDeplace == false) {
-        	System.out.println("Coordonnées de la carte a déplacer : ");
-        	
-        	 x = askX();
-        	 y = askY();
-            
-            PositionCarte position1 = new PositionCarte(x,y);
-            
-            System.out.println( "Ou deplacer la carte ?");
-
-            x = askX();
-            y = askY();
-            
-            PositionCarte position2 = new PositionCarte(x,y);
-            
-            aDeplace = deplacerCarte(position1, position2, tapis);
-            while(!aDeplace) {
-            	System.out.println("Deplacement invalide ! recommence : ");
-            	System.out.println("Coordonnées de la carte a déplacer : ");
-            	
-            	x = askX();
-                y = askY();
-                
-                position1.setX(x);
-                position1.setY(y);
-             
-                System.out.println( "Ou deplacer la carte ?");
-
-                x = askX();
-                y = askY();
-                
-                position2.setX(x);
-                position2.setY(y);
-               
-                
-                aDeplace = deplacerCarte(position1, position2, tapis);	
-            }
-        } 
-           
-        System.out.println("Ou poser la carte ?"+carteAJouer);
-        x = askX();
-        y = askY();
-            
-        PositionCarte position = new PositionCarte(x,y);
-            
-        boolean cartePose = poserCarte(position, carteAJouer, tapis);
-        
-        while (!cartePose) {
-            	System.out.println("La carte est mal placee ! Recommence : ");
-            	
-            	x = askX();
-                y = askY();
-                
-               position.setX(x);
-               position.setY(y);
-               cartePose = poserCarte(position, carteAJouer, tapis);
-         }
-        
-          longueur = longueurPlateau(tapis);
-          hauteur = hauteurPlateau(tapis);
-          System.out.println("La longueur du plateau est  "+longueur);
-          System.out.println("La hauteur du plateau est"+hauteur);
-         if( aDeplace == false && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
-        	 Scanner in6 = new Scanner(System.in);
-             System.out.println(joueur+" veux tu deplacer une carte ? (true=OUI, false=NON)");
-             veutDeplacer = in6.nextBoolean();
-             
-             
-             if(veutDeplacer) {
-            	// on deplace
-            	 System.out.println("Coordonnées de la carte a déplacer : ");
-             	
-            	 x = askX();
-            	 y = askY();
-                
-                PositionCarte position1 = new PositionCarte(x,y);
-                
-                System.out.println( "Ou deplacer la carte ?");
-
-                x = askX();
-                y = askY();
-                
-                PositionCarte position2 = new PositionCarte(x,y);
-                
-                aDeplace = deplacerCarte(position1, position2, tapis);
-                while(!aDeplace) {
-                	System.out.println("Deplacement invalide ! recommence : ");
-                	System.out.println("Coordonnées de la carte a déplacer : ");
-                	
-                	x = askX();
-                    y = askY();
-                    
-                    position1.setX(x);
-                    position1.setY(y);
-                 
-                    System.out.println( "Ou deplacer la carte ?");
-
-                    x = askX();
-                    y = askY();
-                    
-                    position2.setX(x);
-                    position2.setY(y);
-                   
-                    
-                    aDeplace = deplacerCarte(position1, position2, tapis);	
-                }
-            }
-            // fin tour
-        }  
-    }
-	
 }
+
+
+	
+
 	
 	

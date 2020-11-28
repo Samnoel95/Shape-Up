@@ -1,6 +1,12 @@
-package Classes;
+package fr.utt.lo02.shapeUp.Partie;
 
 import java.util.*;
+
+import fr.utt.lo02.shapeUp.Carte.Pioche;
+import fr.utt.lo02.shapeUp.Joueur.Joueur;
+import fr.utt.lo02.shapeUp.Joueur.JoueurVirtuel;
+import fr.utt.lo02.shapeUp.Tapis.Tapis;
+import fr.utt.lo02.shapeUp.Tapis.formePlateau;
 
 public class Partie {
 	private int nombreDeJoueur;
@@ -82,30 +88,24 @@ public class Partie {
 		pioche.melangerJeu();
 		
         System.out.println("Nous prenons ici une partie à 2 joueurs.");
-        	Scanner in2 = new Scanner(System.in);
-        	System.out.println("Quel est le nom du joueur numéro 1?");
-            String nom = in2.nextLine();
+            String nom = "sam";
 
-            	do {
-            	Scanner in3 = new Scanner(System.in);
-                System.out.println("Ce joueur veut il commencer? (true=OUI, false=NON)");
-                veutCommencer = in3.nextBoolean();
-            	}
-            	while(veutCommencer != true && veutCommencer != false);
+
+                veutCommencer = true;
+            	
             
             
-            Joueur j1 = new Joueur(nom, 1, veutCommencer);
+            JoueurVirtuel j1 = new JoueurVirtuel(nom, 1, veutCommencer, null, 1);
             
             
             j1.setCarteVictoire(pioche.distribuerUneCarte());
             ShapeUp.ajouterUnJoueur(j1);   
             
-            Scanner in4 = new Scanner(System.in);
-        	System.out.println("Quel est le nom du joueur numéro 2?");
-            String nom2 = in4.nextLine();
+           
+            String nom2 = "lolo";
 
 			
-			Joueur j2 = new Joueur(nom2, 2);	
+			JoueurVirtuel j2 = new JoueurVirtuel(nom2, 2, false, null, 1);	
             if(j1.getCommence()==true)
             	j2.setCommence(false);
             else
@@ -122,6 +122,7 @@ public class Partie {
             	System.out.println(tapis.toString());
             	j2.Jouer(j2, tapis, pioche);
             	System.out.println(tapis.toString());
+            	
             }
           
             

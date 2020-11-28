@@ -1,7 +1,11 @@
-package Classes;
+package fr.utt.lo02.shapeUp.Tapis;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import fr.utt.lo02.shapeUp.Carte.Carte;
+import fr.utt.lo02.shapeUp.Carte.PositionCarte;
 
 public class  Tapis {
 	
@@ -33,6 +37,47 @@ public class  Tapis {
 		System.out.println("Un tapis de forme "+this.forme+ " a été créé !");
 		
 	}
+	
+	public int getXMin() {
+		int xMin = 7;
+		for(Entry<PositionCarte, Carte> entry : this.plateau.entrySet()) {
+			if(entry.getKey().getX() < xMin) {
+				xMin = entry.getKey().getX();
+			}
+		}
+		return xMin;
+	}
+	
+	public int getXMax() {
+		int xMax = -7;
+		for(Entry<PositionCarte, Carte> entry : this.plateau.entrySet()) {
+			if(entry.getKey().getX() > xMax) {
+				xMax = entry.getKey().getX();
+			}
+		}
+		return xMax;
+	}
+	
+	public int getYMin() {
+		int yMin = 7;
+		for(Entry<PositionCarte, Carte> entry : this.plateau.entrySet()) {
+			if(entry.getKey().getY() < yMin) {
+				yMin = entry.getKey().getY();
+			}
+		}
+		return yMin;
+	}
+	
+	public int getYMax() {
+		int yMax = -7;
+		for(Entry<PositionCarte, Carte> entry : this.plateau.entrySet()) {
+			if(entry.getKey().getY() > yMax) {
+				yMax = entry.getKey().getY();
+			}
+		}
+		return yMax;
+	}
+	
 	
 
 	

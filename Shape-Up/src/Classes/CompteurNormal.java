@@ -1,5 +1,8 @@
 package Classes;
 
+import fr.utt.lo02.shapeUp.Carte.Carte;
+import fr.utt.lo02.shapeUp.Carte.Couleur;
+import fr.utt.lo02.shapeUp.Carte.Forme;
 
 public class CompteurNormal {
 
