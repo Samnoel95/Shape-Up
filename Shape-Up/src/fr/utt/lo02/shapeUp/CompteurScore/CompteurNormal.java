@@ -1,4 +1,4 @@
-package Classes;
+package fr.utt.lo02.shapeUp.CompteurScore;
 
 import fr.utt.lo02.shapeUp.Carte.Carte;
 import fr.utt.lo02.shapeUp.Carte.Couleur;
