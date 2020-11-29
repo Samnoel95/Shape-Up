@@ -130,7 +130,7 @@ public abstract class Joueur {
 		if(!isExist) {
 		adjacent = isAdjacent(position, tapis);
 		tapis.getPlateau().put(position, carte);
-		layoutOk = tapis.layoutOk();
+		layoutOk = tapis.layoutOk(position);
 		tapis.getPlateau().remove(position);
 		}
 		
@@ -161,7 +161,7 @@ public abstract class Joueur {
 		tapis.getPlateau().put(position2, tapis.getPlateau().get(position1));
 		tapis.getPlateau().remove(position1);
 		adjacent = isAdjacent(position2, tapis);
-		layoutOk = tapis.layoutOk();
+		layoutOk = tapis.layoutOk(position2);
 			if(adjacent && layoutOk) {
 				carteDeplace = true;
 				System.out.println("La carte est deplacee !en x= "+position2.getX()+"et y= "+position2.getY());
