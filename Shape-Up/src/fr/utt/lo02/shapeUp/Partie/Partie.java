@@ -271,6 +271,7 @@ public class Partie {
 				}
 				break;
 			case 2 :
+				break;
 				
 		}
 		
