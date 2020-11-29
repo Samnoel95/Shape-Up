@@ -15,17 +15,21 @@ import fr.utt.lo02.shapeUp.Tapis.Tapis;
 public abstract class Joueur {
 	// attribut de la classe joueur 
 	private String nomJoueur;
-	private int numJoueur;
     private boolean commence;
     private Carte carteVictoire;
     
 
     // constructeur d'une instance de Joueur 
-    public Joueur(String nomJoueur, int numJoueur, boolean commence, Carte carteVictoire) {
+    public Joueur(String nomJoueur, boolean commence, Carte carteVictoire) {
 		this.nomJoueur = nomJoueur;
-		this.numJoueur = numJoueur;
 		this.commence = commence;
 		this.carteVictoire = carteVictoire;
+	} 
+    
+    public Joueur(String nomJoueur, boolean commence) {
+		this.nomJoueur = nomJoueur;
+		this.commence = commence;
+		this.carteVictoire = null;
 	} 
     
 
@@ -38,13 +42,6 @@ public abstract class Joueur {
 		this.nomJoueur = nomJoueur;
 	}
 
-	public int getNumJoueur() {
-		return numJoueur;
-	}
-
-	public void setNumJoueur(int numJoueur) {
-		this.numJoueur = numJoueur;
-	}
 
 	public boolean getCommence() {
 		return commence;
@@ -72,8 +69,6 @@ public abstract class Joueur {
 	public String toString() {
 	    StringBuffer sb = new StringBuffer();
 	    sb.append(this.nomJoueur);
-	    sb.append(", joueur numero ");
-	    sb.append(this.numJoueur);
 	    sb.append(", ");
 	    if(this.commence == true)
 	    	sb.append("commence,");

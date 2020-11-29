@@ -9,9 +9,20 @@ public class JoueurVirtuel extends Joueur {
 		private int difficulte;
 		private Strategie strategie;
 
+		public JoueurVirtuel(String nomJoueur, boolean commence, int difficulte) {
+			super(nomJoueur,commence);
+			this.difficulte = difficulte;
+			if(difficulte == 1) {
+				this.strategie = new Strategie1();
+			}
+			
+			if(difficulte == 2) {
+				this.strategie = new Strategie2();
+			}
+		}
 		
-	public JoueurVirtuel(String nomJoueur, int numJoueur, boolean commence, Carte carteVictoire, int difficulte) {
-		super(nomJoueur, numJoueur, commence, carteVictoire);
+	public JoueurVirtuel(String nomJoueur, boolean commence, Carte carteVictoire, int difficulte) {
+		super(nomJoueur,commence, carteVictoire);
 		this.difficulte = difficulte;
 		if(difficulte == 1) {
 			this.strategie = new Strategie1();

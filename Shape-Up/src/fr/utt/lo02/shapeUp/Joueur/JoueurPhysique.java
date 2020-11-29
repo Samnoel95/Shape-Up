@@ -10,7 +10,12 @@ import fr.utt.lo02.shapeUp.Tapis.Tapis;
 public class JoueurPhysique extends Joueur {
 
 	public JoueurPhysique(String nomJoueur, int numJoueur, boolean commence, Carte carteVictoire) {
-		super(nomJoueur, numJoueur, commence, carteVictoire);
+		super(nomJoueur,commence, carteVictoire);
+		
+	}
+	
+	public JoueurPhysique(String nomJoueur, boolean commence) {
+		super(nomJoueur,commence);
 		
 	}
 	
