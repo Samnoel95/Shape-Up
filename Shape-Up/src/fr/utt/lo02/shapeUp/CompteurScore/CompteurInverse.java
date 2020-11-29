@@ -1,15 +1,13 @@
 package fr.utt.lo02.shapeUp.CompteurScore;
 
 import java.util.*;
-
-import Classes.Carte;
-import Classes.Couleur;
-import Classes.Forme;
-import Classes.Pioche;
-import Classes.PositionCarte;
-import Classes.Tapis;
-import Classes.Visiteur;
-import Classes.formePlateau;
+import fr.utt.lo02.shapeUp.Carte.Carte;
+import fr.utt.lo02.shapeUp.Carte.Couleur;
+import fr.utt.lo02.shapeUp.Carte.Forme;
+import fr.utt.lo02.shapeUp.Carte.Pioche;
+import fr.utt.lo02.shapeUp.Carte.PositionCarte;
+import fr.utt.lo02.shapeUp.Tapis.Tapis;
+import fr.utt.lo02.shapeUp.Tapis.formePlateau;
 
 public class CompteurInverse implements Visiteur{
 	

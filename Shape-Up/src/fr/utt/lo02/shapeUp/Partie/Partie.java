@@ -2,6 +2,7 @@ package fr.utt.lo02.shapeUp.Partie;
 
 import java.util.*;
 
+import fr.utt.lo02.shapeUp.Carte.Carte;
 import fr.utt.lo02.shapeUp.Carte.Pioche;
 import fr.utt.lo02.shapeUp.Joueur.Joueur;
 import fr.utt.lo02.shapeUp.Joueur.JoueurVirtuel;
@@ -10,6 +11,8 @@ import fr.utt.lo02.shapeUp.Tapis.formePlateau;
 
 public class Partie {
 	private int nombreDeJoueur;
+	private int nbreJVirtuels;
+	private int nbreJPhysiques;
 	private static ArrayList<Joueur> listeJ; //listeJ est l'ensemble des joueurs de la partie
 	private int round;
 	private int tour;
@@ -37,6 +40,22 @@ public class Partie {
 
 	public void setNombreDeJoueur(int nombreDeJoueur) {
 		this.nombreDeJoueur = nombreDeJoueur;
+	}
+	
+	public int getNbreJVirtuels() {
+		return this.nbreJVirtuels;
+	}
+	
+	public void setNbreJVirtuels(int nbreJVirtuels) {
+		this.nbreJVirtuels=nbreJVirtuels;
+	}
+	
+	public int getNbreJPhysiques() {
+		return this.nbreJPhysiques;
+	}
+	
+	public void setNbreJPhysiques(int nbreJPhysiques){
+		this.nbreJPhysiques=nbreJPhysiques;
 	}
 
 	public int getRound() {
@@ -80,6 +99,7 @@ public class Partie {
 	}
 	
 	public static void main(String[] args) {
+		/*
 		boolean veutCommencer;
 		int numPremierJoueur=-1;
 		Partie ShapeUp = new Partie();
@@ -122,11 +142,57 @@ public class Partie {
             	System.out.println(tapis.toString());
             	j2.Jouer(j2, tapis, pioche);
             	System.out.println(tapis.toString());
-            	
             }
           
-            
+         */
+		Partie ShapeUp = new Partie();
+		// méthode askNumberJoueurs
+		do {
+		Scanner in2 = new Scanner(System.in);
+		System.out.println("A combien de joueurs voulez vous jouer (possibilités : 2 ou 3)?");
+		ShapeUp.setNombreDeJoueur(in2.nextInt());
 		}
+		while(ShapeUp.getNombreDeJoueur()<2 || ShapeUp.getNombreDeJoueur()>3);
+		
+		// méthode askNumberJoueurPhys
+		do {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Combien de joueurs physiques participent à la partie?");
+		ShapeUp.setNbreJPhysiques(in.nextInt());
+		}
+		while(ShapeUp.getNbreJPhysiques()>=ShapeUp.getNombreDeJoueur() || ShapeUp.getNbreJPhysiques()<0);
+		
+		// méthode caculNbreJoueursVirtuels
+		ShapeUp.setNbreJVirtuels(ShapeUp.getNombreDeJoueur()-ShapeUp.getNbreJPhysiques());
+		
+		
+		System.out.println("Nombre de joueurs = "+ShapeUp.nombreDeJoueur+" ("+ShapeUp.nbreJPhysiques+" physiques et "+ShapeUp.nbreJVirtuels+" virtuels).");
+		
+		//ajouter des joueurs physiques
+		for(int i=0; i<ShapeUp.getNbreJPhysiques();i++) {
+			Scanner in3 = new Scanner(System.in);
+			System.out.println("Quel est le nom du joueur "+i+"?");
+			String nom = in3.nextLine();
+			Scanner in4 = new Scanner(System.in);
+			//ajouter différents constructeurs de joueur
+			//ShapeUp.ajouterUnJoueur(Joueur j = new Joueur(nom, i, true, ));
+		}
+		
+		for(int i=0; i<ShapeUp.getNbreJVirtuels();i++) {
+			int difficulte;
+			do {
+			Scanner in = new Scanner(System.in);
+			System.out.println("Quelle difficulté souhaitez vous attribuer au joueur virtuel "+i+" (possibilité : 1 (facile) ou 2 (difficile))");
+			difficulte = in.nextInt();
+			}
+			while(difficulte<1 || difficulte>2);
+		}
+			// il faut un constructeur sans carteV
+			//Joueur j = new JoueurVirtuel(joueurVirtuel, i, false, difficulte);
+			//ShapeUp.ajouterUnJoueur(j);
+		
+		}
+		
 }
 
 
