@@ -67,7 +67,7 @@ public abstract class Joueur {
 	// fin des getters et des setters 
 	
 
-	
+	public abstract void jouerAdvanced(Joueur joueur,Tapis tapis, Pioche pioche);
 	public abstract void jouer(Joueur joueur,Tapis tapis, Pioche pioche);
 	
 	public String toString() {

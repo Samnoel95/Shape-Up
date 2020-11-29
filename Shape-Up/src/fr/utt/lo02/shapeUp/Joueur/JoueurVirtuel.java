@@ -44,7 +44,9 @@ public class JoueurVirtuel extends Joueur {
 	}
 
 
-
+	public void jouerAdvanced(Joueur joueur,Tapis tapis, Pioche pioche) {
+		this.strategie.joueAdvanced(joueur, tapis, pioche);
+	}
 
 	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche) {
 		this.strategie.jouer(joueur,tapis, pioche); 
