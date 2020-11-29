@@ -5,6 +5,7 @@ import java.util.*;
 import fr.utt.lo02.shapeUp.Carte.Carte;
 import fr.utt.lo02.shapeUp.Carte.Pioche;
 import fr.utt.lo02.shapeUp.Joueur.Joueur;
+import fr.utt.lo02.shapeUp.Joueur.JoueurPhysique;
 import fr.utt.lo02.shapeUp.Joueur.JoueurVirtuel;
 import fr.utt.lo02.shapeUp.Tapis.Tapis;
 import fr.utt.lo02.shapeUp.Tapis.formePlateau;
@@ -17,6 +18,8 @@ public class Partie {
 	private int round;
 	private int tour;
 	private String regle;
+	private Pioche pioche;
+	private Tapis tapis;
 	// est ce que Round et tour sont obligatoire ? tour peut etre cr�� a l'int�rieur du main ? a quoi correspond r�ellement un round ? 
 	
 	public Partie(int nombreDeJoueur, int round, int tour, String regle) {
@@ -28,13 +31,32 @@ public class Partie {
 	}
 	
 	public Partie() {
-		listeJ = new ArrayList<Joueur>();
+		setListeJ(new ArrayList<Joueur>());
 		Pioche pioche = new Pioche();
+		pioche.melangerJeu();
+		this.setPioche(pioche);
 	}
 	
 	// setters et getters
+
+	public Tapis getTapis(){
+		return this.tapis;
+	}
+	
+	public void setTapis(Tapis tapis) {
+		this.tapis=tapis;
+	}
+	
+	public Pioche getPioche() {
+		return this.pioche;
+	}
+	
+	public void setPioche(Pioche pioche) {
+		this.pioche=pioche;
+	}
+	
 	public int getNombreDeJoueur() {
-		return nombreDeJoueur;
+		return this.nombreDeJoueur;
 	}
 
 
@@ -83,7 +105,15 @@ public class Partie {
 	}
 	
 	public void ajouterUnJoueur(Joueur joueur) {
-		listeJ.add(joueur);
+		getListeJ().add(joueur);
+	}
+	
+	public ArrayList<Joueur> getListeJ() {
+		return listeJ;
+	}
+
+	public void setListeJ(ArrayList<Joueur> listeJ) {
+		Partie.listeJ = listeJ;
 	}
 	
 	public void affichageJoueur(Joueur j1, Joueur j2) 
@@ -98,101 +128,153 @@ public class Partie {
         System.out.println("**************************");
 	}
 	
-	public static void main(String[] args) {
-		/*
-		boolean veutCommencer;
-		int numPremierJoueur=-1;
-		Partie ShapeUp = new Partie();
-		Pioche pioche = new Pioche();
-		Scanner in = new Scanner(System.in);
-		pioche.melangerJeu();
-		
-        System.out.println("Nous prenons ici une partie à 2 joueurs.");
-            String nom = "sam";
-
-
-                veutCommencer = true;
-            	
-            
-            
-            JoueurVirtuel j1 = new JoueurVirtuel(nom, 1, veutCommencer, null, 1);
-            
-            
-            j1.setCarteVictoire(pioche.distribuerUneCarte());
-            ShapeUp.ajouterUnJoueur(j1);   
-            
-           
-            String nom2 = "lolo";
-
+	public void askNbreJoueur(){
+		do {
+			Scanner in2 = new Scanner(System.in);
+			System.out.println("A combien de joueurs voulez vous jouer (possibilités : 2 ou 3)?");
+			this.setNombreDeJoueur(in2.nextInt());
+			}
+			while(this.getNombreDeJoueur()<2 || this.getNombreDeJoueur()>3);
+	}
+	
+	public void askNbreJoueurPhys() {
+		do {
+			Scanner in = new Scanner(System.in);
+			System.out.println("Combien de joueurs physiques participent à la partie?");
+			this.setNbreJPhysiques(in.nextInt());
+			}
+			while(this.getNbreJPhysiques()>=this.getNombreDeJoueur() || this.getNbreJPhysiques()<0);
 			
-			JoueurVirtuel j2 = new JoueurVirtuel(nom2, 2, false, null, 1);	
-            if(j1.getCommence()==true)
-            	j2.setCommence(false);
-            else
-            	j2.setCommence(true);
-            j2.setCarteVictoire(pioche.distribuerUneCarte());
-            ShapeUp.ajouterUnJoueur(j2); 
-            
-            ShapeUp.affichageJoueur(j1, j2);
-            
-            Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
-            
-            while(tapis.getEstPlein() == false) {
-            	j1.Jouer(j1, tapis, pioche);
-            	System.out.println(tapis.toString());
-            	j2.Jouer(j2, tapis, pioche);
-            	System.out.println(tapis.toString());
-            }
-          
-         */
-		Partie ShapeUp = new Partie();
-		// méthode askNumberJoueurs
-		do {
-		Scanner in2 = new Scanner(System.in);
-		System.out.println("A combien de joueurs voulez vous jouer (possibilités : 2 ou 3)?");
-		ShapeUp.setNombreDeJoueur(in2.nextInt());
-		}
-		while(ShapeUp.getNombreDeJoueur()<2 || ShapeUp.getNombreDeJoueur()>3);
+	}
+	
+	public void calculNbreJoueursVirt() {
+		this.setNbreJVirtuels(this.getNombreDeJoueur()-this.getNbreJPhysiques());
+	}
+	
+	public void créerJoueurs() {
+		boolean premierJ=false;
 		
-		// méthode askNumberJoueurPhys
-		do {
-		Scanner in = new Scanner(System.in);
-		System.out.println("Combien de joueurs physiques participent à la partie?");
-		ShapeUp.setNbreJPhysiques(in.nextInt());
-		}
-		while(ShapeUp.getNbreJPhysiques()>=ShapeUp.getNombreDeJoueur() || ShapeUp.getNbreJPhysiques()<0);
-		
-		// méthode caculNbreJoueursVirtuels
-		ShapeUp.setNbreJVirtuels(ShapeUp.getNombreDeJoueur()-ShapeUp.getNbreJPhysiques());
-		
-		
-		System.out.println("Nombre de joueurs = "+ShapeUp.nombreDeJoueur+" ("+ShapeUp.nbreJPhysiques+" physiques et "+ShapeUp.nbreJVirtuels+" virtuels).");
-		
-		//ajouter des joueurs physiques
-		for(int i=0; i<ShapeUp.getNbreJPhysiques();i++) {
+		for(int i=0; i<this.getNbreJPhysiques();i++) {
 			Scanner in3 = new Scanner(System.in);
-			System.out.println("Quel est le nom du joueur "+i+"?");
+			System.out.println("Quel est le nom du joueur physique"+(i+1)+"?");
 			String nom = in3.nextLine();
 			Scanner in4 = new Scanner(System.in);
-			//ajouter différents constructeurs de joueur
-			//ShapeUp.ajouterUnJoueur(Joueur j = new Joueur(nom, i, true, ));
+			if(premierJ==false) {
+			JoueurPhysique j = new JoueurPhysique(nom, true);
+			this.ajouterUnJoueur(j);
+			premierJ=true;
+			}
+			else {
+				JoueurPhysique j = new JoueurPhysique(nom, false);
+				this.ajouterUnJoueur(j);
+			}
 		}
 		
-		for(int i=0; i<ShapeUp.getNbreJVirtuels();i++) {
+		for(int i=0; i<this.getNbreJVirtuels();i++) {
 			int difficulte;
 			do {
 			Scanner in = new Scanner(System.in);
-			System.out.println("Quelle difficulté souhaitez vous attribuer au joueur virtuel "+i+" (possibilité : 1 (facile) ou 2 (difficile))");
+			System.out.println("Quelle difficulté souhaitez vous attribuer au joueur virtuel "+(i+1)+" (possibilité : 1 (facile) ou 2 (difficile))");
 			difficulte = in.nextInt();
 			}
 			while(difficulte<1 || difficulte>2);
+			StringBuffer sb = new StringBuffer();
+			sb.append("Joueur virtuel numéro ");
+		    sb.append(i+1);
+		    String nom = sb.toString();
+		    if(premierJ==false) {
+		    Joueur j = new JoueurVirtuel(nom, true, difficulte);
+			this.ajouterUnJoueur(j);
+		    }
+		    else {
+		    	Joueur j = new JoueurVirtuel(nom, false, difficulte);
+				this.ajouterUnJoueur(j);
+		    }
+		   
 		}
-			// il faut un constructeur sans carteV
-			//Joueur j = new JoueurVirtuel(joueurVirtuel, i, false, difficulte);
-			//ShapeUp.ajouterUnJoueur(j);
+	}
+	
+	public void choixPlateau() {
+		int plateau; 
+		do {
+		Scanner in2 = new Scanner(System.in);
+		System.out.println("Avec quel tapis souhaitez vous jouer?");
+		System.out.println("1. Tapis 3x5");
+		System.out.println("2. Deuxième choix de tapis");
+		plateau = in2.nextInt();
+		}
+		while(plateau<1 || plateau>2);
+				
+		switch(plateau) {
+			case 1 :
+				Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
+				this.setTapis(tapis);
+				break;
+			case 2 : 
+				//Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
+				break;			
+		}		
+		}
+	
+	
+	public static void main(String[] args) {
 		
+		Partie ShapeUp = new Partie();
+		ShapeUp.askNbreJoueur();
+		ShapeUp.askNbreJoueurPhys();
+		ShapeUp.calculNbreJoueursVirt();
+		
+		
+		System.out.println("Nombre de joueurs = "+ShapeUp.nombreDeJoueur+" ("+ShapeUp.nbreJPhysiques+" physique(s) et "+ShapeUp.nbreJVirtuels+" virtuel(s)).");
+		
+		ShapeUp.créerJoueurs();
+		
+		// méthode affichage listeJoueurs
+		Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
+		while(it.hasNext())
+			System.out.println(it.next().getNomJoueur());
+		
+		ShapeUp.choixPlateau();
+		
+		//méthode choixVariante
+		int version;
+		do {
+		Scanner in = new Scanner(System.in);
+		System.out.println("A quelle variante souhaitez vous jouer?");
+		System.out.println("1. Version classique");
+		System.out.println("2. Version avancée");
+		version = in.nextInt();
+		}
+		while(version<1 || version>2);
+		
+		switch(version) {
+			case 1 :
+				//instancier à la partie pour chaque cas, faire piocher une carte victoire par joueur
+				
 		}
 		
+		//méthode attribuer carte victoire si version classique
+		for(int i=0; i<ShapeUp.getNombreDeJoueur(); i++) {
+			Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+			while(it3.hasNext()) {
+				it3.next().setCarteVictoire(it3.next().piocherCarte(ShapeUp.getPioche()));
+			}
+		}
+		
+		while(ShapeUp.getTapis().getPlateau().size()<15) {
+			Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
+			Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+			while(it2.hasNext()) {
+				System.out.println("C'est au tour de : ");
+				System.out.println(it3.next().toString());
+				it2.next().Jouer(it2.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+			}
+			
+		}
+		
+	
+
+	}		
 }
 
 
