@@ -46,7 +46,7 @@ public class JoueurVirtuel extends Joueur {
 
 
 
-	public void Jouer(Joueur joueur,Tapis tapis, Pioche pioche) {
+	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche) {
 		this.strategie.jouer(joueur,tapis, pioche); 
 		
 	}
