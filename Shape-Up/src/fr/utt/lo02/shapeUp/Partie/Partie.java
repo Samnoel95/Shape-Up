@@ -265,7 +265,7 @@ public class Partie {
 					while(it2.hasNext()) {
 						System.out.println("C'est au tour de : ");
 						System.out.println(it3.next().toString());
-						it2.next().Jouer(it2.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+						it2.next().jouer(it2.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
 					}
 					
 				}
