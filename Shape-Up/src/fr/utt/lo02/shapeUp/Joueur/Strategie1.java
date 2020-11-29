@@ -63,8 +63,8 @@ public class Strategie1 implements Strategie {
         boolean veutDeplacer = false;
         boolean aDeplace = false;
         System.out.println(joueur.getNomJoueur()+" c'est ton tour !");
-        longueur = joueur.longueurPlateau(tapis);
-        hauteur = joueur.hauteurPlateau(tapis);
+        longueur = tapis.longueurPlateau();
+        hauteur = tapis.hauteurPlateau();
     	if (!tapis.getPlateau().isEmpty() && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
     		
             veutDeplacer = randomBoolean();
@@ -137,8 +137,8 @@ public class Strategie1 implements Strategie {
         joueur.carteEnMain.add(cartePiocher);
         }
         
-          longueur = joueur.longueurPlateau(tapis);
-          hauteur = joueur.hauteurPlateau(tapis);
+          longueur = tapis.longueurPlateau();
+          hauteur = tapis.hauteurPlateau();
          if( aDeplace == false && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
         	 
         	 System.out.println("test");
@@ -190,8 +190,8 @@ public class Strategie1 implements Strategie {
         boolean veutDeplacer = false;
         boolean aDeplace = false;
         System.out.println(joueur.getNomJoueur()+" c'est ton tour !");
-        longueur = joueur.longueurPlateau(tapis);
-        hauteur = joueur.hauteurPlateau(tapis);
+        longueur = tapis.longueurPlateau();
+        hauteur = tapis.hauteurPlateau();
     	if (!tapis.getPlateau().isEmpty() && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
     		
             veutDeplacer = randomBoolean();
@@ -257,8 +257,8 @@ public class Strategie1 implements Strategie {
                cartePose = joueur.poserCarte(position, carteAJouer, tapis);
          }
         
-          longueur = joueur.longueurPlateau(tapis);
-          hauteur = joueur.hauteurPlateau(tapis);
+          longueur = tapis.longueurPlateau();
+          hauteur = tapis.hauteurPlateau();
          if( aDeplace == false && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
         	 
         	 System.out.println("test");

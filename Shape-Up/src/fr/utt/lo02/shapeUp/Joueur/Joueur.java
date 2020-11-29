@@ -120,75 +120,7 @@ public abstract class Joueur {
 		return isAdjacent;
 	}
   
-	public int longueurPlateau(Tapis tapis) {
-		// peut utiliser les méthodes de tapis pour trouver les x et les y min/max 
-		int longueur;
-		int Xmax = 0;
-		int Xmin = 0;
-		for(Entry<PositionCarte, Carte> entry : tapis.getPlateau().entrySet()) {
-			if(entry.getKey().getX() > Xmax) {
-				Xmax = entry.getKey().getX();
-			}else if(entry.getKey().getX() < Xmin) {
-				Xmin = entry.getKey().getX();
-			}
-		}
-		
-		longueur = Math.abs(Xmax - Xmin) + 1;
-		return longueur;
-	}
-	
-	public int hauteurPlateau(Tapis tapis) {
-		int hauteur;
-		int Ymax = 0;
-		int Ymin = 0;
-		for(Entry<PositionCarte, Carte> entry : tapis.getPlateau().entrySet()) {
-			if(entry.getKey().getY() > Ymax) {
-				Ymax = entry.getKey().getY();
-			}else if(entry.getKey().getY() < Ymin) {
-				Ymin = entry.getKey().getY();
-			}
-		}
-		
-		hauteur = Math.abs(Ymax - Ymin) + 1;
-		return hauteur;
-	}
-	
-	public boolean isVertical(int hauteur,int longueur) {
-		boolean vertical;
-		if ( longueur < 4 && 1 <= longueur  && 1 <= hauteur && hauteur < 6) {
-			vertical = true;
-		}else {
-			vertical=false;
-		}
-		return vertical;
-	}
-	
-	public boolean isHorizontal(int hauteur, int longueur) {
-		boolean horizontal;
-		if ( longueur < 6 && 1 <= longueur  && 1 <= hauteur && hauteur < 4) {
-			horizontal = true;
-		}else {
-			horizontal=false;
-		}
-		return horizontal;
-	}
-	
-	public boolean layoutOk(PositionCarte position,Carte carte, Tapis tapis) {
-		// analyse le plateau avec la carte ajouter
-		int longueur;
-		int hauteur;
-		boolean vertical;
-		boolean horizontal;
-		boolean layoutOk = false;
-		longueur = longueurPlateau(tapis);
-		hauteur = hauteurPlateau(tapis);
-		vertical = isVertical(hauteur, longueur);
-		horizontal = isHorizontal(hauteur, longueur);
-		if(vertical || horizontal) {
-			layoutOk = true;
-		}		
-		return layoutOk;
-	}
+
 	
 	public boolean poserCarte(PositionCarte position, Carte carte, Tapis tapis) {
 		boolean cartePose = false;
@@ -198,7 +130,7 @@ public abstract class Joueur {
 		if(!isExist) {
 		adjacent = isAdjacent(position, tapis);
 		tapis.getPlateau().put(position, carte);
-		layoutOk = layoutOk(position, carte, tapis);
+		layoutOk = tapis.layoutOk();
 		tapis.getPlateau().remove(position);
 		}
 		
@@ -229,7 +161,7 @@ public abstract class Joueur {
 		tapis.getPlateau().put(position2, tapis.getPlateau().get(position1));
 		tapis.getPlateau().remove(position1);
 		adjacent = isAdjacent(position2, tapis);
-		layoutOk = layoutOk(position2,tapis.getPlateau().get(position1), tapis);
+		layoutOk = tapis.layoutOk();
 			if(adjacent && layoutOk) {
 				carteDeplace = true;
 				System.out.println("La carte est deplacee !en x= "+position2.getX()+"et y= "+position2.getY());

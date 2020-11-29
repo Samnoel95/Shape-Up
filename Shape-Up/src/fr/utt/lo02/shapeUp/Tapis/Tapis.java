@@ -78,7 +78,96 @@ public class  Tapis {
 		return yMax;
 	}
 	
+	public int longueurPlateau() {
+		// peut utiliser les méthodes de tapis pour trouver les x et les y min/max 
+		int longueur;
+		int Xmax = 7;
+		int Xmin = -7;
+		for(Entry<PositionCarte, Carte> entry : getPlateau().entrySet()) {
+			if(entry.getKey().getX() > Xmax) {
+				Xmax = entry.getKey().getX();
+			}else if(entry.getKey().getX() < Xmin) {
+				Xmin = entry.getKey().getX();
+			}
+		}
+		
+		longueur = Math.abs(Xmax - Xmin) + 1;
+		return longueur;
+	}
 	
+	public int hauteurPlateau() {
+		int hauteur;
+		int Ymax = 7;
+		int Ymin = -7;
+		for(Entry<PositionCarte, Carte> entry : getPlateau().entrySet()) {
+			if(entry.getKey().getY() > Ymax) {
+				Ymax = entry.getKey().getY();
+			}else if(entry.getKey().getY() < Ymin) {
+				Ymin = entry.getKey().getY();
+			}
+		}
+		
+		hauteur = Math.abs(Ymax - Ymin) + 1;
+		return hauteur;
+	}
+	
+	public boolean isVertical(int hauteur,int longueur) {
+		boolean vertical;
+		if ( longueur < 4 && 1 <= longueur  && 1 <= hauteur && hauteur < 6) {
+			vertical = true;
+		}else {
+			vertical=false;
+		}
+		return vertical;
+	}
+	
+	public boolean isHorizontal(int hauteur, int longueur) {
+		boolean horizontal;
+		if ( longueur < 6 && 1 <= longueur  && 1 <= hauteur && hauteur < 4) {
+			horizontal = true;
+		}else {
+			horizontal=false;
+		}
+		return horizontal;
+	}
+	
+	public boolean layoutOk(PositionCarte position) {
+		// analyse le plateau avec la carte ajouter
+		boolean layoutOk = false;
+		if(forme == formePlateau.PLATEAUCLASSIQUE) {
+			int longueur;
+			int hauteur;
+			boolean vertical;
+			boolean horizontal;
+			longueur = longueurPlateau();
+			hauteur = hauteurPlateau();
+			vertical = isVertical(hauteur, longueur);
+			horizontal = isHorizontal(hauteur, longueur);
+			if(vertical || horizontal) {
+			layoutOk = true;
+			}		
+		}
+		
+		if(forme == formePlateau.TRIANGLE) {
+			if(position.getX() == 0 && position.getY() >= 0 && position.getY() <=4) {
+				layoutOk = true;
+			}
+			if(position.getX() == 1 && position.getY() >= 0 && position.getY() <=3) {
+				layoutOk = true;
+			}
+			if(position.getX() == 2 && position.getY() >= 0 && position.getY() <=2) {
+				layoutOk = true;
+			}
+			if(position.getX() == 3 && position.getY() >= 0 && position.getY() <=1) {
+				layoutOk = true;
+			}
+			if(position.getX() == 4 && position.getY() == 0) {
+				layoutOk = true;
+			}
+		
+		}
+		return layoutOk;
+	}
 
 	
 	

@@ -53,8 +53,8 @@ public class JoueurPhysique extends Joueur {
         System.out.println(this.getNomJoueur()+" c'est ton tour !");
         
         
-        longueur = longueurPlateau(tapis);
-        hauteur = hauteurPlateau(tapis);
+        longueur = tapis.longueurPlateau();
+        hauteur = tapis.hauteurPlateau();
         System.out.println("La longueur du plateau est  "+longueur);
         System.out.println("La hauteur du plateau est"+hauteur);
     	if (!tapis.getPlateau().isEmpty() && (hauteur !=1 || longueur != 1)) {
@@ -135,8 +135,8 @@ public class JoueurPhysique extends Joueur {
         }
         
         
-          longueur = longueurPlateau(tapis);
-          hauteur = hauteurPlateau(tapis);
+          longueur = tapis.longueurPlateau();
+          hauteur = tapis.hauteurPlateau();
           System.out.println("La longueur du plateau est  "+longueur);
           System.out.println("La hauteur du plateau est"+hauteur);
          if( aDeplace == false && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
@@ -199,8 +199,8 @@ public class JoueurPhysique extends Joueur {
         System.out.println(this.getNomJoueur()+" c'est ton tour !");
         
         
-        longueur = longueurPlateau(tapis);
-        hauteur = hauteurPlateau(tapis);
+        longueur = tapis.longueurPlateau();
+        hauteur = tapis.hauteurPlateau();
         System.out.println("La longueur du plateau est  "+longueur);
         System.out.println("La hauteur du plateau est"+hauteur);
     	if (!tapis.getPlateau().isEmpty() && (hauteur !=1 || longueur != 1)) {
@@ -267,8 +267,8 @@ public class JoueurPhysique extends Joueur {
                cartePose = poserCarte(position, carteAJouer, tapis);
          }
         
-          longueur = longueurPlateau(tapis);
-          hauteur = hauteurPlateau(tapis);
+          longueur = tapis.longueurPlateau();
+          hauteur = tapis.hauteurPlateau();
           System.out.println("La longueur du plateau est  "+longueur);
           System.out.println("La hauteur du plateau est"+hauteur);
          if( aDeplace == false && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
