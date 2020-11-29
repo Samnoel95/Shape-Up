@@ -1,6 +1,7 @@
 package fr.utt.lo02.shapeUp.Joueur;
 
 import java.util.Scanner;
+import java.util.LinkedList;
 import java.util.Map.Entry;
 
 import javax.crypto.AEADBadTagException;
@@ -17,6 +18,7 @@ public abstract class Joueur {
 	private String nomJoueur;
     private boolean commence;
     private Carte carteVictoire;
+    protected LinkedList<Carte> carteEnMain = new LinkedList<>();
     
 
     // constructeur d'une instance de Joueur 
@@ -24,12 +26,14 @@ public abstract class Joueur {
 		this.nomJoueur = nomJoueur;
 		this.commence = commence;
 		this.carteVictoire = carteVictoire;
+		this.carteEnMain = null;
 	} 
     
     public Joueur(String nomJoueur, boolean commence) {
 		this.nomJoueur = nomJoueur;
 		this.commence = commence;
 		this.carteVictoire = null;
+		this.carteEnMain = null;
 	} 
     
 
@@ -64,7 +68,7 @@ public abstract class Joueur {
 	
 
 	
-	public abstract void Jouer(Joueur joueur,Tapis tapis, Pioche pioche);
+	public abstract void jouer(Joueur joueur,Tapis tapis, Pioche pioche);
 	
 	public String toString() {
 	    StringBuffer sb = new StringBuffer();
