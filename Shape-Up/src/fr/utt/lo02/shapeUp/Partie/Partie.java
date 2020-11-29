@@ -250,27 +250,31 @@ public class Partie {
 		switch(version) {
 			case 1 :
 				//instancier à la partie pour chaque cas, faire piocher une carte victoire par joueur
+				//méthode attribuer carte victoire si version classique
+				for(int i=0; i<ShapeUp.getNombreDeJoueur(); i++) {
+					Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+					while(it3.hasNext()) {
+						it3.next().setCarteVictoire(it3.next().piocherCarte(ShapeUp.getPioche()));
+					}
+				}
+				
+				//jouer pour la version classique
+				while(ShapeUp.getTapis().getPlateau().size()<15) {
+					Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
+					Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+					while(it2.hasNext()) {
+						System.out.println("C'est au tour de : ");
+						System.out.println(it3.next().toString());
+						it2.next().Jouer(it2.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+					}
+					
+				}
+				break;
+			case 2 :
 				
 		}
 		
-		//méthode attribuer carte victoire si version classique
-		for(int i=0; i<ShapeUp.getNombreDeJoueur(); i++) {
-			Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
-			while(it3.hasNext()) {
-				it3.next().setCarteVictoire(it3.next().piocherCarte(ShapeUp.getPioche()));
-			}
-		}
 		
-		while(ShapeUp.getTapis().getPlateau().size()<15) {
-			Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
-			Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
-			while(it2.hasNext()) {
-				System.out.println("C'est au tour de : ");
-				System.out.println(it3.next().toString());
-				it2.next().Jouer(it2.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
-			}
-			
-		}
 		
 	
 
