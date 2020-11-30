@@ -80,6 +80,9 @@ public class  Tapis {
 	public int longueurPlateau() {
 		// peut utiliser les m�thodes de tapis pour trouver les x et les y min/max 
 		int longueur;
+		if(getPlateau().isEmpty()) {
+			longueur = 0;
+		}else {
 		int Xmax = 7;
 		int Xmin = -7;
 		for(Entry<PositionCarte, Carte> entry : getPlateau().entrySet()) {
@@ -91,11 +94,15 @@ public class  Tapis {
 		}
 		
 		longueur = Math.abs(Xmax - Xmin) + 1;
+		}
 		return longueur;
 	}
 	
 	public int hauteurPlateau() {
 		int hauteur;
+		if(getPlateau().isEmpty()) {
+			hauteur = 0;
+		}else {
 		int Ymax = 7;
 		int Ymin = -7;
 		for(Entry<PositionCarte, Carte> entry : getPlateau().entrySet()) {
@@ -107,6 +114,7 @@ public class  Tapis {
 		}
 		
 		hauteur = Math.abs(Ymax - Ymin) + 1;
+		}
 		return hauteur;
 	}
 	
