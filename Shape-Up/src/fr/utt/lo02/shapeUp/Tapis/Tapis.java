@@ -83,12 +83,13 @@ public class  Tapis {
 		if(getPlateau().isEmpty()) {
 			longueur = 0;
 		}else {
-		int Xmax = 7;
-		int Xmin = -7;
+		int Xmax = -7;
+		int Xmin = 7;
 		for(Entry<PositionCarte, Carte> entry : getPlateau().entrySet()) {
 			if(entry.getKey().getX() > Xmax) {
 				Xmax = entry.getKey().getX();
-			}else if(entry.getKey().getX() < Xmin) {
+			}
+			if(entry.getKey().getX() < Xmin) {
 				Xmin = entry.getKey().getX();
 			}
 		}
@@ -103,12 +104,13 @@ public class  Tapis {
 		if(getPlateau().isEmpty()) {
 			hauteur = 0;
 		}else {
-		int Ymax = 7;
-		int Ymin = -7;
+		int Ymax = -7;
+		int Ymin = 7;
 		for(Entry<PositionCarte, Carte> entry : getPlateau().entrySet()) {
 			if(entry.getKey().getY() > Ymax) {
 				Ymax = entry.getKey().getY();
-			}else if(entry.getKey().getY() < Ymin) {
+			}
+			if(entry.getKey().getY() < Ymin) {
 				Ymin = entry.getKey().getY();
 			}
 		}

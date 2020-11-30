@@ -334,7 +334,7 @@ public class Partie {
 		}
 	
 	public static void main(String[] args) {
-		/*
+		
 		Partie ShapeUp = new Partie();
 		ShapeUp.askNbreJoueur();
 		ShapeUp.askNbreJoueurPhys();
@@ -348,8 +348,8 @@ public class Partie {
 		
 		System.out.println("Fin de la partie !");
 		
-		*/
 		
+		/*
 		Partie partie = new Partie();
 		JoueurPhysique j1 = new JoueurPhysique("Lorene", false);
 		JoueurPhysique j2 = new JoueurPhysique("Sam", true);
@@ -358,7 +358,7 @@ public class Partie {
 		j1.setCarteVictoire(j1.piocherCarte(partie.getPioche()));
 		j2.setCarteVictoire(j2.piocherCarte(partie.getPioche()));
 		System.out.println(partie.getTapis().toString());
-		/*
+		
 		while(partie.getTapis().getEstPlein()==false) {
 			j1.jouer(j1, partie.getTapis(), partie.getPioche());
 			j2.jouer(j2, partie.getTapis(), partie.getPioche());
