@@ -11,6 +11,10 @@ import fr.utt.lo02.shapeUp.Tapis.formePlateau;
 
 public class CompteurInverse implements Visiteur{
 	
+	public CompteurInverse(){
+		
+	}
+	
 	@Override
 	public int compterLigneForme(Tapis tapis, Forme forme, int ligne)
 	{

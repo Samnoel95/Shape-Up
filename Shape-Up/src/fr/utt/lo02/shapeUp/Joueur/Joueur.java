@@ -15,6 +15,7 @@ import fr.utt.lo02.shapeUp.Tapis.Tapis;
 
 public abstract class Joueur {
 	// attribut de la classe joueur 
+	private int score;
 	private String nomJoueur;
     private boolean commence;
     private Carte carteVictoire;
@@ -29,6 +30,10 @@ public abstract class Joueur {
 		this.carteEnMain = null;
 	} 
     
+    public Joueur() {
+    	
+    }
+    
     public Joueur(String nomJoueur, boolean commence) {
 		this.nomJoueur = nomJoueur;
 		this.commence = commence;
@@ -38,6 +43,14 @@ public abstract class Joueur {
     
 
     // debut des getters et des setters
+    public int getScore() {
+    	return score;
+    }
+    
+    public void setScore(int score) {
+    	this.score=score;
+    }
+    
 	public String getNomJoueur() {
 		return nomJoueur;
 	}

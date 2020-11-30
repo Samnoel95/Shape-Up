@@ -4,6 +4,9 @@ import java.util.*;
 
 import fr.utt.lo02.shapeUp.Carte.Carte;
 import fr.utt.lo02.shapeUp.Carte.Pioche;
+import fr.utt.lo02.shapeUp.CompteurScore.CompteurInverse;
+import fr.utt.lo02.shapeUp.CompteurScore.CompteurNormal;
+import fr.utt.lo02.shapeUp.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.Joueur.Joueur;
 import fr.utt.lo02.shapeUp.Joueur.JoueurPhysique;
 import fr.utt.lo02.shapeUp.Joueur.JoueurVirtuel;
@@ -20,6 +23,7 @@ public class Partie {
 	private String regle;
 	private Pioche pioche;
 	private Tapis tapis;
+	private Visiteur compteur;
 	// est ce que Round et tour sont obligatoire ? tour peut etre cr�� a l'int�rieur du main ? a quoi correspond r�ellement un round ? 
 	
 	public Partie(int nombreDeJoueur, int round, int tour, String regle) {
@@ -38,6 +42,14 @@ public class Partie {
 	}
 	
 	// setters et getters
+	
+	public Visiteur getCompteur() {
+		return this.compteur;
+	}
+	
+	public void setCompteur(Visiteur compteur) {
+		this.compteur=compteur;
+	}
 
 	public Tapis getTapis(){
 		return this.tapis;
@@ -116,15 +128,15 @@ public class Partie {
 		Partie.listeJ = listeJ;
 	}
 	
-	public void affichageJoueur(Joueur j1, Joueur j2) 
+	public void affichageJoueur(Partie ShapeUp) 
 	{
 		System.out.println("**************************");
         System.out.println("Voici les joueurs qui participent à la partie :");
         System.out.println("");
-        System.out.println(j1.toString());
-        System.out.println("");
-        System.out.println(j2.toString());
-        System.out.println("");
+        Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
+        while(it.hasNext()) {
+        	it.next().toString();
+        }
         System.out.println("**************************");
 	}
 	
@@ -211,11 +223,111 @@ public class Partie {
 				this.setTapis(tapis);
 				break;
 			case 2 : 
-				//Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
+				Tapis tapis2 = new Tapis(formePlateau.TRIANGLE);
+				this.setTapis(tapis2);
 				break;			
 		}		
 		}
 	
+	public void choixCompteur() {
+		int compteur; 
+		do {
+		Scanner in2 = new Scanner(System.in);
+		System.out.println("Avec quel compteur souhaitez vous compter les points?");
+		System.out.println("1. Compteur normal");
+		System.out.println("2. Compteur inversé");
+		compteur = in2.nextInt();
+		}
+		while(compteur<1 || compteur>2);
+				
+		switch(compteur) {
+			case 1 :
+				CompteurNormal compte = new CompteurNormal();
+				this.setCompteur(compte);;
+				break;
+			case 2 : 
+				CompteurInverse compte2 = new CompteurInverse();
+				this.setCompteur(compte2);
+				break;			
+		}		
+		}
+	
+		public void partieClassique(Partie ShapeUp) {
+			//instancier à la partie pour chaque cas, faire piocher une carte victoire par joueur
+			//méthode attribuer carte victoire si version classique
+			for(int i=0; i<ShapeUp.getNombreDeJoueur(); i++) {
+				Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+				while(it3.hasNext()) {
+					it3.next().setCarteVictoire(it3.next().piocherCarte(ShapeUp.getPioche()));
+				}
+			}
+			
+			//jouer pour la version classique
+			while(ShapeUp.getTapis().getPlateau().size()<15) {
+				Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
+				Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+				while(it2.hasNext()) {
+					System.out.println("C'est au tour de : ");
+					System.out.println(it3.next().getNomJoueur()+" // carte victoire : "+it3.next().getCarteVictoire());
+					it2.next().jouer(it2.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+				}
+				
+			}
+		}
+		
+		public void partieAdvanced(Partie ShapeUp) {
+			//instancier à la partie pour chaque cas, faire piocher 3 cartes victoires par joueur
+			//méthode attribuer carte victoire si version classique
+			for(int i=0; i<ShapeUp.getNombreDeJoueur(); i++) {
+				Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+				while(it3.hasNext()) {
+					// piocher 3 cartes et les mettre dans la main du joueur
+				}
+			}
+			while(ShapeUp.getTapis().getPlateau().size()<15) {
+				Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
+				Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+				while(it2.hasNext()) {
+					System.out.println("C'est au tour de : ");
+					System.out.println(it3.next().getNomJoueur()+" // carte victoire : "+it3.next().getCarteVictoire());
+					it2.next().jouerAdvanced(it2.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+				}
+				
+			}
+			Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+			while(it3.hasNext()) {
+				// ajouter en carte victoire la carte qu'il lui reste en main
+			}
+		}
+		
+		public void choixVarianteEtJeu(Partie ShapeUp) {
+			int version;
+			do {
+			Scanner in = new Scanner(System.in);
+			System.out.println("A quelle variante souhaitez vous jouer?");
+			System.out.println("1. Version classique");
+			System.out.println("2. Version avancée");
+			version = in.nextInt();
+			}
+			while(version<1 || version>2);
+			
+			switch(version) {
+				case 1 :
+					ShapeUp.partieClassique(ShapeUp);
+					break;
+				case 2 :
+					ShapeUp.partieAdvanced(ShapeUp);
+					break;
+					
+			}
+		}
+		
+		public void compterPoints(Partie ShapeUp) {
+			Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
+			while(it.hasNext())
+				it.next().setScore(ShapeUp.getCompteur().compterScore(ShapeUp.getTapis(), it.next().getCarteVictoire()));
+				System.out.println("Le joueur "+it.next().getNomJoueur()+" a obtenu "+it.next().getScore()+" points.");
+		}
 	
 	public static void main(String[] args) {
 		
@@ -223,62 +335,15 @@ public class Partie {
 		ShapeUp.askNbreJoueur();
 		ShapeUp.askNbreJoueurPhys();
 		ShapeUp.calculNbreJoueursVirt();
-		
-		
-		System.out.println("Nombre de joueurs = "+ShapeUp.nombreDeJoueur+" ("+ShapeUp.nbreJPhysiques+" physique(s) et "+ShapeUp.nbreJVirtuels+" virtuel(s)).");
-		
 		ShapeUp.créerJoueurs();
-		
-		// méthode affichage listeJoueurs
-		Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
-		while(it.hasNext())
-			System.out.println(it.next().getNomJoueur());
-		
+		ShapeUp.affichageJoueur(ShapeUp);
 		ShapeUp.choixPlateau();
+		ShapeUp.choixCompteur();
+		ShapeUp.choixVarianteEtJeu(ShapeUp);
+		ShapeUp.compterPoints(ShapeUp);
 		
-		//méthode choixVariante
-		int version;
-		do {
-		Scanner in = new Scanner(System.in);
-		System.out.println("A quelle variante souhaitez vous jouer?");
-		System.out.println("1. Version classique");
-		System.out.println("2. Version avancée");
-		version = in.nextInt();
-		}
-		while(version<1 || version>2);
+		System.out.println("Fin de la partie !");
 		
-		switch(version) {
-			case 1 :
-				//instancier à la partie pour chaque cas, faire piocher une carte victoire par joueur
-				//méthode attribuer carte victoire si version classique
-				for(int i=0; i<ShapeUp.getNombreDeJoueur(); i++) {
-					Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
-					while(it3.hasNext()) {
-						it3.next().setCarteVictoire(it3.next().piocherCarte(ShapeUp.getPioche()));
-					}
-				}
-				
-				//jouer pour la version classique
-				while(ShapeUp.getTapis().getPlateau().size()<15) {
-					Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
-					Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
-					while(it2.hasNext()) {
-						System.out.println("C'est au tour de : ");
-						System.out.println(it3.next().toString());
-						it2.next().jouer(it2.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
-					}
-					
-				}
-				break;
-			case 2 :
-				break;
-				
-		}
-		
-		
-		
-	
-
 	}		
 }
 

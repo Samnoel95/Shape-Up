@@ -12,6 +12,10 @@ import fr.utt.lo02.shapeUp.Tapis.formePlateau;
 
 public class CompteurNormal implements Visiteur{
 	
+	public CompteurNormal() {
+		
+	}
+	
 	@Override
 	public int compterLigneForme(Tapis tapis, Forme forme, int ligne)
 	{
