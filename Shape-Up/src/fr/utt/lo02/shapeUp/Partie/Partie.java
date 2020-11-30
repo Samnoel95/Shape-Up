@@ -266,17 +266,19 @@ public class Partie {
 			
 			//jouer pour la version classique
 			while(ShapeUp.getTapis().getPlateau().size()<15) {
+				System.out.println(ShapeUp.getTapis().getPlateau().size());
 				Iterator<Joueur> it8 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it7 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it6 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
-				while(it.hasNext()) {
+				while(it.hasNext() && ShapeUp.getTapis().getPlateau().size()<15) {
 					System.out.println("C'est au tour de : ");
 					System.out.println(it.next().getNomJoueur()+" // carte victoire : "+it2.next().getCarteVictoire());
 					it7.next().jouer(it8.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+					
 				}
-				
+
 			}
 		}
 		
@@ -289,6 +291,7 @@ public class Partie {
 				}
 			
 			while(ShapeUp.getTapis().getPlateau().size()<15) {
+				
 				Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it9 = ShapeUp.getListeJ().listIterator();
 				while(it9.hasNext()) {
@@ -300,8 +303,10 @@ public class Partie {
 			}
 			Iterator<Joueur> it10 = ShapeUp.getListeJ().listIterator();
 			while(it10.hasNext()) {
-				// ajouter en carte victoire la carte qu'il lui reste en main
+				// poser 2 cartes une par une qu'il a en main
+				// ajouter en carte victoire la carte qu'il lui reste en main quand la size de carte en main = 1
 			}
+			return;
 		}
 		
 		public void choixVarianteEtJeu(Partie ShapeUp) {
@@ -328,9 +333,13 @@ public class Partie {
 		
 		public void compterPoints(Partie ShapeUp) {
 			Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
+			Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
+			Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+			Iterator<Joueur> it4 = ShapeUp.getListeJ().listIterator();
+			Iterator<Joueur> it5 = ShapeUp.getListeJ().listIterator();
 			while(it.hasNext())
-				it.next().setScore(ShapeUp.getCompteur().compterScore(ShapeUp.getTapis(), it.next().getCarteVictoire()));
-				System.out.println("Le joueur "+it.next().getNomJoueur()+" a obtenu "+it.next().getScore()+" points.");
+				it2.next().setScore(ShapeUp.getCompteur().compterScore(ShapeUp.getTapis(), it3.next().getCarteVictoire()));
+				System.out.println("Le joueur "+it4.next().getNomJoueur()+" a obtenu "+it5.next().getScore()+" points.");
 		}
 	
 	public static void main(String[] args) {
@@ -344,7 +353,7 @@ public class Partie {
 		ShapeUp.choixPlateau();
 		ShapeUp.choixCompteur();
 		ShapeUp.choixVarianteEtJeu(ShapeUp);
-		ShapeUp.compterPoints(ShapeUp);
+		//ShapeUp.compterPoints(ShapeUp);
 		
 		System.out.println("Fin de la partie !");
 		
