@@ -135,7 +135,7 @@ public class Partie {
         System.out.println("");
         Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
         while(it.hasNext()) {
-        	it.next().toString();
+        	System.out.println(it.next().getNomJoueur());
         }
         System.out.println("**************************");
 	}
@@ -155,7 +155,7 @@ public class Partie {
 			System.out.println("Combien de joueurs physiques participent à la partie?");
 			this.setNbreJPhysiques(in.nextInt());
 			}
-			while(this.getNbreJPhysiques()>=this.getNombreDeJoueur() || this.getNbreJPhysiques()<0);
+			while(this.getNbreJPhysiques()>this.getNombreDeJoueur() || this.getNbreJPhysiques()<0);
 			
 	}
 	
@@ -168,7 +168,7 @@ public class Partie {
 		
 		for(int i=0; i<this.getNbreJPhysiques();i++) {
 			Scanner in3 = new Scanner(System.in);
-			System.out.println("Quel est le nom du joueur physique"+(i+1)+"?");
+			System.out.println("Quel est le nom du joueur physique "+(i+1)+"?");
 			String nom = in3.nextLine();
 			Scanner in4 = new Scanner(System.in);
 			if(premierJ==false) {
@@ -212,7 +212,7 @@ public class Partie {
 		Scanner in2 = new Scanner(System.in);
 		System.out.println("Avec quel tapis souhaitez vous jouer?");
 		System.out.println("1. Tapis 3x5");
-		System.out.println("2. Deuxième choix de tapis");
+		System.out.println("2. Tapis triangulaire");
 		plateau = in2.nextInt();
 		}
 		while(plateau<1 || plateau>2);
@@ -255,21 +255,26 @@ public class Partie {
 		public void partieClassique(Partie ShapeUp) {
 			//instancier à la partie pour chaque cas, faire piocher une carte victoire par joueur
 			//méthode attribuer carte victoire si version classique
-			for(int i=0; i<ShapeUp.getNombreDeJoueur(); i++) {
+				Iterator<Joueur> it11 = ShapeUp.getListeJ().listIterator();
+				Iterator<Joueur> it5 = ShapeUp.getListeJ().listIterator();
+				Iterator<Joueur> it4 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
 				while(it3.hasNext()) {
-					it3.next().setCarteVictoire(it3.next().piocherCarte(ShapeUp.getPioche()));
+					System.out.println(it3.next().getNomJoueur()+" pioche sa carte victoire.");
+					it11.next().setCarteVictoire(it4.next().piocherCarte(ShapeUp.getPioche()));
 				}
-			}
 			
 			//jouer pour la version classique
 			while(ShapeUp.getTapis().getPlateau().size()<15) {
+				Iterator<Joueur> it8 = ShapeUp.getListeJ().listIterator();
+				Iterator<Joueur> it7 = ShapeUp.getListeJ().listIterator();
+				Iterator<Joueur> it6 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
-				Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
-				while(it2.hasNext()) {
+				Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
+				while(it.hasNext()) {
 					System.out.println("C'est au tour de : ");
-					System.out.println(it3.next().getNomJoueur()+" // carte victoire : "+it3.next().getCarteVictoire());
-					it2.next().jouer(it2.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+					System.out.println(it.next().getNomJoueur()+" // carte victoire : "+it2.next().getCarteVictoire());
+					it7.next().jouer(it8.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
 				}
 				
 			}
@@ -278,24 +283,23 @@ public class Partie {
 		public void partieAdvanced(Partie ShapeUp) {
 			//instancier à la partie pour chaque cas, faire piocher 3 cartes victoires par joueur
 			//méthode attribuer carte victoire si version classique
-			for(int i=0; i<ShapeUp.getNombreDeJoueur(); i++) {
 				Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
 				while(it3.hasNext()) {
 					// piocher 3 cartes et les mettre dans la main du joueur
 				}
-			}
+			
 			while(ShapeUp.getTapis().getPlateau().size()<15) {
 				Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
-				Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
-				while(it2.hasNext()) {
+				Iterator<Joueur> it9 = ShapeUp.getListeJ().listIterator();
+				while(it9.hasNext()) {
 					System.out.println("C'est au tour de : ");
-					System.out.println(it3.next().getNomJoueur()+" // carte victoire : "+it3.next().getCarteVictoire());
+					System.out.println(it9.next().getNomJoueur()+" // carte victoire : "+it9.next().getCarteVictoire());
 					it2.next().jouerAdvanced(it2.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
 				}
 				
 			}
-			Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
-			while(it3.hasNext()) {
+			Iterator<Joueur> it10 = ShapeUp.getListeJ().listIterator();
+			while(it10.hasNext()) {
 				// ajouter en carte victoire la carte qu'il lui reste en main
 			}
 		}

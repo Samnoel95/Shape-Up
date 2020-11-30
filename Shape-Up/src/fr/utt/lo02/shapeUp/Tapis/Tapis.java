@@ -34,7 +34,6 @@ public class  Tapis {
 		this.setPlateau(tapis);
 		this.setForme(forme);
 		this.setEstPlein(false);
-		System.out.println("Un tapis de forme "+this.forme+ " a été créé !");
 		
 	}
 	
@@ -79,7 +78,7 @@ public class  Tapis {
 	}
 	
 	public int longueurPlateau() {
-		// peut utiliser les m�thodes de tapis pour trouver les x et les y min/max 
+		// peut utiliser les m�thodes de tapis pour trouver les x et les y min/max 
 		int longueur;
 		int Xmax = 7;
 		int Xmin = -7;

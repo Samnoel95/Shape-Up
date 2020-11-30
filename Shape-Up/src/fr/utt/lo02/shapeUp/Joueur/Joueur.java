@@ -102,8 +102,9 @@ public abstract class Joueur {
     	Carte cartepiochee = new Carte();
     	System.out.println(this.nomJoueur + " pioche une carte.");
     	cartepiochee = pioche.distribuerUneCarte();
-    	System.out.println("**************************");
     	System.out.println("Vous avez pioché la carte "+ cartepiochee.toString()+".");
+
+    	System.out.println("**************************");
     	return cartepiochee;
     }
     
