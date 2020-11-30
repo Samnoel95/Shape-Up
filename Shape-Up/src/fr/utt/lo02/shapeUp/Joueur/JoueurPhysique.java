@@ -57,7 +57,7 @@ public class JoueurPhysique extends Joueur {
         hauteur = tapis.hauteurPlateau();
         System.out.println("La longueur du plateau est  "+longueur);
         System.out.println("La hauteur du plateau est"+hauteur);
-    	if (!tapis.getPlateau().isEmpty() && (hauteur !=1 || longueur != 1)) {
+    	if (!tapis.getPlateau().isEmpty() && tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
     		
             veutDeplacer = chooseMove();
             
@@ -139,7 +139,7 @@ public class JoueurPhysique extends Joueur {
           hauteur = tapis.hauteurPlateau();
           System.out.println("La longueur du plateau est  "+longueur);
           System.out.println("La hauteur du plateau est"+hauteur);
-         if( aDeplace == false && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
+         if( aDeplace == false && tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
 
              veutDeplacer = chooseMove();
              
@@ -203,7 +203,7 @@ public class JoueurPhysique extends Joueur {
         hauteur = tapis.hauteurPlateau();
         System.out.println("La longueur du plateau est  "+longueur);
         System.out.println("La hauteur du plateau est"+hauteur);
-    	if (!tapis.getPlateau().isEmpty() && (hauteur !=1 || longueur != 1)) {
+    	if (!tapis.getPlateau().isEmpty() && tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
     		
             veutDeplacer = chooseMove();
             
@@ -271,12 +271,12 @@ public class JoueurPhysique extends Joueur {
           hauteur = tapis.hauteurPlateau();
           System.out.println("La longueur du plateau est  "+longueur);
           System.out.println("La hauteur du plateau est"+hauteur);
-         if( aDeplace == false && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
+         if( aDeplace == false &&  tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
 
              veutDeplacer = chooseMove();
              
-             
-             if(veutDeplacer) {
+          
+          if(veutDeplacer) {
             	// on deplace
             	 System.out.println("Coordonnées de la carte a déplacer : ");
              	
@@ -293,7 +293,7 @@ public class JoueurPhysique extends Joueur {
                 PositionCarte position2 = new PositionCarte(x,y);
                 
                 aDeplace = deplacerCarte(position1, position2, tapis);
-                while(!aDeplace) {
+            while(!aDeplace) {
                 	System.out.println("Deplacement invalide ! recommence : ");
                 	System.out.println("Coordonnées de la carte a déplacer : ");
                 	
@@ -317,8 +317,8 @@ public class JoueurPhysique extends Joueur {
              }
          }
 	}
-
-
 }
+
+
 
 

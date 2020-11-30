@@ -56,16 +56,12 @@ public class Strategie1 implements Strategie {
 	}
 	
 	public void joueAdvanced(Joueur joueur,Tapis tapis, Pioche pioche) {
-		int longueur;
-        int hauteur;
         int x;
         int y;
         boolean veutDeplacer = false;
         boolean aDeplace = false;
         System.out.println(joueur.getNomJoueur()+" c'est ton tour !");
-        longueur = tapis.longueurPlateau();
-        hauteur = tapis.hauteurPlateau();
-    	if (!tapis.getPlateau().isEmpty() && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
+    	if (!tapis.getPlateau().isEmpty() && tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
     		
             veutDeplacer = randomBoolean();
             
@@ -98,8 +94,6 @@ public class Strategie1 implements Strategie {
                 
                 position2.setX(x);
                 position2.setY(y);
-                System.out.println(longueur);
-                System.out.println(hauteur);
                 System.out.println("x2 = "+x);
                 System.out.println("y2 = "+y);
                
@@ -137,9 +131,8 @@ public class Strategie1 implements Strategie {
         joueur.carteEnMain.add(cartePiocher);
         }
         
-          longueur = tapis.longueurPlateau();
-          hauteur = tapis.hauteurPlateau();
-         if( aDeplace == false && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
+
+         if( aDeplace == false  && tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
         	 
         	 System.out.println("test");
              veutDeplacer = randomBoolean();
@@ -183,16 +176,13 @@ public class Strategie1 implements Strategie {
 	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche) {
 		Carte carteAJouer = new Carte();
         carteAJouer = joueur.piocherCarte(pioche);
-        int longueur;
-        int hauteur;
         int x;
         int y;
         boolean veutDeplacer = false;
         boolean aDeplace = false;
         System.out.println(joueur.getNomJoueur()+" c'est ton tour !");
-        longueur = tapis.longueurPlateau();
-        hauteur = tapis.hauteurPlateau();
-    	if (!tapis.getPlateau().isEmpty() && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
+       
+    	if (!tapis.getPlateau().isEmpty() && tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
     		
             veutDeplacer = randomBoolean();
             
@@ -225,8 +215,7 @@ public class Strategie1 implements Strategie {
                 
                 position2.setX(x);
                 position2.setY(y);
-                System.out.println(longueur);
-                System.out.println(hauteur);
+
                 System.out.println("x2 = "+x);
                 System.out.println("y2 = "+y);
                
@@ -256,10 +245,8 @@ public class Strategie1 implements Strategie {
                position.setY(y);
                cartePose = joueur.poserCarte(position, carteAJouer, tapis);
          }
-        
-          longueur = tapis.longueurPlateau();
-          hauteur = tapis.hauteurPlateau();
-         if( aDeplace == false && (hauteur !=1 || longueur != 1) && (hauteur !=3 || longueur !=5) && (hauteur !=5 || longueur !=3)) {
+
+         if( aDeplace == false &&  tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
         	 
         	 System.out.println("test");
              veutDeplacer = randomBoolean();
