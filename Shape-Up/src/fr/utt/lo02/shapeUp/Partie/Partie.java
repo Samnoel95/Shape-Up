@@ -332,15 +332,10 @@ public class Partie {
 		}
 		
 		public void compterPoints(Partie ShapeUp) {
-			Iterator<Joueur> debListe = ShapeUp.getListeJ().listIterator();
-			Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
-			Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
-			Iterator<Joueur> it4 = ShapeUp.getListeJ().listIterator();
-			Iterator<Joueur> it5 = ShapeUp.getListeJ().listIterator();
-			System.out.println(ShapeUp.getListeJ().toString());
-			while(debListe.hasNext()) {
-				it2.next().setScore(ShapeUp.getCompteur().compterScore(ShapeUp.getTapis(), it3.next().getCarteVictoire()));
-				System.out.println("Le joueur "+it4.next().getNomJoueur()+" a obtenu "+it5.next().getScore()+" points.");
+			
+			for(int i=0; i<ShapeUp.getNombreDeJoueur();i++) {
+				ShapeUp.getListeJ().get(i).setScore(ShapeUp.getCompteur().compterScore(ShapeUp.getTapis(), ShapeUp.getListeJ().get(i).getCarteVictoire()));
+				System.out.println("Le joueur "+ShapeUp.getListeJ().get(i).getNomJoueur()+" a obtenu "+ShapeUp.getListeJ().get(i).getScore()+" points.");
 			}
 		}
 	

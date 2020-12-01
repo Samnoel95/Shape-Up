@@ -26,7 +26,7 @@ public class CompteurNormal implements Visiteur{
 		PositionCarte position = new PositionCarte(ligne,colonne);
 		PositionCarte positionDroite = new PositionCarte(ligne,colonne+1);
 		
-		for(int i=tapis.getXMin(); i<tapis.getXMax(); i++)
+		for(int i=tapis.getYMin(); i<tapis.getYMax(); i++)
 		{
 			if (tapis.getPlateau().get(position).getForme() == tapis.getPlateau().get(positionDroite).getForme() && tapis.getPlateau().get(position).getForme() == forme)
 			{
@@ -57,7 +57,7 @@ public class CompteurNormal implements Visiteur{
 		PositionCarte position = new PositionCarte(ligne,colonne);
 		PositionCarte positionBas = new PositionCarte(ligne+1,colonne);
 		
-		for(int i=tapis.getYMax(); i<tapis.getYMin(); i--)
+		for(int i=tapis.getXMin(); i<tapis.getXMax(); i++)
 		{
 			if (tapis.getPlateau().get(position).getForme() == tapis.getPlateau().get(positionBas).getForme() && tapis.getPlateau().get(position).getForme() == forme)
 			{
@@ -88,7 +88,7 @@ public class CompteurNormal implements Visiteur{
 		PositionCarte position = new PositionCarte(ligne,colonne);
 		PositionCarte positionDroite = new PositionCarte(ligne,colonne+1);
 		
-		for(int i=tapis.getXMin(); i<tapis.getXMax(); i++)
+		for(int i=tapis.getYMin(); i<tapis.getYMax(); i++)
 		{
 			if (tapis.getPlateau().get(position).getCouleur() == tapis.getPlateau().get(positionDroite).getCouleur() && tapis.getPlateau().get(position).getCouleur() == couleur)
 			{
@@ -125,7 +125,7 @@ public class CompteurNormal implements Visiteur{
 		PositionCarte position = new PositionCarte(ligne,colonne);
 		PositionCarte positionBas = new PositionCarte(ligne+1,colonne);
 		
-		for(int i=tapis.getYMax(); i<tapis.getYMin(); i--)
+		for(int i=tapis.getXMin(); i<tapis.getXMax(); i++)
 		{
 			if (tapis.getPlateau().get(position).getCouleur() == tapis.getPlateau().get(positionBas).getCouleur() && tapis.getPlateau().get(position).getCouleur() == couleur)
 			{
@@ -162,7 +162,7 @@ public class CompteurNormal implements Visiteur{
 		PositionCarte position = new PositionCarte(ligne,colonne);
 		PositionCarte positionDroite = new PositionCarte(ligne,colonne+1);
 		
-		for(int i=tapis.getXMin(); i<tapis.getXMax(); i++)
+		for(int i=tapis.getYMin(); i<tapis.getYMax(); i++)
 		{
 			if (tapis.getPlateau().get(position).getEstPlein() == tapis.getPlateau().get(positionDroite).getEstPlein() && tapis.getPlateau().get(position).getEstPlein() == estPlein)
 			{
@@ -181,7 +181,7 @@ public class CompteurNormal implements Visiteur{
 		{
 			x=y;
 		}
-		if(x<2)
+		if(x<3)
 		{
 			return 0;
 		}
@@ -198,7 +198,7 @@ public class CompteurNormal implements Visiteur{
 		PositionCarte position = new PositionCarte(ligne,colonne);
 		PositionCarte positionBas = new PositionCarte(ligne+1,colonne);
 		
-		for(int i=tapis.getYMax(); i<tapis.getYMin(); i--)
+		for(int i=tapis.getXMin(); i<tapis.getXMax(); i++)
 		{
 			if (tapis.getPlateau().get(position).getEstPlein() == tapis.getPlateau().get(positionBas).getEstPlein() && tapis.getPlateau().get(position).getEstPlein() == estPlein)
 			{
@@ -217,7 +217,7 @@ public class CompteurNormal implements Visiteur{
 		{
 			x=y;
 		}
-		if(x<2)
+		if(x<3)
 		{
 			return 0;
 		}
@@ -228,12 +228,26 @@ public class CompteurNormal implements Visiteur{
 	@Override
 	public int compterScore(Tapis tapis, Carte carteV) {
 		int score=0;
+		int interYMin, interYMax, interXMin, interXMax;
 		System.out.println("Xmin = "+tapis.getXMin());
 		System.out.println("Xmax = "+tapis.getXMax());
 		System.out.println("Ymin = "+tapis.getYMin());
 		System.out.println("Ymax = "+tapis.getYMax());
-		
+		/*
 		if(Math.abs(tapis.getXMax()-tapis.getXMin())< Math.abs(tapis.getYMax()-tapis.getYMin())) {
+			
+			interYMin = tapis.getXMin();
+			interYMax = tapis.getXMax();
+			interXMin = tapis.getYMin();
+			interXMax = tapis.getYMax();
+		}
+		else {
+			interYMin = tapis.getYMin();
+			interYMax = tapis.getYMax();
+			interXMin = tapis.getXMin();
+			interXMax = tapis.getXMax();
+		}
+		*/
 		
 		for(int i=tapis.getXMin(); i<=tapis.getXMax();i++) {
 			score+=compterLigneForme(tapis, carteV.getForme(),i);
@@ -253,32 +267,8 @@ public class CompteurNormal implements Visiteur{
 			score+=compterColonneEstPlein(tapis, carteV.getEstPlein(),j);
 			System.out.println("Score à la colonne "+j+" pour le remplissage : "+compterColonneEstPlein(tapis, carteV.getEstPlein(),j));
 		}
-		}
-		else if(Math.abs(tapis.getXMax()-tapis.getXMin())> Math.abs(tapis.getYMax()-tapis.getYMin())) {
-			
-			for(int j=tapis.getXMin(); j<=tapis.getXMax();j++) {
-				score+=compterColonneForme(tapis, carteV.getForme(),j);
-				System.out.println("Score à la colonne "+j+" pour les formes : "+compterColonneForme(tapis, carteV.getForme(),j));
-				score+=compterColonneCouleur(tapis, carteV.getCouleur(),j);
-				System.out.println("Score à la colonne "+j+" pour les couleurs : "+compterColonneCouleur(tapis, carteV.getCouleur(),j));
-				score+=compterColonneEstPlein(tapis, carteV.getEstPlein(),j);
-				System.out.println("Score à la colonne "+j+" pour le remplissage : "+compterColonneEstPlein(tapis, carteV.getEstPlein(),j));
-			}
-			
-			
-			for(int i=tapis.getYMin(); i<=tapis.getYMax();i++) {
-				
-				score+=compterLigneForme(tapis, carteV.getForme(),i);
-				System.out.println("Score à la ligne "+i+" pour les formes : "+compterLigneForme(tapis, carteV.getForme(),i));
-				score+=compterLigneCouleur(tapis, carteV.getCouleur(),i);
-				System.out.println("Score à la ligne "+i+" pour les couleurs : "+compterLigneCouleur(tapis, carteV.getCouleur(),i));
-				score+=compterLigneEstPlein(tapis, carteV.getEstPlein(),i);
-				System.out.println("Score à la ligne "+i+" pour le remplissage : "+compterLigneEstPlein(tapis, carteV.getEstPlein(),i));
-			}
-			
-			
-			
-		}
+		
+		
 		return score;
 	}
 	
