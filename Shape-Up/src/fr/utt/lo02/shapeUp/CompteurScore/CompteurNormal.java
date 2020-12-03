@@ -298,24 +298,24 @@ public class CompteurNormal implements Visiteur{
 		
 		for(int i=tapis.getXMin(); i<=tapis.getXMax();i++) {
 			score+=compterLigneForme(tapis, carteV.getForme(),i);
-			System.out.println("Score à la ligne "+i+" pour les formes : "+compterLigneForme(tapis, carteV.getForme(),i));
+			//System.out.println("Score à la ligne "+i+" pour les formes : "+compterLigneForme(tapis, carteV.getForme(),i));
 			score+=compterLigneCouleur(tapis, carteV.getCouleur(),i);
-			System.out.println("Score à la ligne "+i+" pour les couleurs : "+compterLigneCouleur(tapis, carteV.getCouleur(),i));
+			//System.out.println("Score à la ligne "+i+" pour les couleurs : "+compterLigneCouleur(tapis, carteV.getCouleur(),i));
 			score+=compterLigneEstPlein(tapis, carteV.getEstPlein(),i);
-			System.out.println("Score à la ligne "+i+" pour le remplissage : "+compterLigneEstPlein(tapis, carteV.getEstPlein(),i));
+			//System.out.println("Score à la ligne "+i+" pour le remplissage : "+compterLigneEstPlein(tapis, carteV.getEstPlein(),i));
 		}
 		
 		
 		for(int j=tapis.getYMin(); j<=tapis.getYMax();j++) {
 			score+=compterColonneForme(tapis, carteV.getForme(),j);
-			System.out.println("Score à la colonne "+j+" pour les formes : "+compterColonneForme(tapis, carteV.getForme(),j));
+			//System.out.println("Score à la colonne "+j+" pour les formes : "+compterColonneForme(tapis, carteV.getForme(),j));
 			score+=compterColonneCouleur(tapis, carteV.getCouleur(),j);
-			System.out.println("Score à la colonne "+j+" pour les couleurs : "+compterColonneCouleur(tapis, carteV.getCouleur(),j));
+			//System.out.println("Score à la colonne "+j+" pour les couleurs : "+compterColonneCouleur(tapis, carteV.getCouleur(),j));
 			score+=compterColonneEstPlein(tapis, carteV.getEstPlein(),j);
-			System.out.println("Score à la colonne "+j+" pour le remplissage : "+compterColonneEstPlein(tapis, carteV.getEstPlein(),j));
+			//System.out.println("Score à la colonne "+j+" pour le remplissage : "+compterColonneEstPlein(tapis, carteV.getEstPlein(),j));
 		}
 		
-		
+		System.out.println("Score à ce round : "+ score);
 		return score;
 	}
 	

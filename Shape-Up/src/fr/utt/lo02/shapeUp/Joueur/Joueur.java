@@ -19,7 +19,7 @@ public abstract class Joueur {
 	private String nomJoueur;
     private boolean commence;
     private Carte carteVictoire;
-    protected LinkedList<Carte> carteEnMain = new LinkedList<>();
+    protected LinkedList<Carte> carteEnMain;
     
 
     // constructeur d'une instance de Joueur 
@@ -40,7 +40,7 @@ public abstract class Joueur {
 		this.nomJoueur = nomJoueur;
 		this.commence = commence;
 		this.carteVictoire = null;
-		this.carteEnMain = null;
+		this.carteEnMain = new LinkedList<>();
 	} 
     
 
