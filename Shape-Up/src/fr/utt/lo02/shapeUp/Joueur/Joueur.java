@@ -23,6 +23,8 @@ public abstract class Joueur {
     
 
     // constructeur d'une instance de Joueur 
+    
+    
     public Joueur(String nomJoueur, boolean commence, Carte carteVictoire) {
 		this.nomJoueur = nomJoueur;
 		this.commence = commence;
@@ -43,6 +45,14 @@ public abstract class Joueur {
     
 
     // debut des getters et des setters
+    public LinkedList<Carte> getCarteEnMain(){
+    	return carteEnMain;
+    }
+    
+    public void setCarteEnMain(LinkedList<Carte> carteEnMain){
+    	this.carteEnMain = carteEnMain;
+    }
+    
     public int getScore() {
     	return score;
     }
