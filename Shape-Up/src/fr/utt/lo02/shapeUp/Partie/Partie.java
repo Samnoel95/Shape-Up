@@ -24,6 +24,7 @@ public class Partie {
 	private Pioche pioche;
 	private Tapis tapis;
 	private Visiteur compteur;
+	private Carte carteCachee;
 	// est ce que Round et tour sont obligatoire ? tour peut etre cr�� a l'int�rieur du main ? a quoi correspond r�ellement un round ? 
 	
 	public Partie(int nombreDeJoueur, int round, int tour, String regle) {
@@ -265,17 +266,24 @@ public class Partie {
 				}
 			
 			//jouer pour la version classique
-			while(ShapeUp.getTapis().getPlateau().size()<15) {
+			while(ShapeUp.getTapis().getEstPlein()==false) {
 				System.out.println(ShapeUp.getTapis().getPlateau().size());
 				Iterator<Joueur> it8 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it7 = ShapeUp.getListeJ().listIterator();
-				Iterator<Joueur> it6 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
-				while(it.hasNext() && ShapeUp.getTapis().getPlateau().size()<15) {
+				while(it.hasNext() && ShapeUp.getTapis().getEstPlein()==false) {
 					System.out.println("C'est au tour de : ");
 					System.out.println(it.next().getNomJoueur()+" // carte victoire : "+it2.next().getCarteVictoire());
 					it7.next().jouer(it8.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+					if(ShapeUp.getTapis().getPlateau().size()==15 && ShapeUp.getNombreDeJoueur()==2) {
+						ShapeUp.getTapis().setEstPlein(true);
+						System.out.println("Le tapis est rempli !");
+					}
+					else if(ShapeUp.getTapis().getPlateau().size()==14 && ShapeUp.getNombreDeJoueur()==3) {
+						ShapeUp.getTapis().setEstPlein(true);
+						System.out.println("Le tapis est rempli !");
+					}
 					
 				}
 
@@ -286,8 +294,11 @@ public class Partie {
 			//instancier à la partie pour chaque cas, faire piocher 3 cartes victoires par joueur
 			//méthode attribuer carte victoire si version classique
 				Iterator<Joueur> it3 = ShapeUp.getListeJ().listIterator();
+				Iterator<Joueur> it8 = ShapeUp.getListeJ().listIterator();
 				while(it3.hasNext()) {
-					// piocher 3 cartes et les mettre dans la main du joueur
+					for (int i=0; i<3; i++) {
+						it8.next().piocherCarte(pioche); // les mettre dans la main du joueur
+					}
 				}
 			
 			while(ShapeUp.getTapis().getPlateau().size()<15) {
@@ -338,6 +349,13 @@ public class Partie {
 				System.out.println("Le joueur "+ShapeUp.getListeJ().get(i).getNomJoueur()+" a obtenu "+ShapeUp.getListeJ().get(i).getScore()+" points.");
 			}
 		}
+		
+		public void carteCachee(Partie ShapeUp) {
+			System.out.println("**************************");
+			System.out.println("Nous piochons une carte qui sera la carte cachée : nous la mettons de côté.");
+			System.out.println("**************************");
+			Carte carteCachee = ShapeUp.getPioche().distribuerUneCarte();
+		}
 	
 	public static void main(String[] args) {
 		
@@ -349,30 +367,16 @@ public class Partie {
 		ShapeUp.affichageJoueur(ShapeUp);
 		ShapeUp.choixPlateau();
 		ShapeUp.choixCompteur();
+		ShapeUp.carteCachee(ShapeUp);
 		ShapeUp.choixVarianteEtJeu(ShapeUp);
-		Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
+		
+		
 		System.out.println("Comptons les scores !");
-		System.out.println(ShapeUp.getTapis().getPlateau().size()+" cartes sur le plateau");
 		ShapeUp.compterPoints(ShapeUp);
 		
 		System.out.println("Fin de la partie !");
 		
 		
-		/*
-		Partie partie = new Partie();
-		JoueurPhysique j1 = new JoueurPhysique("Lorene", false);
-		JoueurPhysique j2 = new JoueurPhysique("Sam", true);
-		Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
-		partie.setTapis(tapis);
-		j1.setCarteVictoire(j1.piocherCarte(partie.getPioche()));
-		j2.setCarteVictoire(j2.piocherCarte(partie.getPioche()));
-		System.out.println(partie.getTapis().toString());
-		
-		while(partie.getTapis().getEstPlein()==false) {
-			j1.jouer(j1, partie.getTapis(), partie.getPioche());
-			j2.jouer(j2, partie.getTapis(), partie.getPioche());
-		}
-		*/
 		
 		
 	}		
