@@ -140,6 +140,31 @@ public class  Tapis {
 		return horizontal;
 	}
 	
+	public boolean isExist(PositionCarte position) {
+		boolean isExist = false;
+		if(this.getPlateau().containsKey(position)) {
+			isExist = true;
+		}
+		return isExist;
+	}
+	
+	public boolean isAdjacent(PositionCarte position) {
+		
+		boolean isAdjacent = false;
+		PositionCarte position2 = new PositionCarte(position.getX()-1, position.getY());
+		PositionCarte position3 = new PositionCarte(position.getX(), position.getY()+1);
+		PositionCarte position4 = new PositionCarte(position.getX()+1, position.getY());
+		PositionCarte position5 = new PositionCarte(position.getX(), position.getY()-1);
+		
+		if (this.getPlateau().containsKey(position2) 
+				|| this.getPlateau().containsKey(position3) 
+				|| this.getPlateau().containsKey(position4) 
+				|| this.getPlateau().containsKey(position5)) {
+			isAdjacent = true;
+		}
+		return isAdjacent;
+	}
+	
 	public boolean layoutOk(PositionCarte position) {
 		// analyse le plateau avec la carte ajouter
 		boolean layoutOk = false;

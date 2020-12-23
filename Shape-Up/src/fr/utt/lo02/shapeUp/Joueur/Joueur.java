@@ -119,40 +119,18 @@ public abstract class Joueur {
     }
     
 	
-	public boolean isExist(PositionCarte position, Tapis tapis) {
-		boolean isExist = false;
-		if(tapis.getPlateau().containsKey(position)) {
-			isExist = true;
-		}
-		return isExist;
-	}
+
 	
-	public boolean isAdjacent(PositionCarte position, Tapis tapis) {
-		
-		boolean isAdjacent = false;
-		PositionCarte position2 = new PositionCarte(position.getX()-1, position.getY());
-		PositionCarte position3 = new PositionCarte(position.getX(), position.getY()+1);
-		PositionCarte position4 = new PositionCarte(position.getX()+1, position.getY());
-		PositionCarte position5 = new PositionCarte(position.getX(), position.getY()-1);
-		
-		if (tapis.getPlateau().containsKey(position2) 
-				|| tapis.getPlateau().containsKey(position3) 
-				|| tapis.getPlateau().containsKey(position4) 
-				|| tapis.getPlateau().containsKey(position5)) {
-			isAdjacent = true;
-		}
-		return isAdjacent;
-	}
-  
+
 
 	
 	public boolean poserCarte(PositionCarte position, Carte carte, Tapis tapis) {
 		boolean cartePose = false;
-		boolean isExist = isExist(position, tapis);
+		boolean isExist = tapis.isExist(position);
 		boolean adjacent =false;
 		boolean layoutOk = false;
 		if(!isExist) {
-		adjacent = isAdjacent(position, tapis);
+		adjacent = tapis.isAdjacent(position);
 		tapis.getPlateau().put(position, carte);
 		layoutOk = tapis.layoutOk(position);
 		tapis.getPlateau().remove(position);
@@ -178,14 +156,14 @@ public abstract class Joueur {
 	
 	public boolean deplacerCarte(PositionCarte position1,PositionCarte position2, Tapis tapis) {
 		boolean carteDeplace = false;
-		boolean isExist = isExist(position1, tapis);
-		boolean isExist2 = isExist(position2, tapis);
+		boolean isExist = tapis.isExist(position1);
+		boolean isExist2 = tapis.isExist(position2);
 		boolean adjacent = false;
 		boolean layoutOk = false;
 		if(isExist && !isExist2) {
 		tapis.getPlateau().put(position2, tapis.getPlateau().get(position1));
 		tapis.getPlateau().remove(position1);
-		adjacent = isAdjacent(position2, tapis);
+		adjacent = tapis.isAdjacent(position2);
 		layoutOk = tapis.layoutOk(position2);
 			if(adjacent && layoutOk) {
 				carteDeplace = true;
