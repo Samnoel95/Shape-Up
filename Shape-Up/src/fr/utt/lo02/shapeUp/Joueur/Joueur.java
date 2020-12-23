@@ -110,11 +110,11 @@ public abstract class Joueur {
    
     public Carte piocherCarte(Pioche pioche) {
     	Carte cartepiochee = new Carte();
-    	System.out.println(this.nomJoueur + " pioche une carte.");
     	cartepiochee = pioche.distribuerUneCarte();
-    	System.out.println("Vous avez pioché la carte "+ cartepiochee.toString()+".");
-
+    	System.out.println(this.nomJoueur+" a pioché la carte "+ cartepiochee.toString()+".");
+    	System.out.println("");
     	System.out.println("**************************");
+    	System.out.println("");
     	return cartepiochee;
     }
     
@@ -158,20 +158,21 @@ public abstract class Joueur {
 		tapis.getPlateau().remove(position);
 		}
 		
-		System.out.println(tapis.toString());
+		//System.out.println(tapis.toString());
 		if(tapis.getPlateau().isEmpty()) {
-			System.out.println("c'est la boule empty");
+			//System.out.println("c'est la boule empty");
     		position.setX(0);
     		position.setY(0);
     		tapis.getPlateau().put(position, carte);
-    		System.out.println("La carte est posee ! en x= "+position.getX()+"et y= "+position.getY());
+    		System.out.println("La carte est posee en x = "+position.getX()+" et y = "+position.getY()+".");
     		cartePose = true;
 		}else if(!isExist && adjacent && layoutOk) {
-			System.out.println("c'est la boucle classique");
+			//System.out.println("c'est la boucle classique");
 			tapis.getPlateau().put(position, carte);
 			cartePose = true;
-			System.out.println("La carte est posee ! en x= "+position.getX()+"et y= "+position.getY());
+			System.out.println("La carte est posee en   x = "+position.getX()+" et y = "+position.getY()+".");
 		}
+		//System.out.println(tapis.toString());
 		return cartePose;
 	}
 	
@@ -188,7 +189,7 @@ public abstract class Joueur {
 		layoutOk = tapis.layoutOk(position2);
 			if(adjacent && layoutOk) {
 				carteDeplace = true;
-				System.out.println("La carte est deplacee !en x= "+position2.getX()+"et y= "+position2.getY());
+				System.out.println("La carte est deplacee en x = "+position2.getX()+" et y = "+position2.getY()+".");
 			}else {
 				tapis.getPlateau().put(position1, tapis.getPlateau().get(position2));
 				tapis.getPlateau().remove(position2);

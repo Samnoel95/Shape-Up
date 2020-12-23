@@ -76,8 +76,8 @@ public class Strategie1 implements Strategie {
 
             x = randomX(tapis);
             y = randomY(tapis);
-            System.out.println("x2 = "+x);
-            System.out.println("y2 = "+y);
+            //System.out.println("x2 = "+x);
+            //System.out.println("y2 = "+y);
             PositionCarte position2 = new PositionCarte(x,y);
             
             aDeplace = joueur.deplacerCarte(position1, position2, tapis);
@@ -88,14 +88,14 @@ public class Strategie1 implements Strategie {
                 
                  PositionCarte position12 = new PositionCarte(x,y);
              
-                // position ou déplacer la carte 
+                // position ou dï¿½placer la carte 
                 x = randomX(tapis);
                 y = randomY(tapis);
                 
                 position2.setX(x);
                 position2.setY(y);
-                System.out.println("x2 = "+x);
-                System.out.println("y2 = "+y);
+                //System.out.println("x2 = "+x);
+                //System.out.println("y2 = "+y);
                
                 
                 aDeplace = joueur.deplacerCarte(position12, position2, tapis);	
@@ -106,8 +106,8 @@ public class Strategie1 implements Strategie {
         x = randomX(tapis);
         y = randomY(tapis);
         
-        System.out.println("x = "+x);
-        System.out.println("y = "+y);
+        //System.out.println("x = "+x);
+        //System.out.println("y = "+y);
             
         PositionCarte position = new PositionCarte(x,y);
             
@@ -134,7 +134,7 @@ public class Strategie1 implements Strategie {
 
          if( aDeplace == false  && tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
         	 
-        	 System.out.println("test");
+        	 //System.out.println("test");
              veutDeplacer = randomBoolean();
              
              
@@ -153,7 +153,7 @@ public class Strategie1 implements Strategie {
                 
                 aDeplace = joueur.deplacerCarte(position1, position2, tapis);
                 while(!aDeplace) {
-                	System.out.println("test2");
+                	//System.out.println("test2");
                 	 x = randomX(tapis);
                      y = randomY(tapis);
                     
@@ -197,8 +197,8 @@ public class Strategie1 implements Strategie {
 
             x = randomX(tapis);
             y = randomY(tapis);
-            System.out.println("x2 = "+x);
-            System.out.println("y2 = "+y);
+            //System.out.println("x2 = "+x);
+            //System.out.println("y2 = "+y);
             PositionCarte position2 = new PositionCarte(x,y);
             
             aDeplace = joueur.deplacerCarte(position1, position2, tapis);
@@ -209,15 +209,15 @@ public class Strategie1 implements Strategie {
                 
                  PositionCarte position12 = new PositionCarte(x,y);
              
-                // position ou déplacer la carte 
+                // position ou dï¿½placer la carte 
                 x = randomX(tapis);
                 y = randomY(tapis);
                 
                 position2.setX(x);
                 position2.setY(y);
 
-                System.out.println("x2 = "+x);
-                System.out.println("y2 = "+y);
+                //System.out.println("x2 = "+x);
+                //System.out.println("y2 = "+y);
                
                 
                 aDeplace = joueur.deplacerCarte(position12, position2, tapis);	
@@ -227,8 +227,8 @@ public class Strategie1 implements Strategie {
         x = randomX(tapis);
         y = randomY(tapis);
         
-        System.out.println("x = "+x);
-        System.out.println("y = "+y);
+        //System.out.println("x = "+x);
+        //System.out.println("y = "+y);
             
         PositionCarte position = new PositionCarte(x,y);
             
@@ -238,8 +238,8 @@ public class Strategie1 implements Strategie {
             	
             	 x = randomX(tapis);
                  y = randomY(tapis);
-                 System.out.println("x = "+x);
-                 System.out.println("y = "+y);
+                 //System.out.println("x = "+x);
+                 //System.out.println("y = "+y);
                 
                position.setX(x);
                position.setY(y);
@@ -248,7 +248,7 @@ public class Strategie1 implements Strategie {
 
          if( aDeplace == false &&  tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
         	 
-        	 System.out.println("test");
+        	 //System.out.println("test");
              veutDeplacer = randomBoolean();
              
              
@@ -267,7 +267,7 @@ public class Strategie1 implements Strategie {
                 
                 aDeplace = joueur.deplacerCarte(position1, position2, tapis);
                 while(!aDeplace) {
-                	System.out.println("test2");
+                	//System.out.println("test2");
                 	 x = randomX(tapis);
                      y = randomY(tapis);
                     

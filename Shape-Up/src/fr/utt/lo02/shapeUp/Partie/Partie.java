@@ -133,14 +133,18 @@ public class Partie {
 	
 	public void affichageJoueur(Partie ShapeUp) 
 	{
+		System.out.println("");
 		System.out.println("**************************");
+		System.out.println("");
         System.out.println("Voici les joueurs qui participent à la partie :");
         System.out.println("");
         Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
         while(it.hasNext()) {
         	System.out.println(it.next().getNomJoueur());
         }
+        System.out.println("");
         System.out.println("**************************");
+        System.out.println("");
 	}
 	
 	public void askNbreJoueur(){
@@ -269,15 +273,19 @@ public class Partie {
 			
 			//jouer pour la version classique
 			while(ShapeUp.getTapis().getEstPlein()==false) {
-				System.out.println(ShapeUp.getTapis().getPlateau().size());
+				//System.out.println(ShapeUp.getTapis().getPlateau().size());
 				Iterator<Joueur> it8 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it7 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
 				Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
 				while(it.hasNext() && ShapeUp.getTapis().getEstPlein()==false) {
+					System.out.println("");
+					System.out.println("**************************");
+					System.out.println("");
 					System.out.println("C'est au tour de : ");
 					System.out.println(it.next().getNomJoueur()+" // carte victoire : "+it2.next().getCarteVictoire());
 					it7.next().jouer(it8.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+					
 					if(ShapeUp.getTapis().getPlateau().size()==15 && ShapeUp.getNombreDeJoueur()==2) {
 						ShapeUp.getTapis().setEstPlein(true);
 						System.out.println("Le tapis est rempli !");
@@ -318,6 +326,9 @@ public class Partie {
 			Iterator<Joueur> it2 = ShapeUp.getListeJ().listIterator();
 			Iterator<Joueur> it = ShapeUp.getListeJ().listIterator();
 			while(it.hasNext() && ShapeUp.getTapis().getEstPlein()==false) {
+				System.out.println("");
+				System.out.println("**************************");
+				System.out.println("");
 				System.out.println("C'est au tour de : ");
 				System.out.println(it.next().getNomJoueur()+" // carte victoire : "+it2.next().getCarteEnMain());
 				it7.next().jouerAdvanced(it8.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
@@ -366,9 +377,13 @@ public class Partie {
 		}
 		
 		public void carteCachee(Partie ShapeUp) {
+			System.out.println("");
 			System.out.println("**************************");
+			System.out.println("");
 			System.out.println("Nous piochons une carte qui sera la carte cachée : nous la mettons de côté.");
+			System.out.println("");
 			System.out.println("**************************");
+			System.out.println("");
 			Carte carteCachee = ShapeUp.getPioche().distribuerUneCarte();
 		}
 	

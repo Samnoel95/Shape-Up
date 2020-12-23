@@ -290,10 +290,12 @@ public class CompteurNormal implements Visiteur{
 	@Override
 	public int compterScore(Tapis tapis, Carte carteV) {
 		int score=0;
+		/*
 		System.out.println("Xmin = "+tapis.getXMin());
 		System.out.println("Xmax = "+tapis.getXMax());
 		System.out.println("Ymin = "+tapis.getYMin());
 		System.out.println("Ymax = "+tapis.getYMax());
+		*/
 		
 		
 		for(int i=tapis.getXMin(); i<=tapis.getXMax();i++) {

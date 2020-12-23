@@ -220,6 +220,7 @@ public class  Tapis {
 		sb.append("Il y a ");
 	    sb.append(this.plateau.size());
 	    sb.append(" cartes posées sur le plateau.");
+	    sb.append(" // ");
 	    sb.append(this.plateau.entrySet());
 	    return sb.toString();
 	}
