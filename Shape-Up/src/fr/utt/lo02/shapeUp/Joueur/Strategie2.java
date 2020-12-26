@@ -1,12 +1,10 @@
 package fr.utt.lo02.shapeUp.Joueur;
 
-import java.util.Random;
-import java.util.Map.Entry;
+
 
 import fr.utt.lo02.shapeUp.Carte.Carte;
 import fr.utt.lo02.shapeUp.Carte.Pioche;
 import fr.utt.lo02.shapeUp.Carte.PositionCarte;
-import fr.utt.lo02.shapeUp.CompteurScore.CompteurInverse;
 import fr.utt.lo02.shapeUp.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.Tapis.Tapis;
 
