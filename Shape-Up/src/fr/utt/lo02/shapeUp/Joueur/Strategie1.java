@@ -5,6 +5,7 @@ import java.util.Random;
 import fr.utt.lo02.shapeUp.Carte.Carte;
 import fr.utt.lo02.shapeUp.Carte.Pioche;
 import fr.utt.lo02.shapeUp.Carte.PositionCarte;
+import fr.utt.lo02.shapeUp.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.Tapis.Tapis;
 
 public class Strategie1 implements Strategie {
@@ -22,10 +23,9 @@ public class Strategie1 implements Strategie {
 			i = 1 - generator.nextInt(1);
 		}
 		
-		return i;
-		
-				
+		return i;		
 	}
+	
 	public int randomX(Tapis tapis) {
 		int xMin = tapis.getXMin()-1;
 		int xMax = tapis.getXMax()+1;
@@ -55,7 +55,7 @@ public class Strategie1 implements Strategie {
 		return randomBoolean;
 	}
 	
-	public void joueAdvanced(Joueur joueur,Tapis tapis, Pioche pioche) {
+	public void joueAdvanced(Joueur joueur,Tapis tapis, Pioche pioche,Visiteur compteur) {
         int x;
         int y;
         boolean veutDeplacer = false;
@@ -102,7 +102,7 @@ public class Strategie1 implements Strategie {
             }
         } 
         
-        int i = choisirCarte(joueur);
+        int i = this.choisirCarte(joueur);
         x = randomX(tapis);
         y = randomY(tapis);
         
@@ -173,7 +173,7 @@ public class Strategie1 implements Strategie {
          }
 	}
 	
-	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche) {
+	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) {
 		Carte carteAJouer = new Carte();
         carteAJouer = joueur.piocherCarte(pioche);
         int x;
@@ -285,13 +285,7 @@ public class Strategie1 implements Strategie {
                 }
              }
          }
-        
-      
 	}
-
-
-		
-
 }
 	
 	
