@@ -2,6 +2,7 @@ package fr.utt.lo02.shapeUp.Joueur;
 
 import fr.utt.lo02.shapeUp.Carte.Carte;
 import fr.utt.lo02.shapeUp.Carte.Pioche;
+import fr.utt.lo02.shapeUp.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.Tapis.Tapis;
 
 public class JoueurVirtuel extends Joueur {
@@ -44,12 +45,12 @@ public class JoueurVirtuel extends Joueur {
 	}
 
 
-	public void jouerAdvanced(Joueur joueur,Tapis tapis, Pioche pioche) {
-		this.strategie.joueAdvanced(joueur, tapis, pioche);
+	public void jouerAdvanced(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) {
+		this.strategie.joueAdvanced(joueur, tapis, pioche, compteur );
 	}
 
-	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche) {
-		this.strategie.jouer(joueur,tapis, pioche); 
+	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche,Visiteur compteur) {
+		this.strategie.jouer(joueur,tapis, pioche, compteur); 
 		
 	}
 
