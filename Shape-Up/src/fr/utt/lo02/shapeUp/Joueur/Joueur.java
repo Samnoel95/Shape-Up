@@ -9,6 +9,7 @@ import javax.crypto.AEADBadTagException;
 import fr.utt.lo02.shapeUp.Carte.Carte;
 import fr.utt.lo02.shapeUp.Carte.Pioche;
 import fr.utt.lo02.shapeUp.Carte.PositionCarte;
+import fr.utt.lo02.shapeUp.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.Tapis.Tapis;
 
 // test 
@@ -90,8 +91,8 @@ public abstract class Joueur {
 	// fin des getters et des setters 
 	
 
-	public abstract void jouerAdvanced(Joueur joueur,Tapis tapis, Pioche pioche);
-	public abstract void jouer(Joueur joueur,Tapis tapis, Pioche pioche);
+	public abstract void jouerAdvanced(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur);
+	public abstract void jouer(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur);
 	
 	public String toString() {
 	    StringBuffer sb = new StringBuffer();

@@ -5,6 +5,7 @@ import java.util.Scanner;
 import fr.utt.lo02.shapeUp.Carte.Carte;
 import fr.utt.lo02.shapeUp.Carte.Pioche;
 import fr.utt.lo02.shapeUp.Carte.PositionCarte;
+import fr.utt.lo02.shapeUp.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.Tapis.Tapis;
 
 public class JoueurPhysique extends Joueur {
@@ -43,7 +44,7 @@ public class JoueurPhysique extends Joueur {
          return y;
 	}
 	
-	public void jouerAdvanced(Joueur joueur, Tapis tapis, Pioche pioche) {
+	public void jouerAdvanced(Joueur joueur, Tapis tapis, Pioche pioche, Visiteur compteur) {
 		int longueur;
         int hauteur;
         int x;
@@ -194,7 +195,7 @@ public class JoueurPhysique extends Joueur {
 	}
 	
 	@Override
-	public void jouer( Joueur joueur,Tapis tapis, Pioche pioche) { // a Refinir dans dans joueurPhysique et joueur virtuel. 
+	public void jouer( Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) { // a Refinir dans dans joueurPhysique et joueur virtuel. 
     	Carte carteAJouer = new Carte();
         carteAJouer = piocherCarte(pioche);
         int longueur;
