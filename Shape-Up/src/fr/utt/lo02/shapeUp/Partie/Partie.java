@@ -284,7 +284,7 @@ public class Partie {
 					System.out.println("");
 					System.out.println("C'est au tour de : ");
 					System.out.println(it.next().getNomJoueur()+" // carte victoire : "+it2.next().getCarteVictoire());
-					it7.next().jouer(it8.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+					it7.next().jouer(it8.next(), ShapeUp.getTapis(), ShapeUp.getPioche(), ShapeUp.getCompteur());
 					
 					if(ShapeUp.getTapis().getPlateau().size()==15 && ShapeUp.getNombreDeJoueur()==2) {
 						ShapeUp.getTapis().setEstPlein(true);
@@ -331,7 +331,7 @@ public class Partie {
 				System.out.println("");
 				System.out.println("C'est au tour de : ");
 				System.out.println(it.next().getNomJoueur()+" // carte victoire : "+it2.next().getCarteEnMain());
-				it7.next().jouerAdvanced(it8.next(), ShapeUp.getTapis(), ShapeUp.getPioche());
+				it7.next().jouerAdvanced(it8.next(), ShapeUp.getTapis(), ShapeUp.getPioche(), ShapeUp.getCompteur());
 				if(ShapeUp.getTapis().getPlateau().size()==15 && ShapeUp.getNombreDeJoueur()==2) {
 					ShapeUp.getTapis().setEstPlein(true);
 					System.out.println("Le tapis est rempli !");
