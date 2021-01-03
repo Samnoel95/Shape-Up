@@ -28,6 +28,15 @@ public class CompteurInverse implements Visiteur{
 		
 		for(int i=tapis.getYMin(); i<tapis.getYMax(); i++)
 		{
+			
+			if(tapis.getPlateau().get(positionDroite) == null) {
+				positionDroite = new PositionCarte(ligne,colonne+1);
+				break;
+			}
+			else if (tapis.getPlateau().get(position) == null){
+				break;
+			}
+			else {
 			if (tapis.getPlateau().get(position).getForme() == tapis.getPlateau().get(positionDroite).getForme() && tapis.getPlateau().get(position).getForme() == forme)
 			{
 				x+=1;
@@ -40,6 +49,7 @@ public class CompteurInverse implements Visiteur{
 			if(tapis.getPlateau().get(position).getForme() == forme && x==0)
 			{
 				x+=1;
+			}
 			}
 			
 			colonne++;
@@ -60,7 +70,7 @@ public class CompteurInverse implements Visiteur{
 				nombreAligne=x+1;
 		}
 			
-		System.out.println("ligne forme nbrealigne = "+nombreAligne);
+		//System.out.println("ligne forme nbrealigne = "+nombreAligne);
 		switch(nombreAligne) {
 		case 1 :
 			return 4;
@@ -89,6 +99,14 @@ public class CompteurInverse implements Visiteur{
 		
 		for(int i=tapis.getXMin(); i<tapis.getXMax(); i++)
 		{
+			if(tapis.getPlateau().get(positionBas) == null) {
+				positionBas = new PositionCarte(ligne,colonne+1);
+				break;
+			}
+			else if (tapis.getPlateau().get(position) == null){
+				break;
+			}
+			else {
 			if (tapis.getPlateau().get(position).getForme() == tapis.getPlateau().get(positionBas).getForme() && tapis.getPlateau().get(position).getForme() == forme)
 			{
 				x+=1;
@@ -101,6 +119,7 @@ public class CompteurInverse implements Visiteur{
 			{
 				y=x;
 				x=0;
+			}
 			}
 			ligne++;
 			position = new PositionCarte(ligne,colonne);
@@ -120,7 +139,7 @@ public class CompteurInverse implements Visiteur{
 				nombreAligne=x+1;
 		}
 			
-		System.out.println("colonne forme nbrealigne = "+nombreAligne);
+		//System.out.println("colonne forme nbrealigne = "+nombreAligne);
 		switch(nombreAligne) {
 		case 1 :
 			return 4;
@@ -148,6 +167,14 @@ public class CompteurInverse implements Visiteur{
 		
 		for(int i=tapis.getYMin(); i<tapis.getYMax(); i++)
 		{
+			if(tapis.getPlateau().get(positionDroite) == null) {
+				positionDroite = new PositionCarte(ligne,colonne+1);
+				break;
+			}
+			else if (tapis.getPlateau().get(position) == null){
+				break;
+			}
+			else {
 			if (tapis.getPlateau().get(position).getCouleur() == tapis.getPlateau().get(positionDroite).getCouleur() && tapis.getPlateau().get(position).getCouleur() == couleur)
 			{
 				x+=1;
@@ -160,6 +187,7 @@ public class CompteurInverse implements Visiteur{
 			if(tapis.getPlateau().get(position).getCouleur() == couleur && x==0)
 			{
 				x+=1;
+			}
 			}
 			colonne++;
 			position = new PositionCarte(ligne,colonne);
@@ -180,7 +208,7 @@ public class CompteurInverse implements Visiteur{
 		}
 			
 			
-		System.out.println("ligne couleur nbrealigne = "+nombreAligne);
+		//System.out.println("ligne couleur nbrealigne = "+nombreAligne);
 		switch(nombreAligne) {
 		case 1 :
 			return 6;
@@ -206,6 +234,14 @@ public class CompteurInverse implements Visiteur{
 		
 		for(int i=tapis.getXMin(); i<tapis.getXMax(); i++)
 		{
+			if(tapis.getPlateau().get(positionBas) == null) {
+				positionBas = new PositionCarte(ligne,colonne+1);
+				break;
+			}
+			else if (tapis.getPlateau().get(position) == null){
+				break;
+			}
+			else {
 			if (tapis.getPlateau().get(position).getCouleur() == tapis.getPlateau().get(positionBas).getCouleur() && tapis.getPlateau().get(position).getCouleur() == couleur)
 			{
 				x+=1;
@@ -218,6 +254,7 @@ public class CompteurInverse implements Visiteur{
 			if(tapis.getPlateau().get(position).getCouleur() == couleur && x==0)
 			{
 				x+=1;
+			}
 			}
 			ligne++;
 			position = new PositionCarte(ligne,colonne);
@@ -237,7 +274,7 @@ public class CompteurInverse implements Visiteur{
 				nombreAligne=x+1;
 		}
 			
-		System.out.println("colonne couleur nbrealigne = "+nombreAligne);
+		//System.out.println("colonne couleur nbrealigne = "+nombreAligne);
 		switch(nombreAligne) {
 		case 1 :
 			return 6;
@@ -265,6 +302,14 @@ public class CompteurInverse implements Visiteur{
 		
 		for(int i=tapis.getYMin(); i<tapis.getYMax(); i++)
 		{
+			if(tapis.getPlateau().get(positionDroite) == null) {
+				positionDroite = new PositionCarte(ligne,colonne+1);
+				break;
+			}
+			else if (tapis.getPlateau().get(position) == null){
+				break;
+			}
+			else {
 			if (tapis.getPlateau().get(position).getEstPlein() == tapis.getPlateau().get(positionDroite).getEstPlein() && tapis.getPlateau().get(position).getEstPlein() == estPlein)
 			{
 				x+=1;
@@ -277,6 +322,7 @@ public class CompteurInverse implements Visiteur{
 			if(tapis.getPlateau().get(position).getEstPlein() == estPlein && x==0)
 			{
 				x+=1;
+			}
 			}
 			colonne++;
 			position = new PositionCarte(ligne,colonne);
@@ -297,7 +343,7 @@ public class CompteurInverse implements Visiteur{
 		}
 			
 			
-		System.out.println("ligne plein nbrealigne = "+nombreAligne);
+		//System.out.println("ligne plein nbrealigne = "+nombreAligne);
 		switch(nombreAligne) {
 		case 1 :
 			return 5;
@@ -324,6 +370,14 @@ public class CompteurInverse implements Visiteur{
 		
 		for(int i=tapis.getXMin(); i<tapis.getXMax(); i++)
 		{
+			if(tapis.getPlateau().get(positionBas) == null) {
+				positionBas = new PositionCarte(ligne,colonne+1);
+				break;
+			}
+			else if (tapis.getPlateau().get(position) == null){
+				break;
+			}
+			else {
 			if (tapis.getPlateau().get(position).getEstPlein() == tapis.getPlateau().get(positionBas).getEstPlein() && tapis.getPlateau().get(position).getEstPlein() == estPlein)
 			{
 				x+=1;
@@ -336,6 +390,7 @@ public class CompteurInverse implements Visiteur{
 			if(tapis.getPlateau().get(position).getEstPlein() == estPlein && x==0)
 			{
 				x+=1;
+			}
 			}
 			ligne++;
 			position = new PositionCarte(ligne,colonne);
@@ -355,7 +410,7 @@ public class CompteurInverse implements Visiteur{
 				nombreAligne=x+1;
 		}
 			
-		System.out.println("colonne plein nbrealigne = "+nombreAligne);
+		//System.out.println("colonne plein nbrealigne = "+nombreAligne);
 		switch(nombreAligne) {
 		case 1 :
 			return 5;
@@ -376,23 +431,23 @@ public class CompteurInverse implements Visiteur{
 		
 		for(int i=tapis.getXMin(); i<=tapis.getXMax();i++) {
 			score+=compterLigneForme(tapis, carteV.getForme(),i);
-			System.out.println("Score à la ligne "+i+" pour les formes : "+compterLigneForme(tapis, carteV.getForme(),i));
+			//System.out.println("Score à la ligne "+i+" pour les formes : "+compterLigneForme(tapis, carteV.getForme(),i));
 			score+=compterLigneCouleur(tapis, carteV.getCouleur(),i);
-			System.out.println("Score à la ligne "+i+" pour les couleurs : "+compterLigneCouleur(tapis, carteV.getCouleur(),i));
+			//System.out.println("Score à la ligne "+i+" pour les couleurs : "+compterLigneCouleur(tapis, carteV.getCouleur(),i));
 			score+=compterLigneEstPlein(tapis, carteV.getEstPlein(),i);
-			System.out.println("Score à la ligne "+i+" pour le remplissage : "+compterLigneEstPlein(tapis, carteV.getEstPlein(),i));
+			//System.out.println("Score à la ligne "+i+" pour le remplissage : "+compterLigneEstPlein(tapis, carteV.getEstPlein(),i));
 		}
 		
 		
 		for(int j=tapis.getYMin(); j<=tapis.getYMax();j++) {
-			System.out.println("Score à la colonne "+j+" pour les formes : "+compterColonneForme(tapis, carteV.getForme(),j));
+			//System.out.println("Score à la colonne "+j+" pour les formes : "+compterColonneForme(tapis, carteV.getForme(),j));
 			score+=compterColonneForme(tapis, carteV.getForme(),j);
-			System.out.println("Score à la colonne "+j+" pour les couleurs : "+compterColonneCouleur(tapis, carteV.getCouleur(),j));
+			//System.out.println("Score à la colonne "+j+" pour les couleurs : "+compterColonneCouleur(tapis, carteV.getCouleur(),j));
 			score+=compterColonneCouleur(tapis, carteV.getCouleur(),j);
-			System.out.println("Score à la colonne "+j+" pour le remplissage : "+compterColonneEstPlein(tapis, carteV.getEstPlein(),j));
+			//System.out.println("Score à la colonne "+j+" pour le remplissage : "+compterColonneEstPlein(tapis, carteV.getEstPlein(),j));
 			score+=compterColonneEstPlein(tapis, carteV.getEstPlein(),j);
 		}
-		
+		System.out.println("Score à ce round : "+ score);
 		return score;
 	}
 	
