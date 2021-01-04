@@ -1,13 +1,13 @@
-package fr.utt.lo02.shapeUp.CompteurScore;
+package fr.utt.lo02.shapeUp.modele.CompteurScore;
 import java.util.*;
 
-import fr.utt.lo02.shapeUp.Carte.Carte;
-import fr.utt.lo02.shapeUp.Carte.Couleur;
-import fr.utt.lo02.shapeUp.Carte.Forme;
-import fr.utt.lo02.shapeUp.Carte.Pioche;
-import fr.utt.lo02.shapeUp.Carte.PositionCarte;
-import fr.utt.lo02.shapeUp.Tapis.Tapis;
-import fr.utt.lo02.shapeUp.Tapis.formePlateau;
+import fr.utt.lo02.shapeUp.modele.Carte.Carte;
+import fr.utt.lo02.shapeUp.modele.Carte.Couleur;
+import fr.utt.lo02.shapeUp.modele.Carte.Forme;
+import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
+import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
+import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
+import fr.utt.lo02.shapeUp.modele.Tapis.formePlateau;
 
 
 public class CompteurNormal implements Visiteur{

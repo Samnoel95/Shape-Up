@@ -1,4 +1,4 @@
-package fr.utt.lo02.shapeUp.Carte;
+package fr.utt.lo02.shapeUp.modele.Carte;
 
 public class PositionCarte{
 

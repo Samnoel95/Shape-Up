@@ -1,9 +1,9 @@
-package fr.utt.lo02.shapeUp.Joueur;
+package fr.utt.lo02.shapeUp.modele.Joueur;
 
-import fr.utt.lo02.shapeUp.Carte.Carte;
-import fr.utt.lo02.shapeUp.Carte.Pioche;
-import fr.utt.lo02.shapeUp.CompteurScore.Visiteur;
-import fr.utt.lo02.shapeUp.Tapis.Tapis;
+import fr.utt.lo02.shapeUp.modele.Carte.Carte;
+import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
+import fr.utt.lo02.shapeUp.modele.CompteurScore.Visiteur;
+import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 
 public class JoueurVirtuel extends Joueur {
 	

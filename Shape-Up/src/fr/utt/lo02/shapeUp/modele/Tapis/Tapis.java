@@ -1,11 +1,11 @@
-package fr.utt.lo02.shapeUp.Tapis;
+package fr.utt.lo02.shapeUp.modele.Tapis;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import fr.utt.lo02.shapeUp.Carte.Carte;
-import fr.utt.lo02.shapeUp.Carte.PositionCarte;
+import fr.utt.lo02.shapeUp.modele.Carte.Carte;
+import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 
 public class  Tapis {
 	
