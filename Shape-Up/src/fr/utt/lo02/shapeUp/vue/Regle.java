@@ -1,6 +1,5 @@
 package fr.utt.lo02.shapeUp.vue;
 
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
 
@@ -8,11 +7,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import fr.utt.lo02.shapeUp.controleur.ListenerParam;
-import fr.utt.lo02.shapeUp.controleur.ListenerRetour;
-
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -63,7 +61,11 @@ public class Regle {
 		
 		JButton btnNewButton = new JButton("Retour");
 		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		btnNewButton.addMouseListener(new ListenerRetour());
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		btnNewButton.setBounds(993, 514, 214, 48);
 		frame.getContentPane().add(btnNewButton);
 		

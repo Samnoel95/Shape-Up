@@ -5,16 +5,14 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
-import fr.utt.lo02.shapeUp.vue.Accueil;
 import fr.utt.lo02.shapeUp.vue.Parametres;
 import fr.utt.lo02.shapeUp.vue.Regle;
 
 
-public class ListenerRetour implements MouseListener{
-	
+public class ListenerRegles implements MouseListener{
 
 	
-	public ListenerRetour() {
+	public ListenerRegles() {
 		super();
 	}
 
@@ -35,8 +33,8 @@ public class ListenerRetour implements MouseListener{
 
 
 	public void mousePressed(MouseEvent arg0) {
-		Accueil accueil = new Accueil();
-		accueil.frame.setVisible(true);
+		Regle regle = new Regle();
+		regle.frame.setVisible(true);
 		
 	}
 

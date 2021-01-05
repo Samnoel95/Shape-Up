@@ -33,8 +33,9 @@ public class ListenerParam implements MouseListener{
 
 
 	public void mousePressed(MouseEvent arg0) {
-		Regle regle = new Regle();
-		regle.frame.setVisible(true);
+		Parametres param = new Parametres();
+		param.frame.setVisible(true);
+		
 	}
 
 

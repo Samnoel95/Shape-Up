@@ -14,6 +14,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 import fr.utt.lo02.shapeUp.controleur.ListenerParam;
+import fr.utt.lo02.shapeUp.controleur.ListenerRegles;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -65,13 +66,13 @@ public class Accueil {
 		
 		
 		JButton btnRgles = new JButton("Regles\r\n");
-		btnRgles.addMouseListener(new ListenerParam());
+		btnRgles.addMouseListener(new ListenerRegles());
 		
 		
 		JButton btnQuitter = new JButton("Quitter\r\n");
 		btnQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				System.exit(0);
 			}
 		});
 		btnQuitter.setFont(new Font("Segoe UI", Font.PLAIN, 16));
@@ -85,6 +86,7 @@ public class Accueil {
 		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		btnNewButton.setBounds(471, 289, 321, 47);
 		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addMouseListener(new ListenerParam());
 		/*
 		 * Ajout de l'image
 		 */

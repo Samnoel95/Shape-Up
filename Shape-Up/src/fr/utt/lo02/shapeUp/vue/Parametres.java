@@ -28,7 +28,7 @@ import javax.swing.ImageIcon;
 
 public class Parametres {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -61,11 +61,11 @@ public class Parametres {
 		frame.getContentPane().setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBackground(Color.WHITE);
-		//récuperer la dimension de l'écran
+		//rï¿½cuperer la dimension de l'ï¿½cran
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 		int longueur = tailleMoniteur.width * 2/3;
 		int hauteur = tailleMoniteur.height * 2/3;
-		//régler la taille de JFrame à 2/3 la taille de l'écran
+		//rï¿½gler la taille de JFrame ï¿½ 2/3 la taille de l'ï¿½cran
 		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
