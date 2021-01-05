@@ -60,11 +60,7 @@ public class Accueil {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		/*
-		 * Ajout de l'image
-		 */
-		JLabel Label = new JLabel("");
-		Image img = new ImageIcon(this.getClass().getResource("/Shape_up.png")).getImage();
+		
 		
 		JButton btnRgles = new JButton("R\u00E8gles\r\n");
 		btnRgles.addActionListener(new ActionListener() {
@@ -88,6 +84,11 @@ public class Accueil {
 		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		btnNewButton.setBounds(471, 289, 321, 47);
 		frame.getContentPane().add(btnNewButton);
+		/*
+		 * Ajout de l'image
+		 */
+		JLabel Label = new JLabel("");
+		Image img = new ImageIcon(this.getClass().getResource("/Shape_up.png")).getImage();
 		Label.setIcon(new ImageIcon(img));
 		Label.setBounds(747, 171, 517, 510);
 		frame.getContentPane().add(Label);
@@ -96,6 +97,10 @@ public class Accueil {
 		 * Ajout de la 2eme image
 		 */
 		Image img2 = new ImageIcon(this.getClass().getResource("/Shape_up2.png")).getImage();
+		JLabel Label2 = new JLabel("");
+		Label2.setIcon(new ImageIcon(img2));
+		Label2.setBounds(0, 0, 510, 336);
+		frame.getContentPane().add(Label2);
 		
 		JLabel lblNewLabel = new JLabel("SHAPE UP!");
 		lblNewLabel.setForeground(new Color(255, 165, 0));
@@ -104,10 +109,7 @@ public class Accueil {
 		lblNewLabel.setBounds(658, 28, 417, 74);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel Label2 = new JLabel("");
-		Label2.setIcon(new ImageIcon(img2));
-		Label2.setBounds(0, 0, 510, 336);
-		frame.getContentPane().add(Label2);
+		
 		
 
 	}
