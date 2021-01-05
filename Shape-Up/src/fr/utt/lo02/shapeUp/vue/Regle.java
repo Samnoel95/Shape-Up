@@ -8,6 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import fr.utt.lo02.shapeUp.controleur.ListenerParam;
+import fr.utt.lo02.shapeUp.controleur.ListenerRetour;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JButton;
@@ -17,7 +20,7 @@ import java.awt.Font;
 
 public class Regle {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -48,11 +51,11 @@ public class Regle {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		//récuperer la dimension de l'écran
+		//rï¿½cuperer la dimension de l'ï¿½cran
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 		int longueur = tailleMoniteur.width * 2/3;
 		int hauteur = tailleMoniteur.height * 2/3;
-		//régler la taille de JFrame à 2/3 la taille de l'écran
+		//rï¿½gler la taille de JFrame ï¿½ 2/3 la taille de l'ï¿½cran
 		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -60,10 +63,7 @@ public class Regle {
 		
 		JButton btnNewButton = new JButton("Retour");
 		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnNewButton.addMouseListener(new ListenerRetour());
 		btnNewButton.setBounds(993, 514, 214, 48);
 		frame.getContentPane().add(btnNewButton);
 		

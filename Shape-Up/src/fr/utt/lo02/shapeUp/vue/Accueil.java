@@ -1,6 +1,5 @@
 package fr.utt.lo02.shapeUp.vue;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -10,8 +9,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import fr.utt.lo02.shapeUp.controleur.ListenerParam;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,7 +23,7 @@ import java.awt.event.ActionEvent;
 
 public class Accueil {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -51,26 +54,24 @@ public class Accueil {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		//récuperer la dimension de l'écran
+		//rï¿½cuperer la dimension de l'ï¿½cran
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 		int longueur = tailleMoniteur.width * 2/3;
 		int hauteur = tailleMoniteur.height * 2/3;
-		//régler la taille de JFrame à 2/3 la taille de l'écran
+		//rï¿½gler la taille de JFrame ï¿½ 2/3 la taille de l'ï¿½cran
 		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		
+		JButton btnRgles = new JButton("Regles\r\n");
+		btnRgles.addMouseListener(new ListenerParam());
 		
-		JButton btnRgles = new JButton("R\u00E8gles\r\n");
-		btnRgles.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		
 		JButton btnQuitter = new JButton("Quitter\r\n");
 		btnQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		btnQuitter.setFont(new Font("Segoe UI", Font.PLAIN, 16));
