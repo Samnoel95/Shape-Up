@@ -6,16 +6,24 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.GridLayout;
+import java.awt.Font;
+import java.awt.Color;
 
-public class Plateau {
+public class Plateau extends JFrame {
 
 	private JFrame frame;
+	ButtonCard buttonCards[][] = new ButtonCard[3][5];
+			;
 
 	/**
 	 * Launch the application.
@@ -45,82 +53,59 @@ public class Plateau {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 304);
+		frame.getContentPane().setBackground(Color.WHITE);
+		//r�cuperer la dimension de l'�cran
+		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
+		int longueur = tailleMoniteur.width * 2/3;
+		int hauteur = tailleMoniteur.height * 2/3;
+		//r�gler la taille de JFrame � 2/3 la taille de l'�cran
+		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		frame.getContentPane().setLayout(gridBagLayout);
-		
-		JLabel lblNewLabel = new JLabel("Nom du joueur");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 0;
-		frame.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
-		
-		JLabel lblNewLabel_1 = new JLabel("Carte victoire");
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 2;
-		frame.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
-		Image CV = new ImageIcon(this.getClass().getResource("/cartes/carre_bleu_plein.png")).getImage();
-		lblNewLabel_1.setIcon(new ImageIcon(CV));
-		
-		JLabel lblNewLabel_2 = new JLabel("Carte piochée");
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.gridx = 0;
-		gbc_lblNewLabel_2.gridy = 4;
-		frame.getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
-		Image CP = new ImageIcon(this.getClass().getResource("/cartes/triangle_vert_vide.png")).getImage();
-		lblNewLabel_2.setIcon(new ImageIcon(CP));
-		
-		/*
-		// ajouter un BorderLayout sur l'ensemble de la fenetre
-		
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		// ajouter un JLabel en haut de la page
-		
-		JLabel labelHaut = new JLabel("Nom du joueur"); //ajouter un moyen d'adapter le nom du joueur qui joue
-		frame.getContentPane().add(labelHaut, BorderLayout.NORTH);
-		
-		
-		// ajouter un Panel dans la partie gauche du Layout de la fenêtre
+		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBounds(214, 181, 649, 470);
+		frame.getContentPane().add(panel);
+		panel.setLayout(new GridLayout(3, 5, 5, 5));
 		
-		// Ajouter d'un panel dans la partie droite
+		  for(int i = 0; i <3 ; i++) {
+		    	for(int j = 0 ; j<5;j++) {
+		    		buttonCards[i][j] = new ButtonCard(i,j);
+		    		panel.add(buttonCards[i][j]);
+		    	}
+		    }
+	  
+		
+		JLabel lblNewLabel = new JLabel("SHAPE UP!");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(new Color(255, 165, 0));
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 70));
+		lblNewLabel.setBounds(423, 43, 417, 74);
+		frame.getContentPane().add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(929, 181, 278, 389);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
 		
-		JLabel labelGauche = new JLabel("Carte piochée");
-		frame.getContentPane().add(labelGauche, BorderLayout.WEST);
-		Image CP = new ImageIcon(this.getClass().getResource("/cartes/triangle_vert_vide.png")).getImage();
-		labelGauche.setIcon(new ImageIcon(CP));
+		JLabel lblNewLabel_1 = new JLabel("Nom du joueur ");
+		lblNewLabel_1.setForeground(new Color(255, 140, 0));
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(84, 26, 109, 14);
+		panel_1.add(lblNewLabel_1);
 		
-		JLabel labelDroit = new JLabel("Carte victoire");
-		frame.getContentPane().add(labelDroit, BorderLayout.EAST);
-		Image CV = new ImageIcon(this.getClass().getResource("/cartes/carre_bleu_plein.png")).getImage();
-		labelDroit.setIcon(new ImageIcon(CV));
-		*/
+		JLabel lblNewLabel_2 = new JLabel("Afficher carte victoire");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(71, 74, 146, 87);
+		panel_1.add(lblNewLabel_2);
 		
-		
-		
-		
-		/*
-		Image CV = new ImageIcon(this.getClass().getResource("/cartes/carre_bleu_plein.png")).getImage();
-		LabelCV.setIcon(new ImageIcon(CV));
-		LabelCV.setBounds(747, 171, 517, 510);
-		*/
+		JLabel lblNewLabel_2_1 = new JLabel("Afficher carte piocher");
+		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2_1.setBounds(71, 239, 146, 87);
+		panel_1.add(lblNewLabel_2_1);
 		
 		
 		
 		
 	}
-	
-
 }
