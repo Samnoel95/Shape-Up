@@ -34,7 +34,7 @@ public class Carte {
 		
 		try {
 			URL url = getClass().getResource("../../imageCarte/"+forme+"_"+couleur+"_"+string1+".png");
-			this.imageCarte = ImageIO.read(url);
+			this.setImageCarte(ImageIO.read(url));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -88,9 +88,9 @@ public class Carte {
 	
 	// main pour tests
 	public static void main(String[]args){
-		Carte c1 = new Carte(Couleur.BLEU, Forme.CARRE, false);
+		Carte c1 = new Carte(Couleur.BLEU, Forme.CARRE, true);
 
-	
+		System.out.println(c1.getImageCarte());	
 		
 		
 		System.out.println(c1.toString());
@@ -100,6 +100,14 @@ public class Carte {
 		c1.position = position;
 		System.out.println(c1.position.toString());
 		
+	}
+
+	public BufferedImage getImageCarte() {
+		return imageCarte;
+	}
+
+	public void setImageCarte(BufferedImage imageCarte) {
+		this.imageCarte = imageCarte;
 	}
 
 }
