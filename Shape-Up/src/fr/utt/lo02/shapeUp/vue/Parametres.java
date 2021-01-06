@@ -7,6 +7,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -15,6 +19,14 @@ import javax.swing.JSlider;
 import java.awt.Component;
 import java.awt.Cursor;
 import javax.swing.event.ChangeListener;
+
+import fr.utt.lo02.shapeUp.controleur.ListenerRegles;
+import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurInverse;
+import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurNormal;
+import fr.utt.lo02.shapeUp.modele.Partie.Partie;
+import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
+import fr.utt.lo02.shapeUp.modele.Tapis.formePlateau;
+
 import javax.swing.event.ChangeEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
@@ -25,6 +37,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 public class Parametres {
 
@@ -91,6 +104,9 @@ public class Parametres {
 		sliderJp.setBounds(106, 395, 200, 26);
 		frame.getContentPane().add(sliderJp);
 		
+
+		
+		
 		JLabel LabelJp = new JLabel("Nombre de joueur physique : ");
 		LabelJp.setForeground(new Color(255, 165, 0));
 		LabelJp.setFont(new Font("Segoe UI", Font.BOLD, 24));
@@ -152,16 +168,40 @@ public class Parametres {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Rectangle", "Triangle"}));
 		comboBox.setBounds(949, 343, 141, 42);
 		frame.getContentPane().add(comboBox);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(comboBox.getSelectedItem() == "Rectangle")
+					System.out.println("Tapis rectangulaire"); //ensuite relier à Partie
+				else if(comboBox.getSelectedItem() == "Triangle")
+					System.out.println("Tapis triangulaire"); //ensuite relier à Partie
+			}
+		});
 		
 		sliderJp.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				LabelNJp.setText(Integer.toString(sliderJp.getValue()));
+				if(sliderJp.getValue() == 0)
+					System.out.println("0 joueur physique"); //ensuite relier à Partie
+				else if(sliderJp.getValue() == 1)
+					System.out.println("1 joueur physique"); //ensuite relier à Partie
+				else if(sliderJp.getValue() == 2)
+					System.out.println("2 joueurs physiques"); //ensuite relier à Partie
+				else if(sliderJp.getValue() == 3)
+					System.out.println("3 joueurs physiques"); //ensuite relier à Partie
 			}
 		});
 		
 		sliderJv.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				LabelNJv.setText(Integer.toString(sliderJv.getValue()));
+				if(sliderJv.getValue() == 0)
+					System.out.println("0 joueur virtuel"); //ensuite relier à Partie
+				else if(sliderJv.getValue() == 1)
+					System.out.println("1 joueur virtuel"); //ensuite relier à Partie
+				else if(sliderJv.getValue() == 2)
+					System.out.println("2 joueurs virtuels"); //ensuite relier à Partie
+				else if(sliderJv.getValue() == 3)
+					System.out.println("3 joueurs virtuels"); //ensuite relier à Partie
 			}
 		});
 		Image img = new ImageIcon(this.getClass().getResource("/Shape_up.png")).getImage();
@@ -173,16 +213,103 @@ public class Parametres {
 		frame.getContentPane().add(Label2);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Classique", "Avanc\u00E9e"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Classique", "Avance"}));
 		comboBox_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		comboBox_1.setBounds(1012, 408, 141, 42);
 		frame.getContentPane().add(comboBox_1);
+		comboBox_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(comboBox_1.getSelectedItem() == "Classique")
+					System.out.println("Variante classique"); //ensuite relier à Partie
+				else if(comboBox_1.getSelectedItem() == "Avance")
+					System.out.println("Variante avance"); //ensuite relier à Partie
+			}
+		});
+		
 		
 		JComboBox comboBox_1_1 = new JComboBox();
 		comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Inverse"}));
 		comboBox_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		comboBox_1_1.setBounds(1021, 482, 141, 42);
 		frame.getContentPane().add(comboBox_1_1);
+		
+		comboBox_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(comboBox_1_1.getSelectedItem() == "Normal")
+					System.out.println("Compteur normal"); //ensuite relier à Partie
+				else if(comboBox_1_1.getSelectedItem() == "Inverse")
+					System.out.println("Compteur inverse"); //ensuite relier à Partie
+			}
+		});
+		
+		JButton btnNewButton = new JButton("Commencer");
+		btnNewButton.setBounds(497, 543, 117, 29);
+		frame.getContentPane().add(btnNewButton);
+		btnNewButton.addMouseListener(new MouseListener(){
+			
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+Partie partie = new Partie();
+				
+				if(comboBox_1_1.getSelectedItem() == "Normal"){
+					CompteurNormal compte = new CompteurNormal();
+					partie.setCompteur(compte);;
+				}
+				else if(comboBox_1_1.getSelectedItem() == "Inverse"){
+					CompteurInverse compte = new CompteurInverse();
+					partie.setCompteur(compte);;
+				}
+				
+				if(comboBox.getSelectedItem() == "Rectangle") {
+					Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
+					partie.setTapis(tapis);
+				}
+				else if(comboBox.getSelectedItem() == "Triangle") {
+					Tapis tapis = new Tapis(formePlateau.TRIANGLE);
+					partie.setTapis(tapis);
+				}
+				
+				partie.setNbreJPhysiques(sliderJp.getValue());
+				partie.setNbreJVirtuels(sliderJv.getValue());
+				
+				if(comboBox_1.getSelectedItem() == "Classique") {
+					//partie.partieClassique(partie);
+					System.out.println("Lancement d'une partie classique !");
+					System.out.println("Nombre de joueurs physiques : "+ partie.getNbreJPhysiques());
+				}
+					
+				else if(comboBox_1.getSelectedItem() == "Avance") {
+					//partie.partieAdvanced(partie);
+					System.out.println("Lancement d'une partie avancée !");
+				}
+				
+			}
+		});
 		
 	}
 }
