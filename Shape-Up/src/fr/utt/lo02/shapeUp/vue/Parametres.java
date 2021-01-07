@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Scanner;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -23,6 +24,8 @@ import javax.swing.event.ChangeListener;
 import fr.utt.lo02.shapeUp.controleur.ListenerRegles;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurInverse;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurNormal;
+import fr.utt.lo02.shapeUp.modele.Joueur.JoueurPhysique;
+import fr.utt.lo02.shapeUp.modele.Joueur.JoueurVirtuel;
 import fr.utt.lo02.shapeUp.modele.Partie.Partie;
 import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 import fr.utt.lo02.shapeUp.modele.Tapis.formePlateau;
@@ -34,6 +37,7 @@ import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.JSeparator;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -298,14 +302,57 @@ public class Parametres {
 				partie.setNbreJVirtuels(sliderJv.getValue());
 				
 				if(comboBox_1.getSelectedItem() == "Classique") {
+					for(int i=0; i<sliderJp.getValue(); i++) {
+						String nom = JOptionPane.showInputDialog( "Entrez le nom du joueur : " );
+						JoueurPhysique joueur = new JoueurPhysique(nom, true);
+						partie.ajouterUnJoueur(joueur);
+					}
+					for(int i=0; i<sliderJv.getValue(); i++) {
+						String difficulte;
+						int diff;
+						Scanner in = new Scanner(System.in);
+						difficulte = JOptionPane.showInputDialog("Quelle difficulté souhaitez vous attribuer au joueur virtuel "+(i+1)+" (possibilité : 1 (facile) ou 2 (difficile))");
+						System.out.println("1");
+						System.out.println("2");
+						diff = Integer.parseInt(difficulte);
+						StringBuffer sb = new StringBuffer();
+						sb.append("Joueur virtuel numéro ");
+					    sb.append(i+1);
+					    String nom = sb.toString();
+					    JoueurVirtuel joueur = new JoueurVirtuel(nom, true, diff);
+					    partie.ajouterUnJoueur(joueur);
+					}
 					System.out.println("Lancement d'une partie classique !");
-					System.out.println("Nombre de joueurs physiques : "+ partie.getNbreJPhysiques());
-					//partie.partieClassique(partie);
+					partie.affichageJoueur(partie);
+					partie.partieClassique(partie);
 				}
+		
 					
 				else if(comboBox_1.getSelectedItem() == "Avance") {
 					//partie.partieAdvanced(partie);
 					System.out.println("Lancement d'une partie avancée !");
+					for(int i=0; i<sliderJp.getValue(); i++) {
+						String nom = JOptionPane.showInputDialog( "Entrez le nom du joueur : " );
+						JoueurPhysique joueur = new JoueurPhysique(nom, true);
+						partie.ajouterUnJoueur(joueur);
+					}
+					for(int i=0; i<sliderJv.getValue(); i++) {
+						String difficulte;
+						int diff;
+						Scanner in = new Scanner(System.in);
+						difficulte = JOptionPane.showInputDialog("Quelle difficulté souhaitez vous attribuer au joueur virtuel "+(i+1)+" (possibilité : 1 (facile) ou 2 (difficile))");
+						System.out.println("1");
+						System.out.println("2");
+						diff = Integer.parseInt(difficulte);
+						StringBuffer sb = new StringBuffer();
+						sb.append("Joueur virtuel numéro ");
+					    sb.append(i+1);
+					    String nom = sb.toString();
+					    JoueurVirtuel joueur = new JoueurVirtuel(nom, true, diff);
+					    partie.ajouterUnJoueur(joueur);
+					}
+					System.out.println("Lancement d'une partie classique !");
+					partie.affichageJoueur(partie);
 				}
 				
 			}
