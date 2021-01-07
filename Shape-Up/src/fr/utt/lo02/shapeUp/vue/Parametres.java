@@ -274,7 +274,7 @@ public class Parametres {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-Partie partie = new Partie();
+				Partie partie = new Partie();
 				
 				if(comboBox_1_1.getSelectedItem() == "Normal"){
 					CompteurNormal compte = new CompteurNormal();
@@ -298,9 +298,9 @@ Partie partie = new Partie();
 				partie.setNbreJVirtuels(sliderJv.getValue());
 				
 				if(comboBox_1.getSelectedItem() == "Classique") {
-					//partie.partieClassique(partie);
 					System.out.println("Lancement d'une partie classique !");
 					System.out.println("Nombre de joueurs physiques : "+ partie.getNbreJPhysiques());
+					//partie.partieClassique(partie);
 				}
 					
 				else if(comboBox_1.getSelectedItem() == "Avance") {
