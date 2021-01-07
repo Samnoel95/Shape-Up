@@ -22,6 +22,7 @@ import java.awt.Cursor;
 import javax.swing.event.ChangeListener;
 
 import fr.utt.lo02.shapeUp.controleur.ListenerRegles;
+import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurInverse;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurNormal;
 import fr.utt.lo02.shapeUp.modele.Joueur.JoueurPhysique;
@@ -312,8 +313,6 @@ public class Parametres {
 						int diff;
 						Scanner in = new Scanner(System.in);
 						difficulte = JOptionPane.showInputDialog("Quelle difficulté souhaitez vous attribuer au joueur virtuel "+(i+1)+" (possibilité : 1 (facile) ou 2 (difficile))");
-						System.out.println("1");
-						System.out.println("2");
 						diff = Integer.parseInt(difficulte);
 						StringBuffer sb = new StringBuffer();
 						sb.append("Joueur virtuel numéro ");
@@ -323,14 +322,21 @@ public class Parametres {
 					    partie.ajouterUnJoueur(joueur);
 					}
 					System.out.println("Lancement d'une partie classique !");
-					partie.affichageJoueur(partie);
-					partie.partieClassique(partie);
+					for(int i=0; i<4;i++) {
+						Pioche nouvellePioche = new Pioche();
+						nouvellePioche.melangerJeu();
+						partie.setPioche(nouvellePioche);
+						Tapis nouveautapis = new Tapis(partie.getTapis().getForme());
+						partie.setTapis(nouveautapis);
+						partie.partieClassique(partie);
+						System.out.println("Comptons les scores !");
+						partie.compterPoints(partie);
+						System.out.println("Fin du round !");
+					}
 				}
 		
 					
 				else if(comboBox_1.getSelectedItem() == "Avance") {
-					//partie.partieAdvanced(partie);
-					System.out.println("Lancement d'une partie avancée !");
 					for(int i=0; i<sliderJp.getValue(); i++) {
 						String nom = JOptionPane.showInputDialog( "Entrez le nom du joueur : " );
 						JoueurPhysique joueur = new JoueurPhysique(nom, true);
@@ -341,8 +347,6 @@ public class Parametres {
 						int diff;
 						Scanner in = new Scanner(System.in);
 						difficulte = JOptionPane.showInputDialog("Quelle difficulté souhaitez vous attribuer au joueur virtuel "+(i+1)+" (possibilité : 1 (facile) ou 2 (difficile))");
-						System.out.println("1");
-						System.out.println("2");
 						diff = Integer.parseInt(difficulte);
 						StringBuffer sb = new StringBuffer();
 						sb.append("Joueur virtuel numéro ");
@@ -351,8 +355,18 @@ public class Parametres {
 					    JoueurVirtuel joueur = new JoueurVirtuel(nom, true, diff);
 					    partie.ajouterUnJoueur(joueur);
 					}
-					System.out.println("Lancement d'une partie classique !");
-					partie.affichageJoueur(partie);
+					System.out.println("Lancement d'une partie avancee !");
+					for(int i=0; i<4;i++) {
+					Pioche nouvellePioche = new Pioche();
+					nouvellePioche.melangerJeu();
+					partie.setPioche(nouvellePioche);
+					Tapis nouveautapis = new Tapis(partie.getTapis().getForme());
+					partie.setTapis(nouveautapis);
+					partie.partieAdvanced(partie);
+					System.out.println("Comptons les scores !");
+					partie.compterPoints(partie);
+					System.out.println("Fin du round !");
+					}
 				}
 				
 			}
