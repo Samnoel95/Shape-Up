@@ -3,11 +3,12 @@ package fr.utt.lo02.shapeUp.modele.Tapis;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Observable;
 
 import fr.utt.lo02.shapeUp.modele.Carte.Carte;
 import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 
-public class  Tapis {
+public class  Tapis extends Observable {
 	
 	/*
 	  	Map<String,Integer> map = new TreeMap<String, Integer>();
