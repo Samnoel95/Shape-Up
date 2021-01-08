@@ -70,7 +70,7 @@ public class Plateau extends JFrame {
 		
 		  for(int i = 0; i <3 ; i++) {
 		    	for(int j = 0 ; j<5;j++) {
-		    		buttonCards[i][j] = new ButtonCard(j,i);
+		    		buttonCards[i][j] = new ButtonCard(i,j);
 		    		panel.add(buttonCards[i][j]);
 		    	}
 		    }
