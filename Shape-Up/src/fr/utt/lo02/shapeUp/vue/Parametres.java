@@ -21,6 +21,7 @@ import java.awt.Component;
 import java.awt.Cursor;
 import javax.swing.event.ChangeListener;
 
+import fr.utt.lo02.shapeUp.controleur.Controleur;
 import fr.utt.lo02.shapeUp.controleur.ListenerRegles;
 import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurInverse;
@@ -47,7 +48,25 @@ import javax.swing.JButton;
 public class Parametres {
 
 	public JFrame frame;
+	public Controleur contr;
+	
+	
+	public void setControleur() {
+		Controleur contr = new Controleur(this);
+		this.contr = contr;
+	}
+	
+	public JSlider sliderJp;
+	public JLabel LabelNJp;
+	public JSlider sliderJv;
+	public JComboBox comboBox_1;
+	public JComboBox comboBox;
+	public JComboBox comboBox_1_1;
 
+
+	public Controleur getControleur() {
+		return this.contr;
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -68,6 +87,7 @@ public class Parametres {
 	 * Create the application.
 	 */
 	public Parametres() {
+		this.setControleur();
 		initialize();
 	}
 
@@ -279,96 +299,7 @@ public class Parametres {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				Partie partie = new Partie();
-				
-				if(comboBox_1_1.getSelectedItem() == "Normal"){
-					CompteurNormal compte = new CompteurNormal();
-					partie.setCompteur(compte);;
-				}
-				else if(comboBox_1_1.getSelectedItem() == "Inverse"){
-					CompteurInverse compte = new CompteurInverse();
-					partie.setCompteur(compte);;
-				}
-				
-				if(comboBox.getSelectedItem() == "Rectangle") {
-					Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
-					partie.setTapis(tapis);
-				}
-				else if(comboBox.getSelectedItem() == "Triangle") {
-					Tapis tapis = new Tapis(formePlateau.TRIANGLE);
-					partie.setTapis(tapis);
-				}
-				
-				partie.setNbreJPhysiques(sliderJp.getValue());
-				partie.setNbreJVirtuels(sliderJv.getValue());
-				
-				if(comboBox_1.getSelectedItem() == "Classique") {
-					for(int i=0; i<sliderJp.getValue(); i++) {
-						String nom = JOptionPane.showInputDialog( "Entrez le nom du joueur : " );
-						JoueurPhysique joueur = new JoueurPhysique(nom, true);
-						partie.ajouterUnJoueur(joueur);
-					}
-					for(int i=0; i<sliderJv.getValue(); i++) {
-						String difficulte;
-						int diff;
-						Scanner in = new Scanner(System.in);
-						difficulte = JOptionPane.showInputDialog("Quelle difficulté souhaitez vous attribuer au joueur virtuel "+(i+1)+" (possibilité : 1 (facile) ou 2 (difficile))");
-						diff = Integer.parseInt(difficulte);
-						StringBuffer sb = new StringBuffer();
-						sb.append("Joueur virtuel numéro ");
-					    sb.append(i+1);
-					    String nom = sb.toString();
-					    JoueurVirtuel joueur = new JoueurVirtuel(nom, true, diff);
-					    partie.ajouterUnJoueur(joueur);
-					}
-					System.out.println("Lancement d'une partie classique !");
-					for(int i=0; i<4;i++) {
-						Pioche nouvellePioche = new Pioche();
-						nouvellePioche.melangerJeu();
-						partie.setPioche(nouvellePioche);
-						Tapis nouveautapis = new Tapis(partie.getTapis().getForme());
-						partie.setTapis(nouveautapis);
-						partie.partieClassique(partie);
-						System.out.println("Comptons les scores !");
-						partie.compterPoints(partie);
-						System.out.println("Fin du round !");
-					}
-				}
-		
-					
-				else if(comboBox_1.getSelectedItem() == "Avance") {
-					for(int i=0; i<sliderJp.getValue(); i++) {
-						String nom = JOptionPane.showInputDialog( "Entrez le nom du joueur : " );
-						JoueurPhysique joueur = new JoueurPhysique(nom, true);
-						partie.ajouterUnJoueur(joueur);
-					}
-					for(int i=0; i<sliderJv.getValue(); i++) {
-						String difficulte;
-						int diff;
-						Scanner in = new Scanner(System.in);
-						difficulte = JOptionPane.showInputDialog("Quelle difficulté souhaitez vous attribuer au joueur virtuel "+(i+1)+" (possibilité : 1 (facile) ou 2 (difficile))");
-						diff = Integer.parseInt(difficulte);
-						StringBuffer sb = new StringBuffer();
-						sb.append("Joueur virtuel numéro ");
-					    sb.append(i+1);
-					    String nom = sb.toString();
-					    JoueurVirtuel joueur = new JoueurVirtuel(nom, true, diff);
-					    partie.ajouterUnJoueur(joueur);
-					}
-					System.out.println("Lancement d'une partie avancee !");
-					for(int i=0; i<4;i++) {
-					Pioche nouvellePioche = new Pioche();
-					nouvellePioche.melangerJeu();
-					partie.setPioche(nouvellePioche);
-					Tapis nouveautapis = new Tapis(partie.getTapis().getForme());
-					partie.setTapis(nouveautapis);
-					partie.partieAdvanced(partie);
-					System.out.println("Comptons les scores !");
-					partie.compterPoints(partie);
-					System.out.println("Fin du round !");
-					}
-				}
-				
+				contr.test();
 			}
 		});
 		
