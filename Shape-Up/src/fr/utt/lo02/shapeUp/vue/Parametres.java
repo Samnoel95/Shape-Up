@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -45,24 +47,29 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-public class Parametres {
+public class Parametres implements Observer{
 
 	public JFrame frame;
 	public Controleur contr;
-	
-	
-	public void setControleur() {
-		Controleur contr = new Controleur(this);
-		this.contr = contr;
-	}
-	
 	public JSlider sliderJp;
 	public JLabel LabelNJp;
 	public JSlider sliderJv;
 	public JComboBox comboBox_1;
 	public JComboBox comboBox;
 	public JComboBox comboBox_1_1;
-
+	public JButton btnNewButton;
+	public JLabel LabelNJv;
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		
+		
+	}
+	
+	public void setControleur() {
+		Controleur contr = new Controleur(this);
+		this.contr = contr;
+	}
 
 	public Controleur getControleur() {
 		return this.contr;
@@ -129,8 +136,6 @@ public class Parametres {
 		sliderJp.setBounds(106, 395, 200, 26);
 		frame.getContentPane().add(sliderJp);
 		
-
-		
 		
 		JLabel LabelJp = new JLabel("Nombre de joueur physique : ");
 		LabelJp.setForeground(new Color(255, 165, 0));
@@ -193,42 +198,7 @@ public class Parametres {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Rectangle", "Triangle"}));
 		comboBox.setBounds(949, 343, 141, 42);
 		frame.getContentPane().add(comboBox);
-		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(comboBox.getSelectedItem() == "Rectangle")
-					System.out.println("Tapis rectangulaire"); //ensuite relier à Partie
-				else if(comboBox.getSelectedItem() == "Triangle")
-					System.out.println("Tapis triangulaire"); //ensuite relier à Partie
-			}
-		});
-		
-		sliderJp.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				LabelNJp.setText(Integer.toString(sliderJp.getValue()));
-				if(sliderJp.getValue() == 0)
-					System.out.println("0 joueur physique"); //ensuite relier à Partie
-				else if(sliderJp.getValue() == 1)
-					System.out.println("1 joueur physique"); //ensuite relier à Partie
-				else if(sliderJp.getValue() == 2)
-					System.out.println("2 joueurs physiques"); //ensuite relier à Partie
-				else if(sliderJp.getValue() == 3)
-					System.out.println("3 joueurs physiques"); //ensuite relier à Partie
-			}
-		});
-		
-		sliderJv.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				LabelNJv.setText(Integer.toString(sliderJv.getValue()));
-				if(sliderJv.getValue() == 0)
-					System.out.println("0 joueur virtuel"); //ensuite relier à Partie
-				else if(sliderJv.getValue() == 1)
-					System.out.println("1 joueur virtuel"); //ensuite relier à Partie
-				else if(sliderJv.getValue() == 2)
-					System.out.println("2 joueurs virtuels"); //ensuite relier à Partie
-				else if(sliderJv.getValue() == 3)
-					System.out.println("3 joueurs virtuels"); //ensuite relier à Partie
-			}
-		});
+	
 		Image img = new ImageIcon(this.getClass().getResource("/Shape_up.png")).getImage();
 		
 		Image img2 = new ImageIcon(this.getClass().getResource("/Shape_up2.png")).getImage();
@@ -242,14 +212,7 @@ public class Parametres {
 		comboBox_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		comboBox_1.setBounds(1012, 408, 141, 42);
 		frame.getContentPane().add(comboBox_1);
-		comboBox_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(comboBox_1.getSelectedItem() == "Classique")
-					System.out.println("Variante classique"); //ensuite relier à Partie
-				else if(comboBox_1.getSelectedItem() == "Avance")
-					System.out.println("Variante avance"); //ensuite relier à Partie
-			}
-		});
+		
 		
 		
 		JComboBox comboBox_1_1 = new JComboBox();
@@ -258,50 +221,12 @@ public class Parametres {
 		comboBox_1_1.setBounds(1021, 482, 141, 42);
 		frame.getContentPane().add(comboBox_1_1);
 		
-		comboBox_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(comboBox_1_1.getSelectedItem() == "Normal")
-					System.out.println("Compteur normal"); //ensuite relier à Partie
-				else if(comboBox_1_1.getSelectedItem() == "Inverse")
-					System.out.println("Compteur inverse"); //ensuite relier à Partie
-			}
-		});
 		
 		JButton btnNewButton = new JButton("Commencer");
 		btnNewButton.setBounds(497, 543, 117, 29);
 		frame.getContentPane().add(btnNewButton);
-		btnNewButton.addMouseListener(new MouseListener(){
-			
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				contr.test();
-			}
-		});
+		
 		
 	}
+
 }
