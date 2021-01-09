@@ -206,7 +206,7 @@ public class Controleur {
 			partie.setCompteur(compt);
 		}
 	}
-	
+	/*
 	public void run() {
 		if(this.param.comboBox_1.getSelectedItem() == "Classique") {
 			System.out.println("3");
@@ -231,7 +231,7 @@ public class Controleur {
 	
 	}
 	
-	
+	*/
 	
 	
 	public void test() {
@@ -242,7 +242,7 @@ public static void main(String[] args) {
 	Partie partie = new Partie();
 	Parametres param = new Parametres();
 	Controleur contr = new Controleur(param);
-	contr.run();
+	//contr.run();
 	
 }
 	}
