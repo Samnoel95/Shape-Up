@@ -67,9 +67,13 @@ public class Parametres implements Observer{
 	}
 	
 	public void setControleur() {
-		Controleur contr = new Controleur(this);
+		System.out.println("1");
+		Controleur contr = new Controleur();
+		System.out.println("2");
 		this.contr = contr;
+		System.out.println("3");
 	}
+	
 
 	public Controleur getControleur() {
 		return this.contr;

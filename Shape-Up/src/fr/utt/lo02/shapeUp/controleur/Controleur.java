@@ -36,20 +36,22 @@ public class Controleur {
 	public JComboBox choixCompteur;
 	public JButton btnNewButton;
 	public JLabel LabelNJv;
+	public JComboBox comboBox_1_1;
 	
 	public Controleur(Parametres param) {
-		Partie partie = new Partie();
-		this.partie = partie;
-		this.sliderJp = param.sliderJp;
-		this.LabelNJp = param.LabelNJp;
-		this.sliderJv = param.sliderJv;
-		this.comboBox_1 = param.comboBox_1;
-		this.comboBox = param.comboBox;
-		this.choixCompteur = param.comboBox_1_1;
-		this.btnNewButton = param.btnNewButton;
-		this.LabelNJv = param.LabelNJv;
+		Partie ShapeUp = new Partie();
+		partie = ShapeUp;
+		sliderJp = param.sliderJp;
+		LabelNJp = param.LabelNJp;
+		sliderJv = param.sliderJv;
+		comboBox_1 = param.comboBox_1;
+		comboBox = param.comboBox;
+		choixCompteur = param.comboBox_1_1;
+		btnNewButton = param.btnNewButton;
+		LabelNJv = param.LabelNJv;
 		
-		this.choixCompteur.addActionListener(new ActionListener() {
+
+		choixCompteur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(choixCompteur.getSelectedItem() == "Normal")
 					System.out.println("Compteur normal"); //ensuite relier à Partie
@@ -59,7 +61,7 @@ public class Controleur {
 		});
 		
 		
-		param.btnNewButton.addMouseListener(new MouseListener(){
+		btnNewButton.addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent e) {			
 			}
 			public void mouseReleased(MouseEvent e) {	
@@ -73,7 +75,7 @@ public class Controleur {
 			}
 		});
 		
-		param.comboBox_1.addActionListener(new ActionListener() {
+		comboBox_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(param.comboBox_1.getSelectedItem() == "Classique")
 					System.out.println("Variante classique"); //ensuite relier à Partie
@@ -82,39 +84,39 @@ public class Controleur {
 			}
 		});
 		
-		param.sliderJv.addChangeListener(new ChangeListener() {
+		sliderJv.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				param.LabelNJv.setText(Integer.toString(param.sliderJv.getValue()));
-				if(param.sliderJv.getValue() == 0)
+				LabelNJv.setText(Integer.toString(sliderJv.getValue()));
+				if(sliderJv.getValue() == 0)
 					System.out.println("0 joueur virtuel"); //ensuite relier à Partie
-				else if(param.sliderJv.getValue() == 1)
+				else if(sliderJv.getValue() == 1)
 					System.out.println("1 joueur virtuel"); //ensuite relier à Partie
-				else if(param.sliderJv.getValue() == 2)
+				else if(sliderJv.getValue() == 2)
 					System.out.println("2 joueurs virtuels"); //ensuite relier à Partie
-				else if(param.sliderJv.getValue() == 3)
+				else if(sliderJv.getValue() == 3)
 					System.out.println("3 joueurs virtuels"); //ensuite relier à Partie
 			}
 		});
 		
-		param.sliderJp.addChangeListener(new ChangeListener() {
+		sliderJp.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				param.LabelNJp.setText(Integer.toString(param.sliderJp.getValue()));
-				if(param.sliderJp.getValue() == 0)
+				LabelNJp.setText(Integer.toString(sliderJp.getValue()));
+				if(sliderJp.getValue() == 0)
 					System.out.println("0 joueur physique"); //ensuite relier à Partie
-				else if(param.sliderJp.getValue() == 1)
+				else if(sliderJp.getValue() == 1)
 					System.out.println("1 joueur physique"); //ensuite relier à Partie
-				else if(param.sliderJp.getValue() == 2)
+				else if(sliderJp.getValue() == 2)
 					System.out.println("2 joueurs physiques"); //ensuite relier à Partie
-				else if(param.sliderJp.getValue() == 3)
+				else if(sliderJp.getValue() == 3)
 					System.out.println("3 joueurs physiques"); //ensuite relier à Partie
 			}
 		});
 		
-		param.comboBox.addActionListener(new ActionListener() {
+		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(param.comboBox.getSelectedItem() == "Rectangle")
+				if(comboBox.getSelectedItem() == "Rectangle")
 					System.out.println("Tapis rectangulaire"); //ensuite relier à Partie
-				else if(param.comboBox.getSelectedItem() == "Triangle")
+				else if(comboBox.getSelectedItem() == "Triangle")
 					System.out.println("Tapis triangulaire"); //ensuite relier à Partie
 			}
 		});
@@ -129,12 +131,12 @@ public class Controleur {
 		for(int i=0; i<4;i++) {
 			Pioche nouvellePioche = new Pioche();
 			nouvellePioche.melangerJeu();
-			this.partie.setPioche(nouvellePioche);
-			Tapis nouveautapis = new Tapis(this.partie.getTapis().getForme());
-			this.partie.setTapis(nouveautapis);
-			this.partie.partieClassique(this.partie);
+			partie.setPioche(nouvellePioche);
+			Tapis nouveautapis = new Tapis(partie.getTapis().getForme());
+			partie.setTapis(nouveautapis);
+			partie.partieClassique(partie);
 			System.out.println("Comptons les scores !");
-			this.partie.compterPoints(this.partie);
+			partie.compterPoints(partie);
 			System.out.println("Fin du round !");
 		}
 	}
@@ -143,26 +145,26 @@ public class Controleur {
 		for(int i=0; i<4;i++) {
 				Pioche nouvellePioche = new Pioche();
 				nouvellePioche.melangerJeu();
-				this.partie.setPioche(nouvellePioche);
-				Tapis nouveautapis = new Tapis(this.partie.getTapis().getForme());
-				this.partie.setTapis(nouveautapis);
-				this.partie.partieAdvanced(this.partie);
+				partie.setPioche(nouvellePioche);
+				Tapis nouveautapis = new Tapis(partie.getTapis().getForme());
+				partie.setTapis(nouveautapis);
+				partie.partieAdvanced(partie);
 				System.out.println("Comptons les scores !");
-				this.partie.compterPoints(this.partie);
+				partie.compterPoints(partie);
 				System.out.println("Fin du round !");
 		}
 	}
 	
 	public void addJp() {
-		for(int i=0; i<param.sliderJp.getValue(); i++) {
+		for(int i=0; i<sliderJp.getValue(); i++) {
 			String nom = JOptionPane.showInputDialog( "Entrez le nom du joueur : " );
 			JoueurPhysique joueur = new JoueurPhysique(nom, true);
-			this.partie.ajouterUnJoueur(joueur);
+			partie.ajouterUnJoueur(joueur);
 		}
 	}
 	
 	public void addJv() {
-		for(int i=0; i<param.sliderJv.getValue(); i++) {
+		for(int i=0; i<sliderJv.getValue(); i++) {
 			String difficulte;
 			int diff;
 			Scanner in = new Scanner(System.in);
@@ -173,35 +175,35 @@ public class Controleur {
 		    sb.append(i+1);
 		    String nom = sb.toString();
 		    JoueurVirtuel joueur = new JoueurVirtuel(nom, true, diff);
-		    this.partie.ajouterUnJoueur(joueur);
+		    partie.ajouterUnJoueur(joueur);
 		}
 	}
 	
 	public void choixPlateau(){
-		if(param.comboBox.getSelectedItem() == "Rectangle") {
+		if(comboBox.getSelectedItem() == "Rectangle") {
 			System.out.println("Tapis rectangulaire"); //ensuite relier à Partie
 			Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
 			partie.setTapis(tapis);;
 		}
 			
-		else if(param.comboBox.getSelectedItem() == "Triangle")
+		else if(comboBox.getSelectedItem() == "Triangle")
 			System.out.println("Tapis triangulaire"); //ensuite relier à Partie
 		Tapis tapis = new Tapis(formePlateau.TRIANGLE);
-		this.partie.setTapis(tapis);;
+		partie.setTapis(tapis);;
 	}
 	
 	public void choixCompteur() {
-		if(param.comboBox_1_1.getSelectedItem() == "Normal")
+		if(comboBox_1_1.getSelectedItem() == "Normal")
 		{
 			System.out.println("Compteur normal"); //ensuite relier à Partie
 			CompteurNormal compt = new CompteurNormal();
-			this.partie.setCompteur(compt);
+			partie.setCompteur(compt);
 		}
 			
-		else if(param.comboBox_1_1.getSelectedItem() == "Inverse") {
+		else if(comboBox_1_1.getSelectedItem() == "Inverse") {
 			System.out.println("Compteur inverse"); //ensuite relier à Partie
 			CompteurInverse compt = new CompteurInverse();
-			this.partie.setCompteur(compt);
+			partie.setCompteur(compt);
 		}
 	}
 	
