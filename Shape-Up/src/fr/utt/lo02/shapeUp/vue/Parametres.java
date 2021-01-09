@@ -48,68 +48,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Parametres{
-
 	public JFrame frame;
-	public Controleur contr;
-	public JSlider sliderJp;
-	public JLabel LabelNJp;
-	public JSlider sliderJv;
-	public JComboBox comboBox_1;
-	public JComboBox comboBox;
-	public JComboBox comboBox_1_1;
-	public JButton btnNewButton;
-	public JLabel LabelNJv;
-	
-	
-	public JFrame getFrame() {
-		return frame;
-	}
-
-
-	public Controleur getContr() {
-		return contr;
-	}
-
-
-	public JSlider getSliderJp() {
-		return sliderJp;
-	}
-
-
-	public JLabel getLabelNJp() {
-		return LabelNJp;
-	}
-
-
-	public JSlider getSliderJv() {
-		return sliderJv;
-	}
-
-
-	public JComboBox getComboBox_1() {
-		return comboBox_1;
-	}
-
-
-	public JComboBox getComboBox() {
-		return comboBox;
-	}
-
-
-	public JComboBox getComboBox_1_1() {
-		return comboBox_1_1;
-	}
-
-
-	public JButton getBtnNewButton() {
-		return btnNewButton;
-	}
-
-
-	public JLabel getLabelNJv() {
-		return LabelNJv;
-	}
-
+	public JButton commencer;
 
 	/**
 	 * Launch the application.
@@ -132,6 +72,7 @@ public class Parametres{
 	 */
 	public Parametres() {
 		initialize();
+		//new Controleur(this);
 	}
 
 	/**
@@ -258,9 +199,9 @@ public class Parametres{
 		frame.getContentPane().add(comboBox_1_1);
 		
 		
-		JButton btnNewButton = new JButton("Commencer");
-		btnNewButton.setBounds(497, 543, 117, 29);
-		frame.getContentPane().add(btnNewButton);
+		JButton commencer = new JButton("Commencer");
+		commencer.setBounds(497, 543, 117, 29);
+		frame.getContentPane().add(commencer);
 		
 		
 	}

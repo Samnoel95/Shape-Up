@@ -9,7 +9,6 @@ public class Lanceur {
 		
 	Parametres param = new Parametres();
 	param.frame.setVisible(true);
-	Controleur contr = new Controleur(param);
 	
 	
 	}

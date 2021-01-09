@@ -26,6 +26,8 @@ import fr.utt.lo02.shapeUp.modele.Tapis.formePlateau;
 import fr.utt.lo02.shapeUp.vue.Parametres;
 
 public class Controleur {
+	
+/*
 	public Partie partie;
 	public Parametres param;
 	public JSlider sliderJp;
@@ -37,8 +39,16 @@ public class Controleur {
 	public JButton btnNewButton;
 	public JLabel LabelNJv;
 	public JComboBox comboBox_1_1;
+	*/
 	
 	public Controleur(Parametres param) {
+		param.commencer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Commencer !");
+			}
+		});
+	}
+		/*
 		Partie ShapeUp = new Partie();
 		partie = ShapeUp;
 		sliderJp = param.sliderJp;
@@ -206,7 +216,7 @@ public class Controleur {
 			partie.setCompteur(compt);
 		}
 	}
-	/*
+	
 	public void run() {
 		if(this.param.comboBox_1.getSelectedItem() == "Classique") {
 			System.out.println("3");
@@ -231,8 +241,8 @@ public class Controleur {
 	
 	}
 	
-	*/
 	
+*/	
 	
 	public void test() {
 		System.out.println("Reçu par le controleur");
@@ -242,10 +252,13 @@ public static void main(String[] args) {
 	Partie partie = new Partie();
 	Parametres param = new Parametres();
 	Controleur contr = new Controleur(param);
-	//contr.run();
+	contr.test();
+	
 	
 }
-	}
+
+	
+}
 
 
 	
