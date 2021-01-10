@@ -46,10 +46,81 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
 
 public class Parametres{
 	public JFrame frame;
-	public JButton commencer;
+	private JButton commencer;
+	private JComboBox comboBox_1_1;
+	private JComboBox comboBox_1;
+	private JComboBox comboBox;
+	private JLabel lblNewLabel_3;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_1;
+	private JSlider sliderJv;
+	private JLabel LabelNJv;
+	private JLabel LabelJv;
+	private JLabel LabelNJp;
+	private JLabel LabelJp;
+	private JSlider sliderJp;
+
+	
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public JButton getCommencer() {
+		return commencer;
+	}
+
+	public JComboBox getComboBox_1_1() {
+		return comboBox_1_1;
+	}
+
+	public JComboBox getComboBox_1() {
+		return comboBox_1;
+	}
+
+	public JComboBox getComboBox() {
+		return comboBox;
+	}
+
+	public JLabel getLblNewLabel_3() {
+		return lblNewLabel_3;
+	}
+
+	public JLabel getLblNewLabel_2() {
+		return lblNewLabel_2;
+	}
+
+	public JLabel getLblNewLabel_1() {
+		return lblNewLabel_1;
+	}
+
+	public JSlider getSliderJv() {
+		return sliderJv;
+	}
+
+	public JLabel getLabelNJv() {
+		return LabelNJv;
+	}
+
+	public JLabel getLabelJv() {
+		return LabelJv;
+	}
+
+	public JLabel getLabelNJp() {
+		return LabelNJp;
+	}
+
+	public JLabel getLabelJp() {
+		return LabelJp;
+	}
+
+	public JSlider getSliderJp() {
+		return sliderJp;
+	}
 
 	/**
 	 * Launch the application.
@@ -72,7 +143,7 @@ public class Parametres{
 	 */
 	public Parametres() {
 		initialize();
-		//new Controleur(this);
+		new Controleur(this);
 	}
 
 	/**
@@ -99,7 +170,7 @@ public class Parametres{
 		lblNewLabel.setBounds(658, 28, 417, 74);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JSlider sliderJp = new JSlider();
+		sliderJp = new JSlider();
 
 		sliderJp.setPaintLabels(true);
 		sliderJp.setPaintTicks(true);
@@ -114,33 +185,33 @@ public class Parametres{
 		frame.getContentPane().add(sliderJp);
 		
 		
-		JLabel LabelJp = new JLabel("Nombre de joueur physique : ");
+		LabelJp = new JLabel("Nombre de joueur physique : ");
 		LabelJp.setForeground(new Color(255, 165, 0));
 		LabelJp.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		LabelJp.setBounds(10, 342, 351, 42);
 		frame.getContentPane().add(LabelJp);
 		
-		JLabel LabelNJp = new JLabel("0");
+		LabelNJp = new JLabel("0");
 		LabelNJp.setForeground(new Color(255, 0, 0));
 		LabelNJp.setFont(new Font("Tahoma", Font.BOLD, 24));
 		LabelNJp.setHorizontalAlignment(SwingConstants.CENTER);
 		LabelNJp.setBounds(346, 342, 44, 42);
 		frame.getContentPane().add(LabelNJp);
 		
-		JLabel LabelJv = new JLabel("Nombre de joueur virtuel : ");
+		LabelJv = new JLabel("Nombre de joueur virtuel : ");
 		LabelJv.setForeground(new Color(255, 165, 0));
 		LabelJv.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		LabelJv.setBounds(10, 449, 313, 42);
 		frame.getContentPane().add(LabelJv);
 		
-		JLabel LabelNJv = new JLabel("0");
+		LabelNJv = new JLabel("0");
 		LabelNJv.setForeground(new Color(255, 0, 0));
 		LabelNJv.setFont(new Font("Tahoma", Font.BOLD, 24));
 		LabelNJv.setHorizontalAlignment(SwingConstants.CENTER);
 		LabelNJv.setBounds(329, 449, 44, 42);
 		frame.getContentPane().add(LabelNJv);
 		
-		JSlider sliderJv = new JSlider();
+		sliderJv = new JSlider();
 		sliderJv.setValue(0);
 		sliderJv.setToolTipText("");
 		sliderJv.setPaintTicks(true);
@@ -152,25 +223,25 @@ public class Parametres{
 		sliderJv.setBounds(69, 498, 200, 26);
 		frame.getContentPane().add(sliderJv);
 		
-		JLabel lblNewLabel_1 = new JLabel("Forme tapis : ");
+		lblNewLabel_1 = new JLabel("Forme tapis : ");
 		lblNewLabel_1.setForeground(new Color(255, 165, 0));
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		lblNewLabel_1.setBounds(753, 347, 214, 22);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel(" Choisir le compteur : ");
+		lblNewLabel_2 = new JLabel(" Choisir le compteur : ");
 		lblNewLabel_2.setForeground(new Color(255, 165, 0));
 		lblNewLabel_2.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		lblNewLabel_2.setBounds(753, 485, 258, 26);
 		frame.getContentPane().add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Choisir la variante : ");
+		lblNewLabel_3 = new JLabel("Choisir la variante : ");
 		lblNewLabel_3.setForeground(new Color(255, 165, 0));
 		lblNewLabel_3.setFont(new Font("Segoe UI", Font.BOLD, 24));
 		lblNewLabel_3.setBounds(753, 412, 233, 26);
 		frame.getContentPane().add(lblNewLabel_3);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Rectangle", "Triangle"}));
 		comboBox.setBounds(949, 343, 141, 42);
@@ -184,7 +255,7 @@ public class Parametres{
 		Label2.setBounds(0, 0, 510, 336);
 		frame.getContentPane().add(Label2);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Classique", "Avance"}));
 		comboBox_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		comboBox_1.setBounds(1012, 408, 141, 42);
@@ -192,14 +263,14 @@ public class Parametres{
 		
 		
 		
-		JComboBox comboBox_1_1 = new JComboBox();
+		comboBox_1_1 = new JComboBox();
 		comboBox_1_1.setModel(new DefaultComboBoxModel(new String[] {"Normal", "Inverse"}));
 		comboBox_1_1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		comboBox_1_1.setBounds(1021, 482, 141, 42);
 		frame.getContentPane().add(comboBox_1_1);
 		
 		
-		JButton commencer = new JButton("Commencer");
+		commencer = new JButton("Commencer");
 		commencer.setBounds(497, 543, 117, 29);
 		frame.getContentPane().add(commencer);
 		
