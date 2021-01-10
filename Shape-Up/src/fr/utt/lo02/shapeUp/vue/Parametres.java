@@ -24,6 +24,7 @@ import java.awt.Cursor;
 import javax.swing.event.ChangeListener;
 
 import fr.utt.lo02.shapeUp.controleur.Controleur;
+import fr.utt.lo02.shapeUp.controleur.ListenerPlateau;
 import fr.utt.lo02.shapeUp.controleur.ListenerRegles;
 import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurInverse;
@@ -63,6 +64,7 @@ public class Parametres{
 	private JLabel LabelNJp;
 	private JLabel LabelJp;
 	private JSlider sliderJp;
+	Controleur controleur;
 
 	
 
@@ -143,7 +145,7 @@ public class Parametres{
 	 */
 	public Parametres() {
 		initialize();
-		new Controleur(this);
+		Controleur controleur = new Controleur(this);
 	}
 
 	/**

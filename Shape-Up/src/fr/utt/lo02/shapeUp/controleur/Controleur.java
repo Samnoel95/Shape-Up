@@ -25,6 +25,7 @@ import fr.utt.lo02.shapeUp.modele.Partie.Partie;
 import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 import fr.utt.lo02.shapeUp.modele.Tapis.formePlateau;
 import fr.utt.lo02.shapeUp.vue.Parametres;
+import fr.utt.lo02.shapeUp.vue.Plateau;
 
 public class Controleur {
 	
@@ -37,7 +38,6 @@ public class Controleur {
 		Partie ShapeUp = new Partie();
 		partie = ShapeUp;
 		
-
 		param.getCommencer().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -86,8 +86,13 @@ public class Controleur {
 							partie.setCompteur(compt);
 						}
 					}
+					
 						if(param.getComboBox_1().getSelectedItem() == "Classique") {
 					System.out.println("Lancement d'une partie classique !");
+					Plateau plateau = new Plateau();
+					ControleurPlateau contr = new ControleurPlateau(partie, plateau);
+					plateau.setContr(contr);
+					plateau.frame.setVisible(true);
 					for(int i=0; i<4;i++) {
 						Pioche nouvellePioche = new Pioche();
 						nouvellePioche.melangerJeu();
@@ -102,6 +107,8 @@ public class Controleur {
 				}
 				
 					else if(param.getComboBox_1().getSelectedItem() == "Avance") {
+						Plateau plateau = new Plateau();
+						plateau.frame.setVisible(true);
 						for(int i=0; i<4;i++) {
 							Pioche nouvellePioche = new Pioche();
 							nouvellePioche.melangerJeu();
@@ -120,6 +127,7 @@ public class Controleur {
 		}
 		
 		});
+		
 		
 		param.getComboBox_1().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -11,6 +11,11 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import fr.utt.lo02.shapeUp.controleur.Controleur;
+import fr.utt.lo02.shapeUp.controleur.ControleurPlateau;
+import fr.utt.lo02.shapeUp.modele.Partie.Partie;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -20,10 +25,34 @@ import java.awt.Font;
 import java.awt.Color;
 
 public class Plateau extends JFrame {
+	
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_2_1;
+	ControleurPlateau contr;
+	
+	public void setContr(ControleurPlateau contr) {
+		this.contr = contr;
+	}
 
-	private JFrame frame;
+	public JLabel getLblNewLabel_1() {
+		return lblNewLabel_1;
+	}
+
+	public JLabel getLblNewLabel_2() {
+		return lblNewLabel_2;
+	}
+
+	public JLabel getLblNewLabel_2_1() {
+		return lblNewLabel_2_1;
+	}
+
+	public ButtonCard[][] getButtonCards() {
+		return buttonCards;
+	}
+
+	public JFrame frame;
 	ButtonCard buttonCards[][] = new ButtonCard[3][5];
-			;
 
 	/**
 	 * Launch the application.
@@ -45,7 +74,7 @@ public class Plateau extends JFrame {
 	 * Create the application.
 	 */
 	public Plateau() {
-		initialize();
+		initialize(); 
 	}
 
 	/**
@@ -88,24 +117,23 @@ public class Plateau extends JFrame {
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Nom du joueur ");
+		lblNewLabel_1 = new JLabel("Nom du joueur ");
 		lblNewLabel_1.setForeground(new Color(255, 140, 0));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(84, 26, 109, 14);
 		panel_1.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Afficher carte victoire");
+		lblNewLabel_2 = new JLabel("Afficher carte victoire");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(71, 74, 146, 87);
 		panel_1.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("Afficher carte piocher");
+		lblNewLabel_2_1 = new JLabel("Afficher carte piocher");
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2_1.setBounds(71, 239, 146, 87);
 		panel_1.add(lblNewLabel_2_1);
 		
 		
-		
-		
 	}
+	
 }
