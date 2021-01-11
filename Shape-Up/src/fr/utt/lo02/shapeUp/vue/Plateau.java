@@ -58,6 +58,7 @@ public class Plateau extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		/*
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -68,6 +69,8 @@ public class Plateau extends JFrame {
 				}
 			}
 		});
+		*/
+		Plateau plateau = new Plateau();
 	}
 
 	/**
@@ -75,6 +78,7 @@ public class Plateau extends JFrame {
 	 */
 	public Plateau() {
 		initialize(); 
+		frame.setVisible(true);
 	}
 
 	/**
@@ -91,7 +95,6 @@ public class Plateau extends JFrame {
 		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
 		JPanel panel = new JPanel();
 		panel.setBounds(214, 181, 649, 470);
 		frame.getContentPane().add(panel);
@@ -132,7 +135,6 @@ public class Plateau extends JFrame {
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2_1.setBounds(71, 239, 146, 87);
 		panel_1.add(lblNewLabel_2_1);
-		
 		
 	}
 	

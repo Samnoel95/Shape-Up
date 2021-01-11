@@ -62,16 +62,19 @@ public class Controleur {
 					    JoueurVirtuel joueur = new JoueurVirtuel(nom, true, diff);
 					    partie.ajouterUnJoueur(joueur);
 					// choix plateau
+					    /*
 					    if(param.getComboBox().getSelectedItem() == "Rectangle") {
 							System.out.println("Tapis rectangulaire"); //ensuite relier à Partie
 							Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
 							partie.setTapis(tapis);;
 						}
 							
-						else if(param.getComboBox().getSelectedItem() == "Triangle")
+						else if(param.getComboBox().getSelectedItem() == "Triangle") {
 							System.out.println("Tapis triangulaire"); //ensuite relier à Partie
 						Tapis tapis = new Tapis(formePlateau.TRIANGLE);
 						partie.setTapis(tapis);
+						}
+						*/
 					// choix compteur
 						if(param.getComboBox_1_1().getSelectedItem() == "Normal")
 						{
@@ -88,27 +91,41 @@ public class Controleur {
 					}
 					
 						if(param.getComboBox_1().getSelectedItem() == "Classique") {
-					System.out.println("Lancement d'une partie classique !");
-					Plateau plateau = new Plateau();
-					ControleurPlateau contr = new ControleurPlateau(partie, plateau);
-					plateau.setContr(contr);
-					plateau.frame.setVisible(true);
-					for(int i=0; i<4;i++) {
+						System.out.println("Lancement d'une partie classique !");
+					//for(int i=0; i<4;i++) {
 						Pioche nouvellePioche = new Pioche();
 						nouvellePioche.melangerJeu();
 						partie.setPioche(nouvellePioche);
-						Tapis nouveautapis = new Tapis(partie.getTapis().getForme());
-						partie.setTapis(nouveautapis);
-						partie.partieClassique(partie);
+						partie.setNbreJPhysiques(param.getSliderJp().getValue());
+						partie.setNbreJVirtuels(param.getSliderJv().getValue());
+						 if(param.getComboBox().getSelectedItem() == "Rectangle") {
+								System.out.println("Tapis rectangulaire"); //ensuite relier à Partie
+								Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
+								partie.setTapis(tapis);
+								partie.getTapis().setEstPlein(false);
+							}
+								
+							else if(param.getComboBox().getSelectedItem() == "Triangle") {
+								System.out.println("Tapis triangulaire"); //ensuite relier à Partie
+							Tapis tapis = new Tapis(formePlateau.TRIANGLE);
+							partie.setTapis(tapis);
+							partie.getTapis().setEstPlein(false);
+							}
+
+						Plateau plateau = new Plateau();
+						ControleurPlateau contr = new ControleurPlateau(partie, plateau);
+						plateau.setContr(contr);
+						//partie.partieClassique(partie); //instancier les mouvements sur le plateau
 						System.out.println("Comptons les scores !");
 						partie.compterPoints(partie);
 						System.out.println("Fin du round !");
-					}
+					//}
 				}
 				
 					else if(param.getComboBox_1().getSelectedItem() == "Avance") {
 						Plateau plateau = new Plateau();
-						plateau.frame.setVisible(true);
+						ControleurPlateau contr = new ControleurPlateau(partie, plateau);
+						plateau.setContr(contr);
 						for(int i=0; i<4;i++) {
 							Pioche nouvellePioche = new Pioche();
 							nouvellePioche.melangerJeu();

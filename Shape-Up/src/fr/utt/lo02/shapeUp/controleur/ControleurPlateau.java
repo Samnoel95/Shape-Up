@@ -12,36 +12,35 @@ public class ControleurPlateau {
 	public Partie partie;
 	public Plateau plateau;
 	
-	public ControleurPlateau(Partie partie, Plateau plateau) {
-		this.partie = partie;
+	public ControleurPlateau(Partie part, Plateau plateau) {
+		this.partie = part;
 
 			//instancier à la partie pour chaque cas, faire piocher une carte victoire par joueur
 			//méthode attribuer carte victoire si version classique
-				Iterator<Joueur> it11 = partie.getListeJ().listIterator();
-				Iterator<Joueur> it5 = partie.getListeJ().listIterator();
-				Iterator<Joueur> it4 = partie.getListeJ().listIterator();
-				Iterator<Joueur> it3 = partie.getListeJ().listIterator();
-				while(it3.hasNext()) {
-					System.out.println(it3.next().getNomJoueur()+" pioche sa carte victoire.");
-					it11.next().setCarteVictoire(it4.next().piocherCarte(partie.getPioche()));
-	
-			
-			//jouer pour la version classique
+				partie.setNombreDeJoueur(partie.getNbreJPhysiques()+partie.getNbreJVirtuels());
+				for(int i=0; i<partie.getNombreDeJoueur(); i++) {
+					System.out.println(partie.getListeJ().get(i).getNomJoueur()+" pioche sa carte victoire.");
+					partie.getListeJ().get(i).setCarteVictoire(partie.getListeJ().get(i).piocherCarte(partie.getPioche()));
+				}
+			//jouer pour la version classique	
 			while(partie.getTapis().getEstPlein()==false) {
 				//System.out.println(ShapeUp.getTapis().getPlateau().size());
-				Iterator<Joueur> it8 = partie.getListeJ().listIterator();
-				Iterator<Joueur> it7 = partie.getListeJ().listIterator();
-				Iterator<Joueur> it2 = partie.getListeJ().listIterator();
-				Iterator<Joueur> it = partie.getListeJ().listIterator();
-				while(it.hasNext() && partie.getTapis().getEstPlein()==false) {
-					plateau.getLblNewLabel_1().setText(it.next().getNomJoueur());
+				for(int j=0; j<partie.getNombreDeJoueur(); j++) {
+					/*
+					System.out.println("Affichage nouveau plateau !");
+				Plateau nvPlateau = new Plateau();
+				nvPlateau.getLblNewLabel_1().setText(partie.getListeJ().get(j).getNomJoueur());
+				nvPlateau.setVisible(true);
+				*/
+				while(partie.getTapis().getEstPlein()==false) {
 					System.out.println("");
 					System.out.println("**************************");
 					System.out.println("");
 					System.out.println("C'est au tour de : ");
-					System.out.println(it.next().getNomJoueur()+" // carte victoire : "+it2.next().getCarteVictoire());
-					it7.next().jouer(it8.next(), partie.getTapis(), partie.getPioche(), partie.getCompteur());
+					System.out.println(partie.getListeJ().get(j).getNomJoueur()+" // carte victoire : "+partie.getListeJ().get(j).getCarteVictoire());
 					
+					partie.getListeJ().get(j).jouer(partie.getListeJ().get(j), partie.getTapis(), partie.getPioche(), partie.getCompteur());
+					System.out.println("5");
 					if(partie.getTapis().getPlateau().size()==15 && partie.getNombreDeJoueur()==2) {
 						partie.getTapis().setEstPlein(true);
 						System.out.println("Le tapis est rempli !");
@@ -52,10 +51,11 @@ public class ControleurPlateau {
 					}
 					
 				}
+				}
 
 			}
 		}
 		
 	}
 
-}
+
