@@ -196,8 +196,10 @@ public class JoueurPhysique extends Joueur {
 	
 	@Override
 	public void jouer( Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) { // a Refinir dans dans joueurPhysique et joueur virtuel. 
-    	Carte carteAJouer = new Carte();
-        carteAJouer = piocherCarte(pioche);
+    	this.cartePiochee = new Carte();
+        this.cartePiochee = piocherCarte(pioche);
+        this.setChanged();
+        this.notifyObservers();
         int longueur;
         int hauteur;
         int x;
@@ -256,15 +258,16 @@ public class JoueurPhysique extends Joueur {
                 
                 aDeplace = deplacerCarte(position1, position2, tapis);	
             }
+            
         } 
         
-        System.out.println("Ou voulez vous poser la carte "+carteAJouer+"?");
+        System.out.println("Ou voulez vous poser la carte "+cartePiochee+"?");
         x = askX();
         y = askY();
             
         PositionCarte position = new PositionCarte(x,y);
             
-        boolean cartePose = poserCarte(position, carteAJouer, tapis);
+        boolean cartePose = poserCarte(position, cartePiochee, tapis);
         
         while (!cartePose) {
             	System.out.println("La carte est mal placee ! Recommence : ");
@@ -274,8 +277,10 @@ public class JoueurPhysique extends Joueur {
                 
                position.setX(x);
                position.setY(y);
-               cartePose = poserCarte(position, carteAJouer, tapis);
+               cartePose = poserCarte(position, cartePiochee, tapis);
          }
+        
+       
         /*
           longueur = tapis.longueurPlateau();
           hauteur = tapis.hauteurPlateau();

@@ -3,6 +3,7 @@ package fr.utt.lo02.shapeUp.modele.Joueur;
 import java.util.Scanner;
 import java.util.LinkedList;
 import java.util.Map.Entry;
+import java.util.Observable;
 
 import javax.crypto.AEADBadTagException;
 
@@ -14,19 +15,28 @@ import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 
 // test 
 
-public abstract class Joueur {
+public abstract class Joueur extends Observable {
 	// attribut de la classe joueur 
 	private int score;
 	private String nomJoueur;
     private boolean commence;
     private Carte carteVictoire;
     protected LinkedList<Carte> carteEnMain;
+    protected Carte cartePiochee;
     
 
     // constructeur d'une instance de Joueur 
     
     
-    public Joueur(String nomJoueur, boolean commence, Carte carteVictoire) {
+    public Carte getCartePiochee() {
+		return cartePiochee;
+	}
+
+	public void setCartePiochee(Carte cartePiochee) {
+		this.cartePiochee = cartePiochee;
+	}
+
+	public Joueur(String nomJoueur, boolean commence, Carte carteVictoire) {
 		this.nomJoueur = nomJoueur;
 		this.commence = commence;
 		this.carteVictoire = carteVictoire;

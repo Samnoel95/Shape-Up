@@ -102,11 +102,11 @@ public class Strategie2 implements Strategie{
 
 	@Override
 	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) {
-			Carte carteAJouer = new Carte();
-	        carteAJouer = joueur.piocherCarte(pioche);
+			joueur.cartePiochee = new Carte();
+	        joueur.cartePiochee = joueur.piocherCarte(pioche);
 	        System.out.println(joueur.getNomJoueur()+" c'est ton tour !");  
-	        PositionCarte position = choixPositionClassique(joueur, tapis, carteAJouer, compteur);
-	        joueur.poserCarte(position, carteAJouer, tapis);
+	        PositionCarte position = choixPositionClassique(joueur, tapis, joueur.cartePiochee, compteur);
+	        joueur.poserCarte(position, joueur.cartePiochee, tapis);
 	 }
 }
 

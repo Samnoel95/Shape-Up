@@ -2,6 +2,7 @@ package fr.utt.lo02.shapeUp.controleur;
 
 import java.util.Iterator;
 
+import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
 import fr.utt.lo02.shapeUp.modele.Joueur.Joueur;
 import fr.utt.lo02.shapeUp.modele.Partie.Partie;
 import fr.utt.lo02.shapeUp.vue.Parametres;
@@ -11,6 +12,7 @@ public class ControleurPlateau {
 	
 	public Partie partie;
 	public Plateau plateau;
+	
 	
 	public ControleurPlateau(Partie part, Plateau plateau) {
 		this.partie = part;
@@ -56,6 +58,9 @@ public class ControleurPlateau {
 			}
 		}
 		
+	public void jouerTour(Joueur joueur) {
+		joueur.piocherCarte(this.partie.getPioche());
+	}
 	}
 
 

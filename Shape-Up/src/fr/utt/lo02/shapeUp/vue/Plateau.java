@@ -12,27 +12,42 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+
 import fr.utt.lo02.shapeUp.controleur.Controleur;
 import fr.utt.lo02.shapeUp.controleur.ControleurPlateau;
+import fr.utt.lo02.shapeUp.modele.Joueur.Joueur;
+import fr.utt.lo02.shapeUp.modele.Joueur.JoueurPhysique;
 import fr.utt.lo02.shapeUp.modele.Partie.Partie;
+import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.util.Observable;
+import java.util.Observer;
 import java.awt.GridLayout;
 import java.awt.Font;
 import java.awt.Color;
+import javax.swing.JButton;
 
-public class Plateau extends JFrame {
+public class Plateau extends JFrame implements Observer {
 	
+
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_2_1;
+	private JButton btnCartePiochee;
 	ControleurPlateau contr;
+	
+
 	
 	public void setContr(ControleurPlateau contr) {
 		this.contr = contr;
+	}
+	
+	public ControleurPlateau getContr() {
+		return this.contr;
 	}
 
 	public JLabel getLblNewLabel_1() {
@@ -70,7 +85,10 @@ public class Plateau extends JFrame {
 			}
 		});
 		*/
+		
+		
 		Plateau plateau = new Plateau();
+		
 	}
 
 	/**
@@ -133,9 +151,25 @@ public class Plateau extends JFrame {
 		
 		lblNewLabel_2_1 = new JLabel("Afficher carte piocher");
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setBounds(71, 239, 146, 87);
+		lblNewLabel_2_1.setBounds(71, 172, 146, 87);
 		panel_1.add(lblNewLabel_2_1);
 		
+		btnCartePiochee = new JButton("New button");
+		btnCartePiochee.setBounds(95, 231, 122, 147);
+		panel_1.add(btnCartePiochee);
+		
 	}
-	
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if(o instanceof Tapis) {
+			
+		}
+		
+		if(o instanceof Joueur) {
+			ImageIcon img = new ImageIcon(((Joueur)o).getCartePiochee().getImageCarte());
+			this.btnCartePiochee.setIcon(img);
+		}
+		
+	}
 }

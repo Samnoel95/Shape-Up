@@ -174,8 +174,8 @@ public class Strategie1 implements Strategie {
 	}
 	
 	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) {
-		Carte carteAJouer = new Carte();
-        carteAJouer = joueur.piocherCarte(pioche);
+		joueur.cartePiochee = new Carte();
+        joueur.cartePiochee = joueur.piocherCarte(pioche);
         int x;
         int y;
         boolean veutDeplacer = false;
@@ -232,7 +232,7 @@ public class Strategie1 implements Strategie {
             
         PositionCarte position = new PositionCarte(x,y);
             
-        boolean cartePose = joueur.poserCarte(position, carteAJouer, tapis);
+        boolean cartePose = joueur.poserCarte(position, joueur.cartePiochee, tapis);
         
         while (!cartePose) {
             	
@@ -243,7 +243,7 @@ public class Strategie1 implements Strategie {
                 
                position.setX(x);
                position.setY(y);
-               cartePose = joueur.poserCarte(position, carteAJouer, tapis);
+               cartePose = joueur.poserCarte(position, joueur.cartePiochee, tapis);
          }
 
          if( aDeplace == false &&  tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
