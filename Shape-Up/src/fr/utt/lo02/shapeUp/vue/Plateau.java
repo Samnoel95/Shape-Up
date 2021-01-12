@@ -14,7 +14,6 @@ import javax.swing.SwingConstants;
 
 
 import fr.utt.lo02.shapeUp.controleur.Controleur;
-import fr.utt.lo02.shapeUp.controleur.ControleurPlateau;
 import fr.utt.lo02.shapeUp.modele.Joueur.Joueur;
 import fr.utt.lo02.shapeUp.modele.Joueur.JoueurPhysique;
 import fr.utt.lo02.shapeUp.modele.Partie.Partie;
@@ -38,17 +37,7 @@ public class Plateau extends JFrame implements Observer {
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_2_1;
 	private JButton btnCartePiochee;
-	ControleurPlateau contr;
 	
-
-	
-	public void setContr(ControleurPlateau contr) {
-		this.contr = contr;
-	}
-	
-	public ControleurPlateau getContr() {
-		return this.contr;
-	}
 
 	public JLabel getLblNewLabel_1() {
 		return lblNewLabel_1;

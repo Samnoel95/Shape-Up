@@ -19,6 +19,7 @@ import javax.swing.event.ChangeListener;
 import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurInverse;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurNormal;
+import fr.utt.lo02.shapeUp.modele.Joueur.Joueur;
 import fr.utt.lo02.shapeUp.modele.Joueur.JoueurPhysique;
 import fr.utt.lo02.shapeUp.modele.Joueur.JoueurVirtuel;
 import fr.utt.lo02.shapeUp.modele.Partie.Partie;
@@ -31,12 +32,79 @@ public class Controleur {
 	
 	public Partie partie;
 	public Parametres param;
+	public Plateau plateau;
 	
 	
 	public Controleur(Parametres param) {
 		
 		Partie ShapeUp = new Partie();
 		partie = ShapeUp;
+		
+		/*
+		 Le bouton qui choisit la version, test pour affichage console
+		 */
+		
+		param.getComboBox_1().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(param.getComboBox_1().getSelectedItem() == "Classique")
+					System.out.println("Variante classique"); //ensuite relier à Partie
+				else if(param.getComboBox_1().getSelectedItem() == "Avance")
+					System.out.println("Variante avance"); //ensuite relier à Partie
+			}
+		});
+		
+		/*
+		 Le bouton qui choisit le nombre de joueurs virtuels, affichage IG
+		 */
+		
+		
+		param.getSliderJv().addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				param.getLabelNJv().setText(Integer.toString(param.getSliderJv().getValue()));
+			}
+		});
+		
+		/*
+		 Le bouton qui choisit le nombre de joueurs physiques, affichage IG
+		 */
+		
+		param.getSliderJp().addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				param.getLabelNJp().setText(Integer.toString(param.getSliderJp().getValue()));
+			}
+		});
+		
+		/*
+		 Le bouton qui choisit la forme du plateau, test pour affichage console
+		 */
+	    
+	    if(param.getComboBox().getSelectedItem() == "Rectangle") {
+			System.out.println("Tapis rectangulaire"); //ensuite relier à Partie
+			
+		}
+			
+		else if(param.getComboBox().getSelectedItem() == "Triangle") {
+			System.out.println("Tapis triangulaire"); //ensuite relier à Partie
+		
+		}
+	    
+	    /*
+		 Le bouton qui choisit la forme du plateau, test pour affichage console
+		 */
+	    
+		if(param.getComboBox_1_1().getSelectedItem() == "Normal")
+		{
+			System.out.println("Compteur normal"); //ensuite relier à Partie
+		}
+			
+		else if(param.getComboBox_1_1().getSelectedItem() == "Inverse") {
+			System.out.println("Compteur inverse"); //ensuite relier à Partie
+		}
+		
+		
+		/*
+		 Appui sur le bouton "commencer" de paramètres
+		 */
 		
 		param.getCommencer().addMouseListener(new MouseAdapter() {
 			@Override
@@ -46,7 +114,7 @@ public class Controleur {
 					for(int i=0; i<param.getSliderJp().getValue(); i++) {
 						String nom = JOptionPane.showInputDialog( "Entrez le nom du joueur : " );
 						JoueurPhysique joueur = new JoueurPhysique(nom, true);
-						partie.ajouterUnJoueur(joueur);
+						ShapeUp.ajouterUnJoueur(joueur);
 					}
 					// ajout JV
 					for(int i=0; i<param.getSliderJv().getValue(); i++) {
@@ -60,83 +128,112 @@ public class Controleur {
 					    sb.append(i+1);
 					    String nom = sb.toString();
 					    JoueurVirtuel joueur = new JoueurVirtuel(nom, true, diff);
-					    partie.ajouterUnJoueur(joueur);
-					// choix plateau
-					    /*
-					    if(param.getComboBox().getSelectedItem() == "Rectangle") {
-							System.out.println("Tapis rectangulaire"); //ensuite relier à Partie
-							Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
-							partie.setTapis(tapis);;
-						}
-							
-						else if(param.getComboBox().getSelectedItem() == "Triangle") {
-							System.out.println("Tapis triangulaire"); //ensuite relier à Partie
-						Tapis tapis = new Tapis(formePlateau.TRIANGLE);
-						partie.setTapis(tapis);
-						}
-						*/
+					    ShapeUp.ajouterUnJoueur(joueur);
 					// choix compteur
 						if(param.getComboBox_1_1().getSelectedItem() == "Normal")
 						{
-							System.out.println("Compteur normal"); //ensuite relier à Partie
 							CompteurNormal compt = new CompteurNormal();
-							partie.setCompteur(compt);
+							ShapeUp.setCompteur(compt);
 						}
 							
 						else if(param.getComboBox_1_1().getSelectedItem() == "Inverse") {
-							System.out.println("Compteur inverse"); //ensuite relier à Partie
 							CompteurInverse compt = new CompteurInverse();
-							partie.setCompteur(compt);
+							ShapeUp.setCompteur(compt);
 						}
 					}
 					
+					/*
+					 Si c'est une partie classique
+					 */
+					
 						if(param.getComboBox_1().getSelectedItem() == "Classique") {
 						System.out.println("Lancement d'une partie classique !");
-					//for(int i=0; i<4;i++) {
+						//for(int i=0; i<4;i++) {
 						Pioche nouvellePioche = new Pioche();
 						nouvellePioche.melangerJeu();
-						partie.setPioche(nouvellePioche);
-						partie.setNbreJPhysiques(param.getSliderJp().getValue());
-						partie.setNbreJVirtuels(param.getSliderJv().getValue());
+						ShapeUp.setPioche(nouvellePioche);
+						ShapeUp.setNbreJPhysiques(param.getSliderJp().getValue());
+						ShapeUp.setNbreJVirtuels(param.getSliderJv().getValue());
+						
+						/*
+						 Si c'est un tapis rectangulaire
+						 */
+						
 						 if(param.getComboBox().getSelectedItem() == "Rectangle") {
 								System.out.println("Tapis rectangulaire"); //ensuite relier à Partie
 								Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
-								partie.setTapis(tapis);
-								partie.getTapis().setEstPlein(false);
+								ShapeUp.setTapis(tapis);
+								ShapeUp.getTapis().setEstPlein(false);
 							}
+						 
+						 /*
+						 Si c'est un plateau rectangulaire
+						 */
 								
 							else if(param.getComboBox().getSelectedItem() == "Triangle") {
 								System.out.println("Tapis triangulaire"); //ensuite relier à Partie
 							Tapis tapis = new Tapis(formePlateau.TRIANGLE);
-							partie.setTapis(tapis);
-							partie.getTapis().setEstPlein(false);
+							ShapeUp.setTapis(tapis);
+							ShapeUp.getTapis().setEstPlein(false);
 							}
 
+						 /*
+						 Ouverture d'un fenetre plateau
+						 */
+						 
 						Plateau plateau = new Plateau();
-						ControleurPlateau contr = new ControleurPlateau(partie, plateau);
-						plateau.setContr(contr);
 						//partie.partieClassique(partie); //instancier les mouvements sur le plateau
 						System.out.println("Comptons les scores !");
-						partie.compterPoints(partie);
+						ShapeUp.compterPoints(ShapeUp);
 						System.out.println("Fin du round !");
 					//}
 				}
 				
+						
+						/*
+						 Si c'est une partie avancée
+						 */
+						
 					else if(param.getComboBox_1().getSelectedItem() == "Avance") {
-						Plateau plateau = new Plateau();
-						ControleurPlateau contr = new ControleurPlateau(partie, plateau);
-						plateau.setContr(contr);
-						for(int i=0; i<4;i++) {
+						System.out.println("Lancement d'une partie avancée !");
+						//for(int i=0; i<4;i++) {
 							Pioche nouvellePioche = new Pioche();
 							nouvellePioche.melangerJeu();
-							partie.setPioche(nouvellePioche);
-							Tapis nouveautapis = new Tapis(partie.getTapis().getForme());
-							partie.setTapis(nouveautapis);
-							partie.partieAdvanced(partie);
+							ShapeUp.setPioche(nouvellePioche);
+							ShapeUp.setNbreJPhysiques(param.getSliderJp().getValue());
+							ShapeUp.setNbreJVirtuels(param.getSliderJv().getValue());
+							
+							/*
+							 Si c'est un plateau rectangulaire
+							 */
+							
+							 if(param.getComboBox().getSelectedItem() == "Rectangle") {
+									System.out.println("Tapis rectangulaire"); //ensuite relier à Partie
+									Tapis tapis = new Tapis(formePlateau.PLATEAUCLASSIQUE);
+									ShapeUp.setTapis(tapis);
+									ShapeUp.getTapis().setEstPlein(false);
+								}
+							 
+							 /*
+							 Si c'est un plateau triangulaire
+							 */
+									
+								else if(param.getComboBox().getSelectedItem() == "Triangle") {
+									System.out.println("Tapis triangulaire"); //ensuite relier à Partie
+								Tapis tapis = new Tapis(formePlateau.TRIANGLE);
+								ShapeUp.setTapis(tapis);
+								ShapeUp.getTapis().setEstPlein(false);
+								}
+							 
+							 /*
+							 Ouverture d'une fenêtre Plateau
+							 */
+
+							Plateau plateau = new Plateau();
+							//partie.partieAdvanced(ShapeUp); //instancier les mouvements sur le plateau
 							System.out.println("Comptons les scores !");
-							partie.compterPoints(partie);
+							ShapeUp.compterPoints(ShapeUp);
 							System.out.println("Fin du round !");
-					}
 					
 				}
 
@@ -146,29 +243,48 @@ public class Controleur {
 		});
 		
 		
-		param.getComboBox_1().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(param.getComboBox_1().getSelectedItem() == "Classique")
-					System.out.println("Variante classique"); //ensuite relier à Partie
-				else if(param.getComboBox_1().getSelectedItem() == "Avance")
-					System.out.println("Variante avance"); //ensuite relier à Partie
+		ShapeUp.setNombreDeJoueur(ShapeUp.getNbreJPhysiques()+ShapeUp.getNbreJVirtuels());
+		for(int i=0; i<ShapeUp.getNombreDeJoueur(); i++) {
+			System.out.println(ShapeUp.getListeJ().get(i).getNomJoueur()+" pioche sa carte victoire.");
+			ShapeUp.getListeJ().get(i).setCarteVictoire(ShapeUp.getListeJ().get(i).piocherCarte(partie.getPioche()));
+		}
+		//jouer pour la version classique	
+		// while(ShapeUp.getTapis().getEstPlein()==false) {
+		for(int i=0; i<15; i++) {
+		//System.out.println(ShapeUp.getTapis().getPlateau().size());
+		for(int j=0; j<ShapeUp.getNombreDeJoueur(); j++) {
+			/*
+			System.out.println("Affichage nouveau plateau !");
+		Plateau nvPlateau = new Plateau();
+		nvPlateau.getLblNewLabel_1().setText(partie.getListeJ().get(j).getNomJoueur());
+		nvPlateau.setVisible(true);
+		*/
+		while(ShapeUp.getTapis().getEstPlein()==false) {
+			System.out.println("");
+			System.out.println("**************************");
+			System.out.println("");
+			System.out.println("C'est au tour de : ");
+			System.out.println(ShapeUp.getListeJ().get(j).getNomJoueur()+" // carte victoire : "+ShapeUp.getListeJ().get(j).getCarteVictoire());
+			
+			ShapeUp.getListeJ().get(j).jouer(ShapeUp.getListeJ().get(j), ShapeUp.getTapis(), ShapeUp.getPioche(), partie.getCompteur());
+			System.out.println("5");
+			if(ShapeUp.getTapis().getPlateau().size()==15 && ShapeUp.getNombreDeJoueur()==2) {
+				ShapeUp.getTapis().setEstPlein(true);
+				System.out.println("Le tapis est rempli !");
 			}
-		});
-		
-		param.getSliderJv().addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				param.getLabelNJv().setText(Integer.toString(param.getSliderJv().getValue()));
+			else if(ShapeUp.getTapis().getPlateau().size()==14 && ShapeUp.getNombreDeJoueur()==3) {
+				ShapeUp.getTapis().setEstPlein(true);
+				System.out.println("Le tapis est rempli !");
 			}
-		});
-		
-		param.getSliderJp().addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent e) {
-				param.getLabelNJp().setText(Integer.toString(param.getSliderJp().getValue()));
-			}
-		});
-		
+			
+		}
+		}
 
-	
 	}
 }
+	public void jouerTour(Joueur joueur) {
+		joueur.piocherCarte(this.partie.getPioche());
+	}
+	}
+
 	
