@@ -34,6 +34,8 @@ public abstract class Joueur extends Observable {
 
 	public void setCartePiochee(Carte cartePiochee) {
 		this.cartePiochee = cartePiochee;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public Joueur(String nomJoueur, boolean commence, Carte carteVictoire) {

@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 
 
 import fr.utt.lo02.shapeUp.controleur.Controleur;
+
 import fr.utt.lo02.shapeUp.modele.Joueur.Joueur;
 import fr.utt.lo02.shapeUp.modele.Joueur.JoueurPhysique;
 import fr.utt.lo02.shapeUp.modele.Partie.Partie;
@@ -22,11 +23,14 @@ import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.GridLayout;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.Color;
 import javax.swing.JButton;
 
@@ -37,7 +41,17 @@ public class Plateau extends JFrame implements Observer {
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_2_1;
 	private JButton btnCartePiochee;
+	Controleur contr;
 	
+
+	
+	public void setContr(Controleur contr) {
+		this.contr = contr;
+	}
+	
+	public Controleur getContr() {
+		return this.contr;
+	}
 
 	public JLabel getLblNewLabel_1() {
 		return lblNewLabel_1;
@@ -130,24 +144,25 @@ public class Plateau extends JFrame implements Observer {
 		lblNewLabel_1 = new JLabel("Nom du joueur ");
 		lblNewLabel_1.setForeground(new Color(255, 140, 0));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(84, 26, 109, 14);
+		lblNewLabel_1.setBounds(85, 11, 109, 14);
 		panel_1.add(lblNewLabel_1);
 		
-		lblNewLabel_2 = new JLabel("Afficher carte victoire");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(71, 74, 146, 87);
-		panel_1.add(lblNewLabel_2);
-		
-		lblNewLabel_2_1 = new JLabel("Afficher carte piocher");
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setBounds(71, 172, 146, 87);
-		panel_1.add(lblNewLabel_2_1);
-		
 		btnCartePiochee = new JButton("New button");
-		btnCartePiochee.setBounds(95, 231, 122, 147);
+		btnCartePiochee.setBounds(24, 51, 229, 327);
 		panel_1.add(btnCartePiochee);
 		
+		lblNewLabel_2_1 = new JLabel("Afficher carte piocher");
+		lblNewLabel_2_1.setBounds(85, 36, 111, 20);
+		panel_1.add(lblNewLabel_2_1);
+		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblNewLabel_2 = new JLabel("Afficher carte victoire");
+		lblNewLabel_2.setBounds(982, 43, 146, 87);
+		frame.getContentPane().add(lblNewLabel_2);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		
 	}
+
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -156,7 +171,9 @@ public class Plateau extends JFrame implements Observer {
 		}
 		
 		if(o instanceof Joueur) {
+		
 			ImageIcon img = new ImageIcon(((Joueur)o).getCartePiochee().getImageCarte());
+			
 			this.btnCartePiochee.setIcon(img);
 		}
 		

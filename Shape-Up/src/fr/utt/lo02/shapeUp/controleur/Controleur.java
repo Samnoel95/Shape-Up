@@ -1,5 +1,6 @@
 package fr.utt.lo02.shapeUp.controleur;
 
+import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -129,6 +130,7 @@ public class Controleur {
 					    String nom = sb.toString();
 					    JoueurVirtuel joueur = new JoueurVirtuel(nom, true, diff);
 					    ShapeUp.ajouterUnJoueur(joueur);
+					}
 					// choix compteur
 						if(param.getComboBox_1_1().getSelectedItem() == "Normal")
 						{
@@ -140,7 +142,7 @@ public class Controleur {
 							CompteurInverse compt = new CompteurInverse();
 							ShapeUp.setCompteur(compt);
 						}
-					}
+					
 					
 					/*
 					 Si c'est une partie classique
@@ -167,7 +169,7 @@ public class Controleur {
 							}
 						 
 						 /*
-						 Si c'est un plateau rectangulaire
+						 Si c'est un plateau triangulaire
 						 */
 								
 							else if(param.getComboBox().getSelectedItem() == "Triangle") {
@@ -183,6 +185,9 @@ public class Controleur {
 						 
 						Plateau plateau = new Plateau();
 						//partie.partieClassique(partie); //instancier les mouvements sur le plateau
+						ShapeUp.getListeJ().get(0).addObserver(plateau);
+						ShapeUp.getListeJ().get(0).setCartePiochee(ShapeUp.getListeJ().get(0).piocherCarte(ShapeUp.getPioche()));
+						System.out.println(ShapeUp.getListeJ().get(0).getCartePiochee().toString());
 						System.out.println("Comptons les scores !");
 						ShapeUp.compterPoints(ShapeUp);
 						System.out.println("Fin du round !");
@@ -266,7 +271,7 @@ public class Controleur {
 			System.out.println("C'est au tour de : ");
 			System.out.println(ShapeUp.getListeJ().get(j).getNomJoueur()+" // carte victoire : "+ShapeUp.getListeJ().get(j).getCarteVictoire());
 			
-			ShapeUp.getListeJ().get(j).jouer(ShapeUp.getListeJ().get(j), ShapeUp.getTapis(), ShapeUp.getPioche(), partie.getCompteur());
+			ShapeUp.getListeJ().get(j).jouer(ShapeUp.getListeJ().get(j), ShapeUp.getTapis(), ShapeUp.getPioche(), ShapeUp.getCompteur());
 			System.out.println("5");
 			if(ShapeUp.getTapis().getPlateau().size()==15 && ShapeUp.getNombreDeJoueur()==2) {
 				ShapeUp.getTapis().setEstPlein(true);
@@ -278,7 +283,7 @@ public class Controleur {
 			}
 			
 		}
-		}
+	}
 
 	}
 }
