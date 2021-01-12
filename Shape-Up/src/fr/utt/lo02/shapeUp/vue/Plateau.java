@@ -68,9 +68,10 @@ public class Plateau extends JFrame implements Observer {
 	public ButtonCard[][] getButtonCards() {
 		return buttonCards;
 	}
+	
 
 	public JFrame frame;
-	ButtonCard buttonCards[][] = new ButtonCard[3][5];
+	private ButtonCard buttonCards[][] = new ButtonCard[3][5];
 
 	/**
 	 * Launch the application.
@@ -125,6 +126,8 @@ public class Plateau extends JFrame implements Observer {
 		    	for(int j = 0 ; j<5;j++) {
 		    		buttonCards[i][j] = new ButtonCard(j,i);
 		    		panel.add(buttonCards[i][j]);
+		    		
+		    		
 		    	}
 		    }
 	  

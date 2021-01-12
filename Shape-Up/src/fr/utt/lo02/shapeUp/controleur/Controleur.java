@@ -18,6 +18,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
+import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurInverse;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurNormal;
 import fr.utt.lo02.shapeUp.modele.Joueur.Joueur;
@@ -26,6 +27,7 @@ import fr.utt.lo02.shapeUp.modele.Joueur.JoueurVirtuel;
 import fr.utt.lo02.shapeUp.modele.Partie.Partie;
 import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 import fr.utt.lo02.shapeUp.modele.Tapis.formePlateau;
+import fr.utt.lo02.shapeUp.vue.ButtonCard;
 import fr.utt.lo02.shapeUp.vue.Parametres;
 import fr.utt.lo02.shapeUp.vue.Plateau;
 
@@ -40,7 +42,7 @@ public class Controleur {
 		
 		Partie ShapeUp = new Partie();
 		partie = ShapeUp;
-		
+
 		/*
 		 Le bouton qui choisit la version, test pour affichage console
 		 */

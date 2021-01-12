@@ -25,6 +25,7 @@ public class ButtonCard extends JButton {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("x="+positionCarte.getX());
 				System.out.println("y="+positionCarte.getY());
+				
 			}
 		});
 				
