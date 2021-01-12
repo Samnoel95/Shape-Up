@@ -41,6 +41,8 @@ public class Controleur {
 
 	public int indexJoueur;
 	public int nbreCoup;
+	Thread currThread ;
+	Thread t1;
 	
 	public Controleur(Parametres param) {
 		
@@ -189,20 +191,21 @@ public class Controleur {
 						 ShapeUp.setNombreDeJoueur(ShapeUp.getNbreJPhysiques()+ShapeUp.getNbreJVirtuels());
 						 Plateau plateau = new Plateau();
 						 nbreCoup=0;
-						 
-						 for(int i=0; i<ShapeUp.getNombreDeJoueur();i++) {
+						 for(int i=0; i<partie.getNombreDeJoueur();i++) {
 							 System.out.println("A toi joueur numero : "+indexJoueur);
-							 ShapeUp.getListeJ().get(indexJoueur).addObserver(plateau);
-							 System.out.println(ShapeUp.getListeJ().get(indexJoueur).getNomJoueur()+" a pioche sa carte victoire : ");
-							 ShapeUp.getListeJ().get(indexJoueur).setCarteVictoire((ShapeUp.getListeJ().get(indexJoueur).piocherCarte(ShapeUp.getPioche())));
-							 ShapeUp.getListeJ().get(indexJoueur).getCarteVictoire().toString();
-							 System.out.println(ShapeUp.getListeJ().get(indexJoueur).getNomJoueur()+" a pioche une carte : ");
-							 ShapeUp.getListeJ().get(indexJoueur).setCartePiochee(ShapeUp.getListeJ().get(indexJoueur).piocherCarte(ShapeUp.getPioche()));
-							 ShapeUp.getListeJ().get(indexJoueur).getCartePiochee().toString();
-							 plateau.getLblNewLabel_1().setText(ShapeUp.getListeJ().get(indexJoueur).getNomJoueur());
-							 
+							 partie.getListeJ().get(indexJoueur).addObserver(plateau);
+							 System.out.println(partie.getListeJ().get(indexJoueur).getNomJoueur()+" a pioche sa carte victoire : ");
+							 partie.getListeJ().get(indexJoueur).setCarteVictoire((partie.getListeJ().get(indexJoueur).piocherCarte(partie.getPioche())));
+							 partie.getListeJ().get(indexJoueur).getCarteVictoire().toString();
+							 System.out.println(partie.getListeJ().get(indexJoueur).getNomJoueur()+" a pioche une carte : ");
+							 partie.getListeJ().get(indexJoueur).setCartePiochee(partie.getListeJ().get(indexJoueur).piocherCarte(partie.getPioche()));
+							 partie.getListeJ().get(indexJoueur).getCartePiochee().toString();
+							 plateau.getLblNewLabel_1().setText(partie.getListeJ().get(indexJoueur).getNomJoueur());
 							 
 						 }
+						
+							 
+						 
 
 						 plateau.btnOK.addMouseListener(new MouseAdapter() {
 						 	@Override
@@ -543,6 +546,7 @@ public class Controleur {
 	}
 	*/
 }
+
 	public void jouerTour(Joueur joueur) {
 		joueur.piocherCarte(this.partie.getPioche());
 	}
