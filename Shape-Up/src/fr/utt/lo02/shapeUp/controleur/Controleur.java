@@ -1,13 +1,17 @@
 package fr.utt.lo02.shapeUp.controleur;
 
-import java.awt.Shape;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.util.Iterator;
 import java.util.Scanner;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -18,7 +22,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
-import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurInverse;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.CompteurNormal;
 import fr.utt.lo02.shapeUp.modele.Joueur.Joueur;
@@ -27,7 +30,6 @@ import fr.utt.lo02.shapeUp.modele.Joueur.JoueurVirtuel;
 import fr.utt.lo02.shapeUp.modele.Partie.Partie;
 import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 import fr.utt.lo02.shapeUp.modele.Tapis.formePlateau;
-import fr.utt.lo02.shapeUp.vue.ButtonCard;
 import fr.utt.lo02.shapeUp.vue.Parametres;
 import fr.utt.lo02.shapeUp.vue.Plateau;
 
@@ -36,13 +38,14 @@ public class Controleur {
 	public Partie partie;
 	public Parametres param;
 	public Plateau plateau;
-	
+
+	public int indexJoueur;
+	public int nbreCoup;
 	
 	public Controleur(Parametres param) {
 		
 		Partie ShapeUp = new Partie();
 		partie = ShapeUp;
-
 		/*
 		 Le bouton qui choisit la version, test pour affichage console
 		 */
@@ -132,7 +135,6 @@ public class Controleur {
 					    String nom = sb.toString();
 					    JoueurVirtuel joueur = new JoueurVirtuel(nom, true, diff);
 					    ShapeUp.ajouterUnJoueur(joueur);
-					}
 					// choix compteur
 						if(param.getComboBox_1_1().getSelectedItem() == "Normal")
 						{
@@ -144,7 +146,7 @@ public class Controleur {
 							CompteurInverse compt = new CompteurInverse();
 							ShapeUp.setCompteur(compt);
 						}
-					
+					}
 					
 					/*
 					 Si c'est une partie classique
@@ -171,7 +173,7 @@ public class Controleur {
 							}
 						 
 						 /*
-						 Si c'est un plateau triangulaire
+						 Si c'est un plateau rectangulaire
 						 */
 								
 							else if(param.getComboBox().getSelectedItem() == "Triangle") {
@@ -184,15 +186,264 @@ public class Controleur {
 						 /*
 						 Ouverture d'un fenetre plateau
 						 */
+						 ShapeUp.setNombreDeJoueur(ShapeUp.getNbreJPhysiques()+ShapeUp.getNbreJVirtuels());
+						 Plateau plateau = new Plateau();
+						 nbreCoup=0;
 						 
-						Plateau plateau = new Plateau();
-						//partie.partieClassique(partie); //instancier les mouvements sur le plateau
-						ShapeUp.getListeJ().get(0).addObserver(plateau);
-						ShapeUp.getListeJ().get(0).setCartePiochee(ShapeUp.getListeJ().get(0).piocherCarte(ShapeUp.getPioche()));
-						System.out.println(ShapeUp.getListeJ().get(0).getCartePiochee().toString());
-						System.out.println("Comptons les scores !");
-						ShapeUp.compterPoints(ShapeUp);
-						System.out.println("Fin du round !");
+						 for(int i=0; i<ShapeUp.getNombreDeJoueur();i++) {
+							 System.out.println("A toi joueur numero : "+indexJoueur);
+							 ShapeUp.getListeJ().get(indexJoueur).addObserver(plateau);
+							 System.out.println(ShapeUp.getListeJ().get(indexJoueur).getNomJoueur()+" a pioche sa carte victoire : ");
+							 ShapeUp.getListeJ().get(indexJoueur).setCarteVictoire((ShapeUp.getListeJ().get(indexJoueur).piocherCarte(ShapeUp.getPioche())));
+							 ShapeUp.getListeJ().get(indexJoueur).getCarteVictoire().toString();
+							 System.out.println(ShapeUp.getListeJ().get(indexJoueur).getNomJoueur()+" a pioche une carte : ");
+							 ShapeUp.getListeJ().get(indexJoueur).setCartePiochee(ShapeUp.getListeJ().get(indexJoueur).piocherCarte(ShapeUp.getPioche()));
+							 ShapeUp.getListeJ().get(indexJoueur).getCartePiochee().toString();
+							 plateau.getLblNewLabel_1().setText(ShapeUp.getListeJ().get(indexJoueur).getNomJoueur());
+							 
+							 
+						 }
+
+						 plateau.btnOK.addMouseListener(new MouseAdapter() {
+						 	@Override
+						 	public void mousePressed(MouseEvent e) {
+						 		nbreCoup++;
+						 		if(indexJoueur < ShapeUp.getNombreDeJoueur())
+						 			indexJoueur++;
+						 		else {
+						 			indexJoueur=0;	
+						 		}
+						 		System.out.println("indexJoueur = "+indexJoueur);
+						 	}
+						 });
+						
+								plateau.buttonCards[0][0].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[0][0].setIcon(img);
+									}
+								});
+								plateau.buttonCards[0][1].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[0][1].setIcon(img);
+									}
+								});
+								plateau.buttonCards[0][2].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[0][2].setIcon(img);
+									}
+								});
+								plateau.buttonCards[0][3].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[0][3].setIcon(img);
+									}
+								});
+								plateau.buttonCards[0][4].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[0][4].setIcon(img);
+									}
+								});
+								plateau.buttonCards[1][0].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[1][0].setIcon(img);
+									}
+								});
+								plateau.buttonCards[1][1].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[1][1].setIcon(img);
+									}
+								});
+								plateau.buttonCards[1][2].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[1][2].setIcon(img);
+									}
+								});
+								plateau.buttonCards[1][3].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[1][3].setIcon(img);
+									}
+								});
+								plateau.buttonCards[1][4].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[1][4].setIcon(img);
+									}
+								});
+								plateau.buttonCards[2][0].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[2][0].setIcon(img);
+									}
+								});
+								plateau.buttonCards[2][1].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[2][1].setIcon(img);
+									}
+								});
+								plateau.buttonCards[2][2].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[2][2].setIcon(img);
+									}
+								});
+								plateau.buttonCards[2][3].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[2][3].setIcon(img);
+									}
+								});
+								plateau.buttonCards[2][4].addMouseListener(new MouseAdapter() {
+									@Override
+									public void mousePressed(MouseEvent e) {
+										//ShapeUp.getTapis().addObserver(plateau);
+										ImageIcon img = new ImageIcon((ShapeUp.getListeJ().get(0).getCartePiochee().getImageCarte()));
+										/*System.out.println(img.getIconHeight() + " " + img.getIconWidth());
+										Image image = img.getImage();
+										BufferedImage bi = new BufferedImage(img.getIconWidth(), img.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+										Graphics g = bi.createGraphics();
+										g.drawImage(image, 0, 0, 71, 100, null);
+										ImageIcon newImg = new ImageIcon(bi);
+										*/
+										plateau.buttonCards[2][4].setIcon(img);
+									}
+								});
+						 
+						
 					//}
 				}
 				
@@ -249,7 +500,7 @@ public class Controleur {
 		
 		});
 		
-		
+		/*
 		ShapeUp.setNombreDeJoueur(ShapeUp.getNbreJPhysiques()+ShapeUp.getNbreJVirtuels());
 		for(int i=0; i<ShapeUp.getNombreDeJoueur(); i++) {
 			System.out.println(ShapeUp.getListeJ().get(i).getNomJoueur()+" pioche sa carte victoire.");
@@ -260,12 +511,12 @@ public class Controleur {
 		for(int i=0; i<15; i++) {
 		//System.out.println(ShapeUp.getTapis().getPlateau().size());
 		for(int j=0; j<ShapeUp.getNombreDeJoueur(); j++) {
-			/*
+			
 			System.out.println("Affichage nouveau plateau !");
 		Plateau nvPlateau = new Plateau();
 		nvPlateau.getLblNewLabel_1().setText(partie.getListeJ().get(j).getNomJoueur());
 		nvPlateau.setVisible(true);
-		*/
+		
 		while(ShapeUp.getTapis().getEstPlein()==false) {
 			System.out.println("");
 			System.out.println("**************************");
@@ -273,7 +524,7 @@ public class Controleur {
 			System.out.println("C'est au tour de : ");
 			System.out.println(ShapeUp.getListeJ().get(j).getNomJoueur()+" // carte victoire : "+ShapeUp.getListeJ().get(j).getCarteVictoire());
 			
-			ShapeUp.getListeJ().get(j).jouer(ShapeUp.getListeJ().get(j), ShapeUp.getTapis(), ShapeUp.getPioche(), ShapeUp.getCompteur());
+			ShapeUp.getListeJ().get(j).jouer(ShapeUp.getListeJ().get(j), ShapeUp.getTapis(), ShapeUp.getPioche(), partie.getCompteur());
 			System.out.println("5");
 			if(ShapeUp.getTapis().getPlateau().size()==15 && ShapeUp.getNombreDeJoueur()==2) {
 				ShapeUp.getTapis().setEstPlein(true);
@@ -285,13 +536,46 @@ public class Controleur {
 			}
 			
 		}
-	}
+		
+		}
+	
 
 	}
+	*/
 }
 	public void jouerTour(Joueur joueur) {
 		joueur.piocherCarte(this.partie.getPioche());
 	}
-	}
+	
+/*
+public void premierTour(Partie ShapeUp, int i) {
+	 ShapeUp.getListeJ().get(i).addObserver(plateau);
+	 System.out.println(ShapeUp.getListeJ().get(i).getNomJoueur()+" a pioche sa carte victoire : ");
+	 ShapeUp.getListeJ().get(i).setCarteVictoire((ShapeUp.getListeJ().get(i).piocherCarte(ShapeUp.getPioche())));
+	 ShapeUp.getListeJ().get(i).getCarteVictoire().toString();
+	 System.out.println(ShapeUp.getListeJ().get(i).getNomJoueur()+" a pioche une carte : ");
+	 ShapeUp.getListeJ().get(i).setCartePiochee(ShapeUp.getListeJ().get(i).piocherCarte(ShapeUp.getPioche()));
+	 ShapeUp.getListeJ().get(i).getCartePiochee().toString();
+	 plateau.getLblNewLabel_1().setText(ShapeUp.getListeJ().get(i).getNomJoueur());
+}
+*/
+}
+/*
+ for(int i = 0; i<ShapeUp.getNombreDeJoueur(); i++)
+						{
+							System.out.println("");
+							System.out.println("**************************");
+							System.out.println("");
+							plateau.getLblNewLabel_1().setText(partie.getListeJ().get(j).getNomJoueur());
+							System.out.println(ShapeUp.getListeJ().get(i).getNomJoueur()+" pioche sa carte victoire : ");
+						ShapeUp.getListeJ().get(0).setCarteVictoire(ShapeUp.getListeJ().get(i).piocherCarte(ShapeUp.getPioche()));
+						System.out.println(ShapeUp.getListeJ().get(0).getCartePiochee().toString());
+						System.out.println("Comptons les scores !");
+						ShapeUp.compterPoints(ShapeUp);
+						System.out.println("Fin du round !");
+					//}
+				}
+						}
+ */
 
 	

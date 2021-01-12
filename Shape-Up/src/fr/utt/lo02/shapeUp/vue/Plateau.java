@@ -33,6 +33,8 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Plateau extends JFrame implements Observer {
 	
@@ -40,7 +42,9 @@ public class Plateau extends JFrame implements Observer {
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_2_1;
-	private JButton btnCartePiochee;
+	public JButton btnCartePiochee;
+	private JButton btnCarteVictoire;
+	public JButton btnOK;
 	Controleur contr;
 	
 
@@ -71,7 +75,7 @@ public class Plateau extends JFrame implements Observer {
 	
 
 	public JFrame frame;
-	private ButtonCard buttonCards[][] = new ButtonCard[3][5];
+	public ButtonCard buttonCards[][] = new ButtonCard[3][5];
 
 	/**
 	 * Launch the application.
@@ -111,8 +115,8 @@ public class Plateau extends JFrame implements Observer {
 		frame.getContentPane().setBackground(Color.WHITE);
 		//r�cuperer la dimension de l'�cran
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-		int longueur = tailleMoniteur.width * 2/3;
-		int hauteur = tailleMoniteur.height * 2/3;
+		int longueur = tailleMoniteur.width;
+		int hauteur = tailleMoniteur.height;
 		//r�gler la taille de JFrame � 2/3 la taille de l'�cran
 		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -140,32 +144,46 @@ public class Plateau extends JFrame implements Observer {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(929, 181, 278, 389);
+		panel_1.setBounds(929, 100, 370, 738);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		lblNewLabel_1 = new JLabel("Nom du joueur ");
 		lblNewLabel_1.setForeground(new Color(255, 140, 0));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(85, 11, 109, 14);
+		lblNewLabel_1.setBounds(147, 10, 109, 14);
 		panel_1.add(lblNewLabel_1);
 		
 		btnCartePiochee = new JButton("New button");
-		btnCartePiochee.setBounds(24, 51, 229, 327);
+		
+		btnCartePiochee.setBounds(85, 56, 229, 327);
 		panel_1.add(btnCartePiochee);
 		
-		lblNewLabel_2_1 = new JLabel("Afficher carte piocher");
-		lblNewLabel_2_1.setBounds(85, 36, 111, 20);
+		lblNewLabel_2_1 = new JLabel("Carte piochee");
+		lblNewLabel_2_1.setBounds(85, 36, 229, 20);
 		panel_1.add(lblNewLabel_2_1);
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		lblNewLabel_2 = new JLabel("Afficher carte victoire");
-		lblNewLabel_2.setBounds(982, 43, 146, 87);
-		frame.getContentPane().add(lblNewLabel_2);
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		btnCarteVictoire = new JButton("New button");
+		btnCarteVictoire.setBounds(85, 405, 229, 327);
+		panel_1.add(btnCarteVictoire);
+		
+		JLabel lblNewLabel_2_1_1 = new JLabel("Carte victoire");
+		lblNewLabel_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2_1_1.setBounds(85, 385, 229, 20);
+		panel_1.add(lblNewLabel_2_1_1);
+		
+		btnOK = new JButton("Ok !");
+		btnOK.setBounds(423, 759, 117, 29);
+		frame.getContentPane().add(btnOK);
 		
 	}
 
+	
+	public ButtonCard poserCarte(int x, int y) {
+		return this.buttonCards[x][y];
+		
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -175,9 +193,11 @@ public class Plateau extends JFrame implements Observer {
 		
 		if(o instanceof Joueur) {
 		
-			ImageIcon img = new ImageIcon(((Joueur)o).getCartePiochee().getImageCarte());
+		ImageIcon img = new ImageIcon(((Joueur)o).getCartePiochee().getImageCarte());
+		this.btnCartePiochee.setIcon(img);
 			
-			this.btnCartePiochee.setIcon(img);
+		ImageIcon img2 = new ImageIcon(((Joueur)o).getCarteVictoire().getImageCarte());
+		this.btnCarteVictoire.setIcon(img2);
 		}
 		
 	}
