@@ -41,8 +41,6 @@ public class Controleur {
 
 	public int indexJoueur;
 	public int nbreCoup;
-	Thread currThread ;
-	Thread t1;
 	
 	public Controleur(Parametres param) {
 		
@@ -190,8 +188,9 @@ public class Controleur {
 						 */
 						 ShapeUp.setNombreDeJoueur(ShapeUp.getNbreJPhysiques()+ShapeUp.getNbreJVirtuels());
 						 Plateau plateau = new Plateau();
+						 
 						 nbreCoup=0;
-						 for(int i=0; i<partie.getNombreDeJoueur();i++) {
+						 
 							 System.out.println("A toi joueur numero : "+indexJoueur);
 							 partie.getListeJ().get(indexJoueur).addObserver(plateau);
 							 System.out.println(partie.getListeJ().get(indexJoueur).getNomJoueur()+" a pioche sa carte victoire : ");
@@ -201,8 +200,10 @@ public class Controleur {
 							 partie.getListeJ().get(indexJoueur).setCartePiochee(partie.getListeJ().get(indexJoueur).piocherCarte(partie.getPioche()));
 							 partie.getListeJ().get(indexJoueur).getCartePiochee().toString();
 							 plateau.getLblNewLabel_1().setText(partie.getListeJ().get(indexJoueur).getNomJoueur());
-							 
-						 }
+							 // PASSER AU JOUEUR SUIVANT AU CLIC SUR LE BOUTON OK
+							 //utiliser une boucle pour pour effectuer ces actions une fois par joueur
+							 //utiliser ensuite une autre boucle où il pioche juste une carte 
+						
 						
 							 
 						 
@@ -217,6 +218,7 @@ public class Controleur {
 						 			indexJoueur=0;	
 						 		}
 						 		System.out.println("indexJoueur = "+indexJoueur);
+						 		
 						 	}
 						 });
 						
