@@ -189,9 +189,9 @@ public abstract class Joueur extends Observable {
 	
 	/**
 	 * Cette méthode permet de déplacer une carte du tapis. 
-	 * @param position1 C'est la position de la carte à déplacer
+	 * @param position1 C'est la position de la carte à déplacer.
 	 * @param position2 C'est la position où l'on souhaite déplacer la carte.
-	 * @param tapis
+	 * @param tapis C'est le plateau du jeu. 
 	 * @return Un booléen qui confirme le déplacement de la carte. 
 	 */
 	public boolean deplacerCarte(PositionCarte position1,PositionCarte position2, Tapis tapis) {
