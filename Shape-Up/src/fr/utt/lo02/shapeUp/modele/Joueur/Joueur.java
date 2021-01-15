@@ -14,7 +14,11 @@ import fr.utt.lo02.shapeUp.modele.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 
 // test 
-
+/**
+ * La classe joueur est abstraite. Elle decrit les méthodes qui seront utilisées par les joueurs physiques ou virtuels.
+ * @author Sam Noel 
+ *
+ */
 public abstract class Joueur extends Observable {
 	// attribut de la classe joueur 
 	private int score;
@@ -44,10 +48,6 @@ public abstract class Joueur extends Observable {
 		this.carteVictoire = carteVictoire;
 		this.carteEnMain = null;
 	} 
-    
-    public Joueur() {
-    	
-    }
     
     public Joueur(String nomJoueur, boolean commence) {
 		this.nomJoueur = nomJoueur;
@@ -102,8 +102,22 @@ public abstract class Joueur extends Observable {
 
 	// fin des getters et des setters 
 	
-
+/**
+ * Cette méthode décrit un tour de jeu de la version avancée du jeu Shape-UP pour le joueur qui l'utilise. 
+ * @param joueur C'est le joueur qui joue son tour de jeu
+ * @param tapis C'est le plateau du jeu 
+ * @param pioche On y trouve les cartes de la partie
+ * @param compteur C'est le compteur de la partie.
+ */
 	public abstract void jouerAdvanced(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur);
+	
+/**
+ * Cette méthode décrit un tour de jeu de la version classique du jeu Shape-UP pour le joueur qui l'utilise.
+ * @param joueur C'est le joueur qui joue son tour de jeu
+ * @param tapis C'est le plateau du jeu 
+ * @param pioche On y trouve les cartes de la partie
+ * @param compteur C'est le compteur de la partie.
+ * */
 	public abstract void jouer(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur);
 	
 	public String toString() {
@@ -120,7 +134,11 @@ public abstract class Joueur extends Observable {
 	    }  
 	
 	
-   
+   /**
+    * Cette méthode permet de piocher une carte dans la pioche.
+    * @param pioche On y trouve les cartes de la partie. 
+    * @return La première carte de la pioche. 
+    */
     public Carte piocherCarte(Pioche pioche) {
     	Carte cartepiochee = new Carte();
     	cartepiochee = pioche.distribuerUneCarte();
@@ -131,12 +149,14 @@ public abstract class Joueur extends Observable {
     	return cartepiochee;
     }
     
-	
 
-	
-
-
-	
+	/**
+	 * Cette méthode permet de poser une carte sur le tapis. 
+	 * @param position C'est la position où l'on souhaite placer la carte.
+	 * @param carte C'est la carte à placer. 
+	 * @param tapis 
+	 * @return Un booléen qui confirme ou non si la carte est posée 
+	 */
 	public boolean poserCarte(PositionCarte position, Carte carte, Tapis tapis) {
 		boolean cartePose = false;
 		boolean isExist = tapis.isExist(position);
@@ -167,6 +187,13 @@ public abstract class Joueur extends Observable {
 		return cartePose;
 	}
 	
+	/**
+	 * Cette méthode permet de déplacer une carte du tapis. 
+	 * @param position1 C'est la position de la carte à déplacer
+	 * @param position2 C'est la position où l'on souhaite déplacer la carte.
+	 * @param tapis
+	 * @return Un booléen qui confirme le déplacement de la carte. 
+	 */
 	public boolean deplacerCarte(PositionCarte position1,PositionCarte position2, Tapis tapis) {
 		boolean carteDeplace = false;
 		boolean isExist = tapis.isExist(position1);
