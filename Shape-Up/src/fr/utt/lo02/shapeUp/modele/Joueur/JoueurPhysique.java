@@ -8,6 +8,12 @@ import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 
+/**
+ * Cette classe JoueurPhysique permet l'instanciation d'un joueur physique dans la partie et décris les requêtes pour le déplacement et le placement de carte.
+ * @author Sam Noel 
+ *
+ */
+
 public class JoueurPhysique extends Joueur {
 
 	public JoueurPhysique(String nomJoueur, int numJoueur, boolean commence, Carte carteVictoire) {
@@ -20,6 +26,11 @@ public class JoueurPhysique extends Joueur {
 		
 	}
 	
+	/**
+	 * Cette méthode demande au joueur si il veut déplacer une carte. 
+	 * @return Un booléen qui retourne la décision du joueur.
+	 */
+	
 	public boolean chooseMove() {
 		boolean veutDeplacer;
 		Scanner in = new Scanner(System.in);
@@ -28,6 +39,10 @@ public class JoueurPhysique extends Joueur {
 		return veutDeplacer;
 	}
 	
+	/**
+	 * Cette méthode demande de rentrer une valeur de x dans la console 
+	 * @return La valeur de x rentrer dans la console
+	 */
 	public int askX() {
 		Scanner in = new Scanner(System.in);
      	System.out.println("Entrez x.");
@@ -36,6 +51,10 @@ public class JoueurPhysique extends Joueur {
          return x;
 	}
 	
+	/** 
+	 * Cette méthode demande de rentrer une valeur de y dans la console
+	 * @return La valeur de y rentrer dans la console 
+	 */
 	public  int askY() {
 		Scanner in = new Scanner(System.in);
      	System.out.println("Entrez y.");
@@ -44,6 +63,7 @@ public class JoueurPhysique extends Joueur {
          return y;
 	}
 	
+	@Override
 	public void jouerAdvanced(Joueur joueur, Tapis tapis, Pioche pioche, Visiteur compteur) {
 		int longueur;
         int hauteur;
@@ -198,8 +218,6 @@ public class JoueurPhysique extends Joueur {
 	public void jouer( Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) { // a Refinir dans dans joueurPhysique et joueur virtuel. 
     	this.cartePiochee = new Carte();
         this.cartePiochee = piocherCarte(pioche);
-        this.setChanged();
-        this.notifyObservers();
         int longueur;
         int hauteur;
         int x;

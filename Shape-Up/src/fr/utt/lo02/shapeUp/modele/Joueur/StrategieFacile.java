@@ -7,10 +7,14 @@ import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
 import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
-
-public class Strategie1 implements Strategie {
+/**
+ * Cette méthode décrit les méthodes de jeu du joueur virtuel facile. 
+ * @author Sam Noel
+ *
+ */
+public class StrategieFacile implements Strategie {
 	
-	
+@Override
 	public int choisirCarte(Joueur joueur) {
 		int i = 0;
 		if(joueur.carteEnMain.size() == 3) {
@@ -25,7 +29,11 @@ public class Strategie1 implements Strategie {
 		
 		return i;		
 	}
-	
+	/**
+	 * Cette classe permet de calculer un X aléatoire en fonction de la taille du tapis du jeu 
+	 * @param tapis Le plateau du jeu
+	 * @return Une valeur X aléatoire 
+	 */
 	public int randomX(Tapis tapis) {
 		int xMin = tapis.getXMin()-1;
 		int xMax = tapis.getXMax()+1;
@@ -35,6 +43,11 @@ public class Strategie1 implements Strategie {
 		return x;
 	}
 	
+	/**
+	 * Cette classe permet de calculer un Y aléatoire en fonction de la taille du tapis du jeu
+	 * @param tapis Le plateau du jeu 
+	 * @return Une valeur Y aléatoire
+	 */
 	public int randomY(Tapis tapis) {
 		int yMin = tapis.getYMin()-1;
 		int yMax = tapis.getYMax()+1;
@@ -44,6 +57,10 @@ public class Strategie1 implements Strategie {
 		return y;
 	}
 	
+	/**
+	 * Cette méthode permet de renvoyer un booléen aléatoire 
+	 * @return Un bouléen aléatoire 
+	 */
 	public boolean randomBoolean() {
 		int bool = (int)(Math.random()*2);
 		boolean randomBoolean = false;
@@ -55,7 +72,8 @@ public class Strategie1 implements Strategie {
 		return randomBoolean;
 	}
 	
-	public void joueAdvanced(Joueur joueur,Tapis tapis, Pioche pioche,Visiteur compteur) {
+	@Override
+	public void joueAdvancedV(Joueur joueur,Tapis tapis, Pioche pioche,Visiteur compteur) {
         int x;
         int y;
         boolean veutDeplacer = false;
@@ -173,7 +191,8 @@ public class Strategie1 implements Strategie {
          }
 	}
 	
-	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) {
+	@Override
+	public void jouerV(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) {
 		joueur.cartePiochee = new Carte();
         joueur.cartePiochee = joueur.piocherCarte(pioche);
         int x;

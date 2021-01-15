@@ -8,11 +8,23 @@ import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 
-public class Strategie2 implements Strategie{
+/**
+ * Cette méthode décrit les méthodes de jeu du joueur virtuel Difficile.
+ * @author Sam Noel 
+ *
+ */
+public class StrategieDifficile implements Strategie{
 
 	
 
-	
+	/**
+	 * 
+	 * @param joueur Le joueur qui joue son tour de jeu. 
+	 * @param tapis Le plateau de la partie 
+	 * @param carte La carte à placer  
+	 * @param compteur Le compteur de la partie 
+	 * @return  Position de la carte à poser
+	 */
 	public PositionCarte choixPositionClassique(Joueur joueur, Tapis tapis, Carte carte,Visiteur compteur) {
 		int scoreSauv = 0;
 		PositionCarte positionSauv = new PositionCarte (-9,9);
@@ -42,6 +54,7 @@ public class Strategie2 implements Strategie{
 		
 	}
 	
+	@Override
 	public int choisirCarte(Joueur joueur) {
 		int i = 0;
 		if(joueur.carteEnMain.size() == 3) {
@@ -55,6 +68,14 @@ public class Strategie2 implements Strategie{
 		return i;		
 	}
 	
+	/**
+	 * 
+	 * @param joueur Le joueur qui qui joue son tour de jeu
+	 * @param tapis Le tapis de la partie 
+	 * @param carte La carte de poser 
+	 * @param compteur Le compteur de la partie
+	 * @return La position de la carte à poser.
+	 */
 	public PositionCarte choixPositionAdvanced(Joueur joueur, Tapis tapis, Carte carte,Visiteur compteur) {
 		int scoreSauv = 0;
 		PositionCarte positionSauv = new PositionCarte (-9,9);
@@ -87,7 +108,7 @@ public class Strategie2 implements Strategie{
 	
 	
 	@Override
-	public void joueAdvanced(Joueur joueur, Tapis tapis, Pioche pioche,Visiteur compteur) {
+	public void joueAdvancedV(Joueur joueur, Tapis tapis, Pioche pioche,Visiteur compteur) {
 		int i = this.choisirCarte(joueur);
 		System.out.println(joueur.getNomJoueur()+" c'est ton tour !");
 		PositionCarte position = choixPositionAdvanced(joueur, tapis, joueur.getCarteEnMain().get(i), compteur);
@@ -101,7 +122,7 @@ public class Strategie2 implements Strategie{
 	}
 
 	@Override
-	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) {
+	public void jouerV(Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) {
 			joueur.cartePiochee = new Carte();
 	        joueur.cartePiochee = joueur.piocherCarte(pioche);
 	        System.out.println(joueur.getNomJoueur()+" c'est ton tour !");  
