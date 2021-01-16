@@ -13,29 +13,29 @@ import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
  */
 
 public class JoueurVirtuel extends Joueur {
-	
-		private int difficulte;
-		private Strategie strategie;
 
-		public JoueurVirtuel(String nomJoueur, boolean commence, int difficulte) {
-			super(nomJoueur,commence);
-			this.difficulte = difficulte;
-			if(difficulte == 1) {
-				this.strategie = new StrategieFacile();
-			}
-			
-			if(difficulte == 2) {
-				this.strategie = new StrategieDifficile();
-			}
+	private int difficulte;
+	private Strategie strategie;
+
+	public JoueurVirtuel(String nomJoueur, boolean commence, int difficulte) {
+		super(nomJoueur,commence);
+		this.difficulte = difficulte;
+		if(difficulte == 1) {
+			this.strategie = new StrategieFacile();
 		}
-		
+
+		if(difficulte == 2) {
+			this.strategie = new StrategieDifficile();
+		}
+	}
+
 	public JoueurVirtuel(String nomJoueur, boolean commence, Carte carteVictoire, int difficulte) {
 		super(nomJoueur,commence, carteVictoire);
 		this.difficulte = difficulte;
 		if(difficulte == 1) {
 			this.strategie = new StrategieFacile();
 		}
-		
+
 		if(difficulte == 2) {
 			this.strategie = new StrategieDifficile();
 		}
@@ -58,7 +58,7 @@ public class JoueurVirtuel extends Joueur {
 	@Override
 	public void jouer(Joueur joueur,Tapis tapis, Pioche pioche,Visiteur compteur) {
 		this.strategie.jouerV(joueur,tapis, pioche, compteur); 
-		
+
 	}
 
 

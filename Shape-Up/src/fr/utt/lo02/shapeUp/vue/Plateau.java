@@ -37,7 +37,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Plateau extends JFrame implements Observer {
-	
+
 
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
@@ -46,13 +46,13 @@ public class Plateau extends JFrame implements Observer {
 	private JButton btnCarteVictoire;
 	public JButton btnOK;
 	Controleur contr;
-	
 
-	
+
+
 	public void setContr(Controleur contr) {
 		this.contr = contr;
 	}
-	
+
 	public Controleur getContr() {
 		return this.contr;
 	}
@@ -72,7 +72,7 @@ public class Plateau extends JFrame implements Observer {
 	public ButtonCard[][] getButtonCards() {
 		return buttonCards;
 	}
-	
+
 
 	public JFrame frame;
 	public ButtonCard buttonCards[][] = new ButtonCard[3][5];
@@ -92,11 +92,11 @@ public class Plateau extends JFrame implements Observer {
 				}
 			}
 		});
-		*/
-		
-		
+		 */
+
+
 		Plateau plateau = new Plateau();
-		
+
 	}
 
 	/**
@@ -125,80 +125,80 @@ public class Plateau extends JFrame implements Observer {
 		panel.setBounds(214, 181, 649, 470);
 		frame.getContentPane().add(panel);
 		panel.setLayout(new GridLayout(3, 5, 5, 5));
-		
-		  for(int i = 0; i <3 ; i++) {
-		    	for(int j = 0 ; j<5;j++) {
-		    		buttonCards[i][j] = new ButtonCard(j,i);
-		    		panel.add(buttonCards[i][j]);
-		    		
-		    		
-		    	}
-		    }
-	  
-		
+
+		for(int i = 0; i <3 ; i++) {
+			for(int j = 0 ; j<5;j++) {
+				buttonCards[i][j] = new ButtonCard(j,i);
+				panel.add(buttonCards[i][j]);
+
+
+			}
+		}
+
+
 		JLabel lblNewLabel = new JLabel("SHAPE UP!");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(255, 165, 0));
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 70));
 		lblNewLabel.setBounds(423, 43, 417, 74);
 		frame.getContentPane().add(lblNewLabel);
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(929, 100, 370, 738);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-		
+
 		lblNewLabel_1 = new JLabel("Nom du joueur ");
 		lblNewLabel_1.setForeground(new Color(255, 140, 0));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(147, 10, 109, 14);
 		panel_1.add(lblNewLabel_1);
-		
+
 		btnCartePiochee = new JButton("New button");
-		
+
 		btnCartePiochee.setBounds(85, 56, 229, 327);
 		panel_1.add(btnCartePiochee);
-		
+
 		lblNewLabel_2_1 = new JLabel("Carte piochee");
 		lblNewLabel_2_1.setBounds(85, 36, 229, 20);
 		panel_1.add(lblNewLabel_2_1);
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		btnCarteVictoire = new JButton("New button");
 		btnCarteVictoire.setBounds(85, 405, 229, 327);
 		panel_1.add(btnCarteVictoire);
-		
+
 		JLabel lblNewLabel_2_1_1 = new JLabel("Carte victoire");
 		lblNewLabel_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2_1_1.setBounds(85, 385, 229, 20);
 		panel_1.add(lblNewLabel_2_1_1);
-		
+
 		btnOK = new JButton("Ok !");
 		btnOK.setBounds(423, 759, 117, 29);
 		frame.getContentPane().add(btnOK);
-		
+
 	}
 
-	
+
 	public ButtonCard poserCarte(int x, int y) {
 		return this.buttonCards[x][y];
-		
+
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		if(o instanceof Tapis) {
-			
+
 		}
-		
+
 		if(o instanceof Joueur) {
-		
-		ImageIcon img = new ImageIcon(((Joueur)o).getCartePiochee().getImageCarte());
-		this.btnCartePiochee.setIcon(img);
-			
-		ImageIcon img2 = new ImageIcon(((Joueur)o).getCarteVictoire().getImageCarte());
-		this.btnCarteVictoire.setIcon(img2);
+
+			ImageIcon img = new ImageIcon(((Joueur)o).getCartePiochee().getImageCarte());
+			this.btnCartePiochee.setIcon(img);
+
+			ImageIcon img2 = new ImageIcon(((Joueur)o).getCarteVictoire().getImageCarte());
+			this.btnCarteVictoire.setIcon(img2);
 		}
-		
+
 	}
 }

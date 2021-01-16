@@ -63,12 +63,12 @@ public class Accueil {
 		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		
+
+
 		JButton btnRgles = new JButton("Regles\r\n");
 		btnRgles.addMouseListener(new ListenerRegles());
-		
-		
+
+
 		JButton btnQuitter = new JButton("Quitter\r\n");
 		btnQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,7 +81,7 @@ public class Accueil {
 		btnRgles.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		btnRgles.setBounds(308, 365, 321, 47);
 		frame.getContentPane().add(btnRgles);
-		
+
 		JButton btnNewButton = new JButton("Nouvelle partie");
 		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		btnNewButton.setBounds(471, 289, 321, 47);
@@ -95,7 +95,7 @@ public class Accueil {
 		Label.setIcon(new ImageIcon(img));
 		Label.setBounds(747, 171, 517, 510);
 		frame.getContentPane().add(Label);
-		
+
 		/*
 		 * Ajout de la 2eme image
 		 */
@@ -104,16 +104,16 @@ public class Accueil {
 		Label2.setIcon(new ImageIcon(img2));
 		Label2.setBounds(0, 0, 510, 336);
 		frame.getContentPane().add(Label2);
-		
+
 		JLabel lblNewLabel = new JLabel("SHAPE UP!");
 		lblNewLabel.setForeground(new Color(255, 165, 0));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 70));
 		lblNewLabel.setBounds(658, 28, 417, 74);
 		frame.getContentPane().add(lblNewLabel);
-		
-		
-		
+
+
+
 
 	}
 }

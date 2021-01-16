@@ -59,8 +59,8 @@ public class Scores {
 		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		
+
+
 		/*
 		 * Ajout de l'image
 		 */
@@ -69,7 +69,7 @@ public class Scores {
 		Label.setIcon(new ImageIcon(img));
 		Label.setBounds(747, 171, 517, 510);
 		frame.getContentPane().add(Label);
-		
+
 		/*
 		 * Ajout de la 2eme image
 		 */
@@ -78,40 +78,40 @@ public class Scores {
 		Label2.setIcon(new ImageIcon(img2));
 		Label2.setBounds(0, 0, 510, 336);
 		frame.getContentPane().add(Label2);
-		
+
 		JLabel lblNewLabel = new JLabel("SHAPE UP!");
 		lblNewLabel.setForeground(new Color(255, 165, 0));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 70));
 		lblNewLabel.setBounds(658, 28, 417, 74);
 		frame.getContentPane().add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Scores");
 		lblNewLabel_1.setBounds(91, 329, 353, 58);
 		lblNewLabel_1.setFont(new Font("Segoe UI", Font.BOLD, 50));
 		lblNewLabel_1.setForeground(new Color(255, 165, 0));
 		frame.getContentPane().add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Score de +nom du joueur : ");
 		lblNewLabel_2.setBounds(91, 392, 590, 82);
 		lblNewLabel_2.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		lblNewLabel_2.setForeground(new Color(255, 165, 0));
 		frame.getContentPane().add(lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_2_1 = new JLabel("Score de +nom du joueur : ");
 		lblNewLabel_2_1.setBounds(91, 455, 590, 58);
 		lblNewLabel_2_1.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		lblNewLabel_2_1.setForeground(new Color(255, 165, 0));
 		frame.getContentPane().add(lblNewLabel_2_1);
-		
+
 		JLabel lblNewLabel_2_2 = new JLabel("Score de +nom du joueur : ");
 		lblNewLabel_2_2.setBounds(91, 512, 614, 60);
 		lblNewLabel_2_2.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		lblNewLabel_2_2.setForeground(new Color(255, 165, 0));
 		frame.getContentPane().add(lblNewLabel_2_2);
-		
-		
-		
+
+
+
 
 	}
 }

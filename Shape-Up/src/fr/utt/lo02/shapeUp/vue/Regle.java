@@ -58,7 +58,7 @@ public class Regle {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		Image img = new ImageIcon(this.getClass().getResource("/regles.png")).getImage();
-		
+
 		JButton btnNewButton = new JButton("Retour");
 		btnNewButton.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -68,11 +68,11 @@ public class Regle {
 		});
 		btnNewButton.setBounds(993, 514, 214, 48);
 		frame.getContentPane().add(btnNewButton);
-		
-			JLabel Label = new JLabel("");
-			Label.setIcon(new ImageIcon(img));
-			Label.setBounds(0, 0, 1264, 681);
-			frame.getContentPane().add(Label);
+
+		JLabel Label = new JLabel("");
+		Label.setIcon(new ImageIcon(img));
+		Label.setBounds(0, 0, 1264, 681);
+		frame.getContentPane().add(Label);
 	}
 
 }

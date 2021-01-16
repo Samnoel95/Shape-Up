@@ -12,26 +12,26 @@ import javax.swing.JButton;
 import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 
 public class ButtonCard extends JButton {
-	
+
 	private Image cardImage;
 	private PositionCarte positionCarte;
 
-	
+
 	public ButtonCard(int x, int y) {
 		this.positionCarte = new PositionCarte(x, y);
 		addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("x="+positionCarte.getX());
 				System.out.println("y="+positionCarte.getY());
-				
+
 			}
 		});
-				
-			
 
-		
+
+
+
 	}
 
 	public PositionCarte getPositionCarte() {
@@ -49,6 +49,6 @@ public class ButtonCard extends JButton {
 	public void setCardImage(Image cardImage) {
 		this.cardImage = cardImage;
 	}
-	
+
 
 }
