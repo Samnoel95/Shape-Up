@@ -9,29 +9,42 @@ import fr.utt.lo02.shapeUp.vue.Parametres;
 import fr.utt.lo02.shapeUp.vue.Plateau;
 import fr.utt.lo02.shapeUp.vue.Regle;
 
+/**
+ * Classe qui agit au clic de la souris
+ * 
+ * 
+ * @author Lorène Bergougnoux
+ *
+ */
 
-public class ListenerPlateau implements MouseListener{
+public class ListenerPlateau implements MouseListener {
 
+	/**
+	 * Constructeur de la classe ListenerPlateau
+	 * 
+	 */
 
 	public ListenerPlateau() {
 		super();
 	}
 
-
 	public void mouseClicked(MouseEvent arg0) {
 
 	}
-
 
 	public void mouseEntered(MouseEvent arg0) {
 
 	}
 
-
 	public void mouseExited(MouseEvent arg0) {
 
 	}
 
+	/**
+	 * Méthode qui permet l'ouverture d'une page plateau au clic
+	 * 
+	 * @param arg0, un évènement lié à la souris
+	 */
 
 	public void mousePressed(MouseEvent arg0) {
 		Plateau plate = new Plateau();
@@ -39,11 +52,8 @@ public class ListenerPlateau implements MouseListener{
 
 	}
 
-
 	public void mouseReleased(MouseEvent arg0) {
 
 	}
-
-
 
 }

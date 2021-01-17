@@ -4,18 +4,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import fr.utt.lo02.shapeUp.controleur.Controleur;
+import fr.utt.lo02.shapeUp.vue.Accueil;
 import fr.utt.lo02.shapeUp.vue.Parametres;
 import fr.utt.lo02.shapeUp.vue.Plateau;
+
+/**
+ * Classe qui lance le jeu
+ * 
+ * @author Sam Noel
+ *
+ */
 
 public class Lanceur {
 
 	public static void main(String[] args) {
 
-		Parametres param = new Parametres();
-		param.frame.setVisible(true);
-
+		Accueil accueil = new Accueil();
+		accueil.frame.setVisible(true);
 
 	}
 }
-// 189
-

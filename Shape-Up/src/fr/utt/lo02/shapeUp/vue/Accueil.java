@@ -20,46 +20,33 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+/**
+ * Classe qui decrit une vue d'accueil
+ * @author Sam Noel 
+ *
+ */
 
 public class Accueil {
 
 	public JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Accueil window = new Accueil();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
-	 * Create the application.
+	 * Constructeur de la classe
 	 */
 	public Accueil() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Méthode qui initialise les composants de la vue
 	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		//r�cuperer la dimension de l'�cran
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 		int longueur = tailleMoniteur.width * 2/3;
 		int hauteur = tailleMoniteur.height * 2/3;
-		//r�gler la taille de JFrame � 2/3 la taille de l'�cran
 		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -71,6 +58,9 @@ public class Accueil {
 
 		JButton btnQuitter = new JButton("Quitter\r\n");
 		btnQuitter.addActionListener(new ActionListener() {
+			/**
+			 * Méthode qui précise l'action au clic pour le bouton btnQuitter
+			 */
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
@@ -87,18 +77,14 @@ public class Accueil {
 		btnNewButton.setBounds(471, 289, 321, 47);
 		frame.getContentPane().add(btnNewButton);
 		btnNewButton.addMouseListener(new ListenerParam());
-		/*
-		 * Ajout de l'image
-		 */
+		
 		JLabel Label = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/Shape_up.png")).getImage();
 		Label.setIcon(new ImageIcon(img));
 		Label.setBounds(747, 171, 517, 510);
 		frame.getContentPane().add(Label);
 
-		/*
-		 * Ajout de la 2eme image
-		 */
+		
 		Image img2 = new ImageIcon(this.getClass().getResource("/Shape_up2.png")).getImage();
 		JLabel Label2 = new JLabel("");
 		Label2.setIcon(new ImageIcon(img2));
