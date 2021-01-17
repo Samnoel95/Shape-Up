@@ -14,32 +14,80 @@ import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
  */
 public class  Tapis extends Observable {
 
-	/*
-	  	Map<String,Integer> map = new TreeMap<String, Integer>();
-        map.put("1", new Integer(10));
-        map.put("2", new Integer(20));
-        map.put("3", new Integer(30));
-        map.put("4", new Integer(10));       
-
-        System.out.println(map.get("1"));
-        System.out.println(map.size());
-        map.remove("1");
-        System.out.println(map.get("1"));
-        System.out.println(map.size());       
-
-	 */
 
 	private HashMap<PositionCarte, Carte>plateau;
 	private formePlateau forme;
 	private boolean estPlein;
 	Map<PositionCarte, Carte> tapis = new HashMap<PositionCarte, Carte>();
 
+	/**
+	 * Constructeur de la classe  Tapis 
+	 * @param forme La forme du plateau : formePlateau
+	 */
 	public Tapis(formePlateau forme) {
 		HashMap<PositionCarte, Carte> tapis = new HashMap<PositionCarte, Carte>();
 		this.setPlateau(tapis);
 		this.setForme(forme);
 		this.setEstPlein(false);
 
+	}
+/**
+ * Getter de la forme du plateau du tapis 
+ * @return La forme du plateau du tapis : formePlateau
+ */
+	public formePlateau getForme() {
+		return forme;		
+	}
+
+/**
+ * Setter de la forme du plateau du tapis 
+ * @param forme Une forme de plateau : formePlateau
+ */
+	public void setForme(formePlateau forme) {
+		this.forme = forme;
+	}
+
+/**
+ * Getter du booléen estPlein du tapis 
+ * @return Le booléen estPlein du tapis 
+ */
+	public boolean getEstPlein() {
+		return estPlein;
+	}
+
+/**
+ * Setter du booléen estPLein du tapis 
+ * @param estPlein Un booléen, 1 pour un tapis plein, 0 pour un tapis vide
+ */
+	public void setEstPlein(boolean estPlein) {
+		this.estPlein = estPlein;
+	}
+
+/**
+ * Getter de la HashMap du tapis 
+ * @return la HashMap du tapis
+ */
+	public HashMap<PositionCarte, Carte> getPlateau() {
+		return plateau;
+	}
+
+/**
+ * Setter de la HashMap du tapis 
+ * @param tapis Une HashMap avec en clé une PositionCarte et une valeur de Carte 
+ */
+	public void setPlateau(HashMap<PositionCarte, Carte> tapis) {
+		this.plateau = tapis;
+	}
+
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+
+		sb.append("Il y a ");
+		sb.append(this.plateau.size());
+		sb.append(" cartes posÃ©es sur le plateau.");
+		sb.append(" // ");
+		sb.append(this.plateau.entrySet());
+		return sb.toString();
 	}
 
 	/**
@@ -254,48 +302,5 @@ public class  Tapis extends Observable {
 
 		}
 		return layoutOk;
-	}
-
-
-
-	// setters And Getters
-	public formePlateau getForme() {
-		return forme;
-	}
-
-
-	public void setForme(formePlateau forme) {
-		this.forme = forme;
-	}
-
-
-	public boolean getEstPlein() {
-		return estPlein;
-	}
-
-
-	public void setEstPlein(boolean estPlein) {
-		this.estPlein = estPlein;
-	}
-
-
-	public HashMap<PositionCarte, Carte> getPlateau() {
-		return plateau;
-	}
-
-
-	public void setPlateau(HashMap<PositionCarte, Carte> tapis) {
-		this.plateau = tapis;
-	}
-
-	public String toString() {
-		StringBuffer sb = new StringBuffer();
-
-		sb.append("Il y a ");
-		sb.append(this.plateau.size());
-		sb.append(" cartes posÃ©es sur le plateau.");
-		sb.append(" // ");
-		sb.append(this.plateau.entrySet());
-		return sb.toString();
 	}
 }

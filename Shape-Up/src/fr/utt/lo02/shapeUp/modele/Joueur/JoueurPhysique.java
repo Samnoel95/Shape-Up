@@ -2,7 +2,6 @@ package fr.utt.lo02.shapeUp.modele.Joueur;
 
 import java.util.Scanner;
 
-import fr.utt.lo02.shapeUp.modele.Carte.Carte;
 import fr.utt.lo02.shapeUp.modele.Carte.Pioche;
 import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.Visiteur;
@@ -16,11 +15,11 @@ import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 
 public class JoueurPhysique extends Joueur {
 
-	public JoueurPhysique(String nomJoueur, int numJoueur, boolean commence, Carte carteVictoire) {
-		super(nomJoueur,commence, carteVictoire);
-
-	}
-
+	/**
+	 * Constructeur de la classe JoueurPhysique
+	 * @param nomJoueur Un nom de joueur
+	 * @param commence Un booléen pour savoir si le joueur commence, true pour commencer
+	 */
 	public JoueurPhysique(String nomJoueur, boolean commence) {
 		super(nomJoueur,commence);
 
@@ -65,20 +64,11 @@ public class JoueurPhysique extends Joueur {
 
 	@Override
 	public void jouerAdvanced(Joueur joueur, Tapis tapis, Pioche pioche, Visiteur compteur) {
-		int longueur;
-		int hauteur;
 		int x;
 		int y;
 		boolean veutDeplacer = false;
 		boolean aDeplace = false;
-		//System.out.println(this.getNomJoueur()+" c'est ton tour !");
 
-		/*
-        longueur = tapis.longueurPlateau();
-        hauteur = tapis.hauteurPlateau();
-        System.out.println("La longueur du plateau est  "+longueur);
-        System.out.println("La hauteur du plateau est "+hauteur);
-		 */
 		System.out.println("Voici le plateau actuel :");
 		System.out.println(tapis.toString());
 		if (!tapis.getPlateau().isEmpty() && tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
@@ -159,12 +149,6 @@ public class JoueurPhysique extends Joueur {
 			carteEnMain.add(cartePiochee);
 		}
 
-		/*
-          longueur = tapis.longueurPlateau();
-          hauteur = tapis.hauteurPlateau();
-          System.out.println("La longueur du plateau est  "+longueur);
-          System.out.println("La hauteur du plateau est "+hauteur);
-		 */
 		System.out.println("Voici le plateau actuel :");
 		System.out.println(tapis.toString());
 		if( aDeplace == false && tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
@@ -173,7 +157,7 @@ public class JoueurPhysique extends Joueur {
 
 
 			if(veutDeplacer) {
-				// on deplace
+
 				System.out.println("Coordonnees de la carte a deplacer : ");
 
 				x = askX();
@@ -217,20 +201,11 @@ public class JoueurPhysique extends Joueur {
 	@Override
 	public void jouer( Joueur joueur,Tapis tapis, Pioche pioche, Visiteur compteur) { // a Refinir dans dans joueurPhysique et joueur virtuel. 
 		this.cartePiochee = piocherCarte(pioche);
-		int longueur;
-		int hauteur;
 		int x;
 		int y;
 		boolean veutDeplacer = false;
 		boolean aDeplace = false;
-		//System.out.println(this.getNomJoueur()+" c'est ton tour !");
 
-		/*
-        longueur = tapis.longueurPlateau();
-        hauteur = tapis.hauteurPlateau();
-        System.out.println("La longueur du plateau est  "+longueur);
-        System.out.println("La hauteur du plateau est "+hauteur);
-		 */
 		System.out.println("Voici le plateau actuel :");
 		System.out.println(tapis.toString());
 		if (!tapis.getPlateau().isEmpty() && tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
@@ -298,20 +273,12 @@ public class JoueurPhysique extends Joueur {
 		}
 
 
-		/*
-          longueur = tapis.longueurPlateau();
-          hauteur = tapis.hauteurPlateau();
-          System.out.println("La longueur du plateau est  "+longueur);
-          System.out.println("La hauteur du plateau est "+hauteur);
-		 */
-
 		if( aDeplace == false &&  tapis.getPlateau().size() != 1 && tapis.getPlateau().size() != 15) {
 
 			veutDeplacer = chooseMove();
 
 
 			if(veutDeplacer) {
-				// on deplace
 
 				System.out.println("Coordonnees de la carte a deplacer : ");
 

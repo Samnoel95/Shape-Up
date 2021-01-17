@@ -13,14 +13,13 @@ import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 import fr.utt.lo02.shapeUp.modele.CompteurScore.Visiteur;
 import fr.utt.lo02.shapeUp.modele.Tapis.Tapis;
 
-// test 
 /**
  * La classe joueur est abstraite. Elle decrit les méthodes qui seront utilisées par les joueurs physiques ou virtuels.
  * @author Sam Noel 
  *
  */
 public abstract class Joueur extends Observable {
-	// attribut de la classe joueur 
+	
 	private int score;
 	private String nomJoueur;
 	private boolean commence;
@@ -28,27 +27,23 @@ public abstract class Joueur extends Observable {
 	protected LinkedList<Carte> carteEnMain;
 	protected Carte cartePiochee;
 
-
-	// constructeur d'une instance de Joueur 
-
-
-	public Carte getCartePiochee() {
-		return cartePiochee;
-	}
-
-	public void setCartePiochee(Carte cartePiochee) {
-		this.cartePiochee = cartePiochee;
-		this.setChanged();
-		this.notifyObservers();
-	}
-
+/**
+ * Constructeur de la classe Joueur avec carte de victoire
+ * @param nomJoueur Le nom du joueur
+ * @param commence Un booléen qui confirme que le joueur commence 
+ * @param carteVictoire La carte de victoire du joueur dans la partie 
+ */
 	public Joueur(String nomJoueur, boolean commence, Carte carteVictoire) {
 		this.nomJoueur = nomJoueur;
 		this.commence = commence;
 		this.carteVictoire = carteVictoire;
 		this.carteEnMain = null;
 	} 
-
+/**
+ * Constructeur de la classe Joueur sans carte de victoire
+ * @param nomJoueur Le nom du joueur
+ * @param commence Un booléen qui confirme que le joueur commence 
+ */
 	public Joueur(String nomJoueur, boolean commence) {
 		this.nomJoueur = nomJoueur;
 		this.commence = commence;
@@ -56,51 +51,94 @@ public abstract class Joueur extends Observable {
 		this.carteEnMain = new LinkedList<>();
 	} 
 
-
-	// debut des getters et des setters
+/**
+ * Getter des cartes en main du joueur
+ * @return Une LinkedList avec les cartes en main du joueur
+ */
 	public LinkedList<Carte> getCarteEnMain(){
 		return carteEnMain;
 	}
-
+/**
+ * setter des cartes en main du joueur
+ * @param carteEnMain Une linkedList avec des cartes
+ */
 	public void setCarteEnMain(LinkedList<Carte> carteEnMain){
 		this.carteEnMain = carteEnMain;
 	}
-
+/**
+ * Getter du score du joueur
+ * @return Un Score : Int 
+ */
 	public int getScore() {
 		return score;
 	}
-
+/**
+ * Setter du score du joueur
+ * @param score Un score : Int
+ */
 	public void setScore(int score) {
 		this.score=score;
 	}
-
+/**
+ * Getter du nom du joueur
+ * @return Le nom du joueur : String 
+ */
 	public String getNomJoueur() {
 		return nomJoueur;
 	}
-
+/**
+ * Setter du nom du joueur
+ * @param nomJoueur Un nom de joueur : String 
+ */
 	public void setNomJoueur(String nomJoueur) {
 		this.nomJoueur = nomJoueur;
 	}
 
-
+/**
+ * Getter du booléen : commence 
+ * @return Le booléen commence du joueur 
+ */
 	public boolean getCommence() {
 		return commence;
 	}
-
+/**
+ * Setter du booléen : commence 
+ * @param commence Un booléen 
+ */
 	public void setCommence(boolean commence) {
 		this.commence = commence;
 	}
-
+/**
+ * Getter de la carte victoire du joueur 
+ * @return La carte victoire du joueur : Carte 
+ */
 	public Carte getCarteVictoire() {
 		return carteVictoire;
 	}
-
+/**
+ * Setter de la carte victoire du joueur 
+ * @param carteVictoire Une carte : Carte 
+ */
 	public void setCarteVictoire(Carte carteVictoire) {
 		this.carteVictoire = carteVictoire;
 	}
+	/**
+	 * Getter de la carte piochée du joueur
+	 * @return La carte piochée : Carte 
+	 */
+	public Carte getCartePiochee() {
+		return cartePiochee;
+	}
+/**
+ * Setter de la carte piochée du joueur
+ * @param cartePiochee Une carte : Carte 
+ */
+	public void setCartePiochee(Carte cartePiochee) {
+		this.cartePiochee = cartePiochee;
+		this.setChanged();
+		this.notifyObservers();
+	}
 
-
-	// fin des getters et des setters 
 
 	/**
 	 * Cette méthode décrit un tour de jeu de la version avancée du jeu Shape-UP pour le joueur qui l'utilise. 
