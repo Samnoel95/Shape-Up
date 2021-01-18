@@ -16,63 +16,43 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+/**
+ * Classe qui decrit une vue de scores
+ * 
+ * @author Lorène Bergougnoux
+ *
+ */
 
 public class Scores {
 
 	private JFrame frame;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Scores window = new Scores();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
+	 * Méthode qui crée la vue
 	 */
 	public Scores() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Méthode qui initialise les composants de la vue
 	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		//r�cuperer la dimension de l'�cran
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
-		int longueur = tailleMoniteur.width * 2/3;
-		int hauteur = tailleMoniteur.height * 2/3;
-		//r�gler la taille de JFrame � 2/3 la taille de l'�cran
+		int longueur = tailleMoniteur.width * 2 / 3;
+		int hauteur = tailleMoniteur.height * 2 / 3;
 		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-
-		/*
-		 * Ajout de l'image
-		 */
 		JLabel Label = new JLabel("");
 		Image img = new ImageIcon(this.getClass().getResource("/Shape_up.png")).getImage();
 		Label.setIcon(new ImageIcon(img));
 		Label.setBounds(747, 171, 517, 510);
 		frame.getContentPane().add(Label);
 
-		/*
-		 * Ajout de la 2eme image
-		 */
 		Image img2 = new ImageIcon(this.getClass().getResource("/Shape_up2.png")).getImage();
 		JLabel Label2 = new JLabel("");
 		Label2.setIcon(new ImageIcon(img2));
@@ -109,9 +89,6 @@ public class Scores {
 		lblNewLabel_2_2.setFont(new Font("Segoe UI", Font.PLAIN, 30));
 		lblNewLabel_2_2.setForeground(new Color(255, 165, 0));
 		frame.getContentPane().add(lblNewLabel_2_2);
-
-
-
 
 	}
 }

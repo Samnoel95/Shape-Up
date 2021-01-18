@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-
 import fr.utt.lo02.shapeUp.controleur.Controleur;
 
 import fr.utt.lo02.shapeUp.modele.Joueur.Joueur;
@@ -36,8 +35,13 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Classe qui decrit une vue plateau
+ * 
+ * @author Sam Noel
+ *
+ */
 public class Plateau extends JFrame implements Observer {
-
 
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
@@ -47,77 +51,72 @@ public class Plateau extends JFrame implements Observer {
 	public JButton btnOK;
 	Controleur contr;
 
-
+	/**
+	 * Méthode qui définit le controleur
+	 * @param contr, un controleur
+	 */
 
 	public void setContr(Controleur contr) {
 		this.contr = contr;
 	}
 
+	/**
+	 * Méthode qui retourne le controleur
+	 */
 	public Controleur getContr() {
 		return this.contr;
 	}
 
+	/**
+	 * Méthode qui retourne le JLabel lblNewLabel_1
+	 */
 	public JLabel getLblNewLabel_1() {
 		return lblNewLabel_1;
 	}
 
+	/**
+	 * Méthode qui retourne le JLabel lblNewLabel_2
+	 */
 	public JLabel getLblNewLabel_2() {
 		return lblNewLabel_2;
 	}
 
+	/**
+	 * Méthode qui retourne le JLabel lblNewLabel_2_1
+	 */
 	public JLabel getLblNewLabel_2_1() {
 		return lblNewLabel_2_1;
 	}
 
+	/**
+	 * Méthode qui retourne l'attribut ButtonCard
+	 */
 	public ButtonCard[][] getButtonCards() {
 		return buttonCards;
 	}
-
 
 	public JFrame frame;
 	public ButtonCard buttonCards[][] = new ButtonCard[3][5];
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		/*
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Plateau window = new Plateau();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		 */
-
-
-		Plateau plateau = new Plateau();
-
-	}
-
-	/**
-	 * Create the application.
+	 * Méthode qui crée la vue
 	 */
 	public Plateau() {
-		initialize(); 
+		initialize();
 		frame.setVisible(true);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Méthode qui initialise les composants de la vue
 	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.WHITE);
-		//r�cuperer la dimension de l'�cran
+		// r�cuperer la dimension de l'�cran
 		Dimension tailleMoniteur = Toolkit.getDefaultToolkit().getScreenSize();
 		int longueur = tailleMoniteur.width;
 		int hauteur = tailleMoniteur.height;
-		//r�gler la taille de JFrame � 2/3 la taille de l'�cran
+		// r�gler la taille de JFrame � 2/3 la taille de l'�cran
 		frame.setSize(longueur, hauteur);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -126,15 +125,13 @@ public class Plateau extends JFrame implements Observer {
 		frame.getContentPane().add(panel);
 		panel.setLayout(new GridLayout(3, 5, 5, 5));
 
-		for(int i = 0; i <3 ; i++) {
-			for(int j = 0 ; j<5;j++) {
-				buttonCards[i][j] = new ButtonCard(j,i);
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 5; j++) {
+				buttonCards[i][j] = new ButtonCard(j, i);
 				panel.add(buttonCards[i][j]);
-
 
 			}
 		}
-
 
 		JLabel lblNewLabel = new JLabel("SHAPE UP!");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -179,24 +176,33 @@ public class Plateau extends JFrame implements Observer {
 
 	}
 
+	/**
+	 * Méthode qui permet de poser une carte
+	 * 
+	 * @param x, la ligne sur laquelle on pose la carte
+	 * @param y, la colonne sur laquelle on pose la carte
+	 */
 
 	public ButtonCard poserCarte(int x, int y) {
 		return this.buttonCards[x][y];
 
 	}
 
+	/**
+	 * Méthode d'Observer qui agit lorsque l'état du tapis ou du joueur change
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		if(o instanceof Tapis) {
+		if (o instanceof Tapis) {
 
 		}
 
-		if(o instanceof Joueur) {
+		if (o instanceof Joueur) {
 
-			ImageIcon img = new ImageIcon(((Joueur)o).getCartePiochee().getImageCarte());
+			ImageIcon img = new ImageIcon(((Joueur) o).getCartePiochee().getImageCarte());
 			this.btnCartePiochee.setIcon(img);
 
-			ImageIcon img2 = new ImageIcon(((Joueur)o).getCarteVictoire().getImageCarte());
+			ImageIcon img2 = new ImageIcon(((Joueur) o).getCarteVictoire().getImageCarte());
 			this.btnCarteVictoire.setIcon(img2);
 		}
 
