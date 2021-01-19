@@ -18,7 +18,6 @@ public class Carte {
 	private Couleur couleur;
 	private Forme forme;
 	private boolean estPlein;
-	PositionCarte position;
 
 	/**
 	 * Constructeur de la classe carte. Dans ce constructeur, la carte est relié à une image du package imageCarte 
@@ -49,38 +48,65 @@ public class Carte {
 		}
 
 	}
-
-
-	public void setPosition(int x, int y) {
-		this.position.setX(x);
-		this.position.setY(y);
-	}
-
+	/**
+	 * Getter de la couleur de la carte 
+	 * @return La couleur de la carte : Couleur
+	 */
 	public Couleur getCouleur() {
 		return couleur;
 	}
-
+	/**
+	 * Setter de la couleur de la carte 
+	 * @param couleur Une couleur : Couleur 
+	 */
 	public void setCouleur(Couleur couleur) {
 		this.couleur = couleur;
 	}
-
+	/**
+	 * Getter de la forme de la carte 
+	 * @return La forme de la carte : Forme
+	 */
 	public Forme getForme() {
 		return forme;
 	}
-
+	/**
+	 * Setter de la forme de la carte 
+	 * @param forme Une forme : Forme
+	 */
 	public void setForme(Forme forme) {
 		this.forme = forme;
 	}
-
+	/**
+	 * Getter du booléen estPLein 
+	 * @return Un booléen qui qui prend true si la carte est pleine ou false si la carte est vide 
+	 */
 	public boolean getEstPlein() {
 		return estPlein;
 	}
-
+	/**
+	 * Setter du booléen estPlein 
+	 * @param estPlein Un booléen qui qui prend true si la carte est pleine ou false si la carte est vide 
+	 */
 	public void setEstPlein(boolean estPlein) {
 		this.estPlein = estPlein;
 	}
-
-
+	/**
+	 * Getter de l'image de la carte 
+	 * @return L'image de la carte 
+	 */
+	public BufferedImage getImageCarte() {
+		return imageCarte;
+	}
+	/**
+	 * Setter de l'image de la carte 
+	 * @param imageCarte Une image 
+	 */
+	public void setImageCarte(BufferedImage imageCarte) {
+		this.imageCarte = imageCarte;
+	}
+/**
+ * Affiche les caractéristiques de la carte 
+ */
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(this.forme);
@@ -93,15 +119,4 @@ public class Carte {
 			sb.append("VIDE");
 		return sb.toString();
 	}  
-
-
-
-	public BufferedImage getImageCarte() {
-		return imageCarte;
-	}
-
-	public void setImageCarte(BufferedImage imageCarte) {
-		this.imageCarte = imageCarte;
-	}
-
 }

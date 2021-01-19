@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import fr.utt.lo02.shapeUp.modele.Carte.PositionCarte;
 
 /**
- * Classe qui décrit un bouton sur le plateau
+ * Classe qui décrit un bouton sur le plateau avec une position qu'il lui est associ�
  * 
  * @author Sam Noel
  *
