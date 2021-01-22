@@ -181,6 +181,7 @@ public class Plateau extends JFrame implements Observer {
 	 * 
 	 * @param x, la ligne sur laquelle on pose la carte
 	 * @param y, la colonne sur laquelle on pose la carte
+	 * @return Retourne le button avec la bonne position 
 	 */
 
 	public ButtonCard poserCarte(int x, int y) {

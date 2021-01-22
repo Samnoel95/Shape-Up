@@ -1,1 +1,8 @@
+fr.utt.lo02.shapeUp.controleur
+fr.utt.lo02.shapeUp.lanceur
+fr.utt.lo02.shapeUp.modele.Carte
+fr.utt.lo02.shapeUp.modele.CompteurScore
 fr.utt.lo02.shapeUp.modele.Joueur
+fr.utt.lo02.shapeUp.modele.Partie
+fr.utt.lo02.shapeUp.modele.Tapis
+fr.utt.lo02.shapeUp.vue

@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"fr.utt.lo02.shapeUp.modele.Joueur"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"fr.utt.lo02.shapeUp.controleur"},{"l":"fr.utt.lo02.shapeUp.lanceur"},{"l":"fr.utt.lo02.shapeUp.modele.Carte"},{"l":"fr.utt.lo02.shapeUp.modele.CompteurScore"},{"l":"fr.utt.lo02.shapeUp.modele.Joueur"},{"l":"fr.utt.lo02.shapeUp.modele.Partie"},{"l":"fr.utt.lo02.shapeUp.modele.Tapis"},{"l":"fr.utt.lo02.shapeUp.vue"}];updateSearchResults();

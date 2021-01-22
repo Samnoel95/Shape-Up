@@ -122,7 +122,7 @@ public class CompteurNormal implements Visiteur {
 	 * sur une ligne
 	 * 
 	 * @param tapis : le tapis associé à la partie
-	 * @param forme : c'est la couleur de la carte qui vient de l'�num�ration
+	 * @param couleur : c'est la couleur de la carte qui vient de l'�num�ration
 	 *              Couleur
 	 * @param ligne : c'est la ligne pour laquelle on compte les points
 	 */

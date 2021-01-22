@@ -46,6 +46,7 @@ public class ButtonCard extends JButton {
 
 	/**
 	 * Méthode qui renvoie la position d'une carte
+	 * @return la position de la carte 
 	 */
 	public PositionCarte getPositionCarte() {
 		return positionCarte;
@@ -62,6 +63,7 @@ public class ButtonCard extends JButton {
 
 	/**
 	 * Méthode qui renvoie l'image d'un bouton
+	 * @return L'image de la carte 
 	 */
 	public Image getCardImage() {
 		return cardImage;

@@ -191,7 +191,7 @@ public abstract class Joueur extends Observable {
 	 * Cette méthode permet de poser une carte sur le tapis. 
 	 * @param position C'est la position où l'on souhaite placer la carte.
 	 * @param carte C'est la carte à placer. 
-	 * @param tapis 
+	 * @param tapis Le tapis de la partie
 	 * @return Un booléen qui confirme ou non si la carte est posée 
 	 */
 	public boolean poserCarte(PositionCarte position, Carte carte, Tapis tapis) {

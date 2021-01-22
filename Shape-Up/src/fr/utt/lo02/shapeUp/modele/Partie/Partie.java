@@ -49,7 +49,7 @@ public class Partie {
 
 	/**
 	 * Méthode qui retourne le compteur associé à la partie
-	 * 
+	 * @return Le compteur de la partie
 	 */
 
 	public Visiteur getCompteur() {
@@ -69,7 +69,7 @@ public class Partie {
 
 	/**
 	 * Méthode qui retourne le tapis associé à la partie
-	 * 
+	 * @return le tapis de la partie
 	 */
 	public Tapis getTapis() {
 		return this.tapis;
@@ -87,7 +87,7 @@ public class Partie {
 
 	/**
 	 * Méthode qui retourne la pioche associée à la partie
-	 * 
+	 * @return La pioche de la partie
 	 */
 	public Pioche getPioche() {
 		return this.pioche;
@@ -105,7 +105,7 @@ public class Partie {
 
 	/**
 	 * Méthode qui retourne le nombre de joueurs de la partie
-	 * 
+	 * @return Le nombre de joueur de la partie 
 	 */
 	public int getNombreDeJoueur() {
 		return this.nombreDeJoueur;
@@ -124,7 +124,7 @@ public class Partie {
 
 	/**
 	 * Méthode qui retourne le nombre de joueurs virtuels de la partie
-	 * 
+	 * @return Le nombre de joueur virtuel
 	 */
 	public int getNbreJVirtuels() {
 		return this.nbreJVirtuels;
@@ -142,7 +142,7 @@ public class Partie {
 
 	/**
 	 * Méthode qui retourne le nombre de joueurs physiques de la partie
-	 * 
+	 * @return Nombre de joueur physique 
 	 */
 	public int getNbreJPhysiques() {
 		return this.nbreJPhysiques;
@@ -151,7 +151,7 @@ public class Partie {
 	/**
 	 * Méthode qui définit le nombre de joueurs physiques de la partie
 	 * 
-	 * @param nbreJPhysique : le nombre de joueurs physiques dans la partie
+	 * @param nbreJPhysiques : le nombre de joueurs physiques dans la partie
 	 * 
 	 */
 	public void setNbreJPhysiques(int nbreJPhysiques) {
@@ -170,7 +170,7 @@ public class Partie {
 
 	/**
 	 * Méthode qui retourne la liste de joueur de la partie
-	 * 
+	 * @return La liste des joueurs de la partie 
 	 */
 	public ArrayList<Joueur> getListeJ() {
 		return listeJ;
@@ -436,6 +436,7 @@ public class Partie {
 	 * Méthode qui demande avec quelle variante sera jouée la partie
 	 * 
 	 * @param ShapeUp : une partie
+	 * @return un int qui retourne la version de la partie, 1 pour classique, 2 pour avanc�e
 	 */
 	public int choixVariante(Partie ShapeUp) {
 		int version;

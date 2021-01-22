@@ -41,7 +41,7 @@ public class Pioche {
 	}
 	/**
 	 * Méthode qui permet de tirer une carte de la pioche 
-	 * @return
+	 * @return La carte sur le dessus de la pioche 
 	 */
 	public Carte distribuerUneCarte() {
 		return pioche.poll();

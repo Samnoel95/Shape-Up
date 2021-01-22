@@ -74,6 +74,7 @@ public class Parametres {
 
 	/**
 	 * Méthode qui retourne une fenêtre
+	 * @return La Jframe de param�tre 
 	 */
 
 	public JFrame getFrame() {
@@ -82,6 +83,7 @@ public class Parametres {
 
 	/**
 	 * Méthode qui retourne un JButton
+	 * @return Un Jbutton
 	 */
 	public JButton getCommencer() {
 		return commencer;
